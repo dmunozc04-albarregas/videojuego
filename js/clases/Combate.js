@@ -1,4 +1,4 @@
-import { Jugador } from "./Jugador.js"
+import { Jugador } from "./Personaje.js"
 import { Enemigo } from "./Enemigo.js"
 import { Arma } from "./Arma.js"
 import { Region } from "./Region.js"
