@@ -7,11 +7,11 @@ class Tienda{
         this.#armas = [];
     }
 
-    getArmas(){
+    get Armas(){
         return this.#armas;
     }
 
-    setArmas(){
+    set Armas(armas){
         this.armas = armas;
     }
 }

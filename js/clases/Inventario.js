@@ -5,11 +5,11 @@ class Inventario{
         this.#armasCompradas = armasCompradas;
     }
 
-    getArmasCompradas(){
+    get ArmasCompradas(){
         return this.#armasCompradas;
     }
 
-    setArmasCompradas(){
+    set ArmasCompradas(armasCompradas){
         this.armasCompradas = armasCompradas;
     }
 }

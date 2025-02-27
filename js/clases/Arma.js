@@ -13,39 +13,43 @@ export class Arma{
         this.#estaComprado = estaComprado;
     }
 
-    getNombre(){
+    get Nombre(){
         return this.#nombre;
     }
 
-    setNombre(){
+    set Nombre(nombre){
         this.nombre = nombre;
     }
 
-    getDano(){
+    get Dano(){
         return this.#dano;
     }
 
-    setDano(){
+    set Dano(dano){
         this.dano = dano;
     }
 
-    getPrecio(){
+    get Precio(){
         return this.#precio;
     }
 
-    setPrecio(){
+    set Precio(precio){
         this.precio = precio;
     }
 
-    getImagen(){
+    get Imagen(){
         return this.#imagen;
     }
 
-    getEstaComprado(){
+    set Imagen(imagen){
+        this.imagen = imagen;
+    }
+
+    get EstaComprado(){
         return this.#estaComprado;
     }
 
-    setEstaComprado(){
+    set EstaComprado(estaComprado){
         this.estaComprado = estaComprado;
     }
 }
