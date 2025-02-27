@@ -1,7 +1,7 @@
 class Inventario{
-    #armaCompradas = [5];
+    #armasCompradas = [5];
 
-    constructor(){
-        this.#armaCompradas = armasCompradas;
+    constructor(armasCompradas){
+        this.#armasCompradas = armasCompradas;
     }
 }

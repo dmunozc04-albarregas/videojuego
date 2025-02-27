@@ -5,12 +5,11 @@ export class Arma{
     #imagen;
     #estaComprado;
 
-    constructor(){
+    constructor(nombre, dano, precio, imagen, estaComprado){
         this.#nombre = nombre;
         this.#dano = dano;
         this.#precio = precio;
         this.#imagen = imagen;
         this.#estaComprado = estaComprado;
-
     }
 }
