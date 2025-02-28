@@ -3,7 +3,6 @@ export class Personaje {
     #fuerza;
     #resistencia;
     #magia;
-    #experiencia;
     #nivel;
     #imagen;
     #arma;
