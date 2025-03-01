@@ -1,8 +1,14 @@
-import { Personaje } from "./Personaje";
+import { Personaje } from "./Personaje.js";
 
+/**
+ * Clase específica para crear los enemigos del videojuego.
+ * 
+ * @author David Muñoz, Eva Retamar y Adrián Pérez
+ */
 export class Enemigo extends Personaje{
-
-    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma, experiencia, dinero) {
-        super(nombre, fuerza, resistencia, magia, nivel, imagen, arma);
+    constructor(nombre, fuerza, vida, magia, nivel, imagen) {
+        super(nombre, fuerza, vida, magia, nivel, imagen);
     }
+
+    // Métodos
 }

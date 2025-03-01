@@ -1,16 +1,21 @@
 import { Enemigo } from "./Enemigo.js"
 
-export default class Region {
+/**
+ * Clase específica para crear las distintas regiones del videojuego.
+ * 
+ * @author David Muñoz, Eva Retamar y Adrián Pérez
+ */
+export class Region {
     #idRegion;
     #imgRegion;
     #tamanioEnemigos;
     #enemigos;
 
     constructor(identificadorRegion, imagenRegion) {
-        this.#idRegion = identificadorRegion;
-        this.#imgRegion = imagenRegion;
-        this.#tamanioEnemigos = 3;
-        this.#enemigos = [];
+        this.idRegion = identificadorRegion;
+        this.imgRegion = imagenRegion;
+        this.tamanioEnemigos = 3;
+        this.enemigos = [];
     }
 
     // Getter y setter para idRegion
@@ -20,9 +25,9 @@ export default class Region {
 
     set idRegion(nuevaIdRegion) {
         if (typeof nuevaIdRegion === "number" && nuevaIdRegion > 0) {
-            this.idRegion = nuevaIdRegion;
+            this.#idRegion = nuevaIdRegion;
         } else {
-            console.error("El identificador debe ser un número positivo");
+            console.error("El identificador debe ser un número entero positivo");
         }
     }
 
@@ -39,16 +44,40 @@ export default class Region {
         }
     }
 
-    // Getter para el tamaño del array de enemigos
+    // Getter y setter para el tamaño del array de enemigos
     get tamanioEnemigos() {
         return this.#tamanioEnemigos;
     }
 
-    // Getter, add y remove para enemigos
+    set tamanioEnemigos(nuevoTamanio) {
+        if (typeof nuevoTamanio === "number" && nuevoTamanio > 0) {
+            this.#tamanioEnemigos = nuevoTamanio;
+        } else {
+            console.error("El tamaño del array debe ser un número entero positivo");
+        }
+    }
+
+    // Getter y setter para enemigos
     get enemigos() {
         return this.#enemigos;
     }
 
+    set enemigos(enemigos) {
+        if (Array.isArray(enemigos)) {
+            this.#enemigos = enemigos;
+        }
+        else {
+            console.error("El parámetro pasado debe ser un array")
+        }
+    }
+
+    // Métodos
+
+    /**
+     * Método que sirve para añadir nuevos enemigos a la región.
+     * 
+     * @param {*} arma Objeto de la clase enemigo.
+     */
     addEnemigos(enemigo) {
         if (!(enemigo instanceof Enemigo)) {
             console.error("Solo se pueden agregar objetos de la clase Enemigo.");
@@ -61,13 +90,20 @@ export default class Region {
         }
         else {
             this.enemigos.push(enemigo);
+            console.log("Enemigo añadida");
         }
     }
 
+    /**
+     * Método que sirve para eliminar un enemigo específico de la región.
+     * 
+     * @param {*} nombreArma Nombre del enemigo.
+     */
     removeEnemigos(nombreEnemigo) {
         const indice = this.enemigos.findIndex(enemigo => enemigo.nombre === nombreEnemigo);
         if (indice !== -1) {
             this.enemigos.splice(indice, 1); 
+            console.log("Enemigo eliminado");
         } else {
             console.error(`El enemigo ${nombreEnemigo} no está en el array.`);
         }
