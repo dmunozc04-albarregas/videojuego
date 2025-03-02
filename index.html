@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videojuego</title>
+    <title>The Witcher</title>
+    <link rel="icon" href="./recursos/imagenes/Icono.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -13,20 +14,20 @@
 <body>
     <video id="background-video" src="./recursos/videos/TW3.mp4" autoplay muted loop></video>
     <div id="pre-play">
-        <p>Pulsa para comenzar el juego</p>
-        <button id="start-btn">Iniciar</button>
+        <p>Pulsa F11 para comenzar el juego</p>
+        <!--<button id="start-btn">Iniciar</button>-->
     </div>
     <div id="contenedor">
-        <h1>Videojuego</h1>
+        <!--<h1>Videojuego</h1>-->
         <div class="btns-menu">
-            <button class="p-2">-> Continuar partida</button>
-            <button class="hola">+ Nueva partida</button>
-            <button>- Eliminar partida</button>
-            <button>Repositorio</button>
+            <div class="continuarPartida"><button class="botones" data-url="./html/Lobby.html">-> Continuar partida</button></div>
+            <div class="nuevaPartida"><button class="botones" data-url="./html/CrearPersonaje.html">+ Nueva partida</button></div>
+            <div class="eliminarPartida"><button class="botones" data-action="borrar-storage">- Eliminar partida</button></div>
+            <div class="repositorio"><button class="botones" data-url="https://github.com/dmunozc04-albarregas/videojuego" data-externo="true">Repositorio</button></div>
         </div>
     </div>
 
-    <script src="./js/controladores/Main.js"></script>
+    <script type="module" src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
