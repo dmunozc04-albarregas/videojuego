@@ -1,5 +1,6 @@
 export class Personaje {
     #nombre;
+    #vida
     #fuerza;
     #resistencia;
     #magia;
@@ -7,8 +8,9 @@ export class Personaje {
     #imagen;
     #arma;
 
-    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma) {
+    constructor(nombre, vida, fuerza, resistencia, magia, nivel, imagen, arma) {
         this.#nombre = nombre;
+        this.#vida = vida;
         this.#fuerza = fuerza;
         this.#resistencia = resistencia;
         this.#magia = magia;
@@ -17,6 +19,7 @@ export class Personaje {
         this.#arma = arma;
     }
 
+    //Getter y setter para nombre.
     get nombre() {
         return this.#nombre;
     }
@@ -29,6 +32,20 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para vida.
+    get vida() {
+        return this.#vida;
+    }
+
+    set vida(nuevaVida) {
+        if(typeof nuevaVida === "number" && nuevaVida) {
+            this.#vida = nuevaVida;
+        } else {
+            console.error("La vida debe ser un número no vacío ni nulo.");
+        }
+    }
+
+    //Getter y setter para fuerza.
     get fuerza() {
         return this.#fuerza;
     }
@@ -41,6 +58,7 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para resistencia.
     get resistencia() {
         return this.#resistencia;
     }
@@ -53,6 +71,7 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para magia.
     get magia() {
         return this.#magia;
     }
@@ -65,6 +84,7 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para nivel.
     get nivel() {
         return this.#nivel;
     }
@@ -77,6 +97,7 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para imagen.
     get imagen() {
         return this.#imagen;
     }
@@ -89,6 +110,7 @@ export class Personaje {
         }
     }
 
+    //Getter y setter para arma.
     get arma() {
         return this.#arma;
     }
@@ -100,4 +122,7 @@ export class Personaje {
             console.error("La magia debe ser un número no vacío ni nulo.");
         }
     }
+
+  
+
 }

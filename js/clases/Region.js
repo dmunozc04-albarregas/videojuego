@@ -12,7 +12,7 @@ export default class Region {
         this.#tamanioEnemigos = 3;
         this.#enemigos = [];
     }
-
+    
     // Getter y setter para idRegion
     get idRegion() {
         return this.#idRegion;
