@@ -63,4 +63,23 @@ export class Tienda{
             console.error(`El arma ${nombreArma} no está en el array.`);
         }
     }
+
+    comprarArma(jugador, nombreArma) {
+        const armaDisponible = this.#armas.find(a => a.nombre === nombreArma);
+
+        if(!armaDisponible) {
+            console.error("El arma no está disponible en la tienda.");
+            return;
+        }
+
+        if(jugador.dinero >= armaDisponible.precio) {
+            jugador.dinero -= armaDisponible.precio;
+            jugador.inventario.addArma(armaDisponible);
+            console.log("Has comprado ${armaDisponible.nombre}. Te queda ${jugador.dinero} monedas.")
+        } else {
+            console.error("No tienes suficiente dinero para comprar ${armaDisponible.nombre}.");
+        }
+    }
+
+
 }

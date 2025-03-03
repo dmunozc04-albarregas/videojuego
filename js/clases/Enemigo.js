@@ -7,7 +7,7 @@ import { Personaje } from "./Personaje.js";
  */
 export class Enemigo extends Personaje{
 
-    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma, experiencia, dinero) {
+    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma) {
         super(nombre, fuerza, resistencia, magia, nivel, imagen, arma);
     }
 

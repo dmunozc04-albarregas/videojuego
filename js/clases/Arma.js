@@ -82,4 +82,6 @@ export class Arma{
             console.error("EstaComprado debe ser un boolean");
         }
     }
+
+    
 }
