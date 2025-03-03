@@ -5,6 +5,9 @@ let guardado = JSON.parse(localStorage.getItem("guardado"));
 const continuarPartida = document.querySelector(".continuarPartida");
 const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
+const botonHover = document.querySelectorAll(".btns-menu")
+const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
+
 
 if (guardado) {
     continuarPartida.style.display = "flex";
@@ -25,6 +28,13 @@ document.addEventListener('keydown', function(event) {
         musica.reproducir("../recursos/sonidos/Inicio.mp3");
     }
 });
+
+// Agregar evento para reproducir sonido al pasar el mouse
+document.querySelectorAll(".botones").forEach(boton => {
+boton.addEventListener("mouseenter", () => {
+    sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
+    sonidoHover.play();
+})});
 
 // Código para manejar la funcionalidad de cada botón
 document.querySelectorAll(".botones").forEach(boton => {
