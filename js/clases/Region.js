@@ -11,6 +11,12 @@ export class Region {
     #tamanioEnemigos;
     #enemigos;
 
+    /**
+     * Constructor de la clase región. Por defecto se inicializa el array de enemigos vacío y el tamaño a 3.
+     * 
+     * @param {*} identificadorRegion Identificador de la región.
+     * @param {*} imagenRegion Nombre de la imagen de la región.
+     */
     constructor(identificadorRegion, imagenRegion) {
         this.idRegion = identificadorRegion;
         this.imgRegion = imagenRegion;
@@ -18,11 +24,21 @@ export class Region {
         this.enemigos = [];
     }
     
-    // Getter y setter para idRegion
+    /**
+    * Método getter para obtener el id de la región.
+    * 
+    * @returns {number} El id de la región.
+    */
     get idRegion() {
         return this.#idRegion;
     }
 
+    /**
+     * Método setter para establecer el id de la región.
+     * 
+     * @param {number} nuevaIdRegion El nuevo id de la región.
+     * @throws {Error} Si el id es número entero vacío o no es un número entero.
+     */
     set idRegion(nuevaIdRegion) {
         if (typeof nuevaIdRegion === "number" && nuevaIdRegion > 0) {
             this.#idRegion = nuevaIdRegion;
@@ -31,11 +47,21 @@ export class Region {
         }
     }
 
-    // Getter y setter para imgRegion
+    /**
+    * Método getter para obtener la imagen de la región.
+    * 
+    * @returns {string} El nombre de la imagen.
+    */
     get imgRegion() {
         return this.#imgRegion;
     }
 
+    /**
+     * Método setter para establecer la imagen de la región.
+     * 
+     * @param {string} nuevaImgRegion La nueva imagen de la región.
+     * @throws {Error} Si la imagen es una cadena vacía o no es una cadena.
+     */
     set imgRegion(nuevaImgRegion) {
         if (typeof nuevaImgRegion === "string" && nuevaImgRegion) {
             this.#imgRegion = nuevaImgRegion;
@@ -44,11 +70,21 @@ export class Region {
         }
     }
 
-    // Getter y setter para el tamaño del array de enemigos
+    /**
+     * Método getter para obtener el tamaño del array de enemigos.
+     *
+     * @returns {number} El tamaño de enemigos que tiene la región.
+     */
     get tamanioEnemigos() {
         return this.#tamanioEnemigos;
     }
 
+    /**
+     * Método setter para establecer el tamaño del array de enemigos.
+     * 
+     * @param {number} nuevoTamanio El tamaño de enemigos que tiene la región.
+     * @throws {Error} Si el tamaño es número entero vacío o no es un número entero.
+     */
     set tamanioEnemigos(nuevoTamanio) {
         if (typeof nuevoTamanio === "number" && nuevoTamanio > 0) {
             this.#tamanioEnemigos = nuevoTamanio;
@@ -57,14 +93,24 @@ export class Region {
         }
     }
 
-    // Getter y setter para enemigos
+    /**
+     * Método getter para obtener el array de los enemigos de la región.
+     * 
+     * @returns {[]} El array de enemigos.
+     */
     get enemigos() {
         return this.#enemigos;
     }
 
-    set enemigos(enemigos) {
-        if (Array.isArray(enemigos)) {
-            this.#enemigos = enemigos;
+    /**
+     * Método setter para establecer el array de enemigos de la región.
+     * 
+     * @param {[]} enemigosRegion El nuevo array de enemigos.
+     * @throws {Error} Si el parámetro no es un array.
+     */
+    set enemigos(enemigosRegion) {
+        if (Array.isArray(enemigosRegion)) {
+            this.#enemigos = enemigosRegion;
         }
         else {
             console.error("El parámetro pasado debe ser un array")

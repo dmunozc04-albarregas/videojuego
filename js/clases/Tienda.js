@@ -8,18 +8,31 @@ import { Arma } from "./Arma.js"
 export class Tienda{
     #armas;
 
+    /**
+     * Constructor de la clase tienda. Por defecto se inicializa el array de armas a vacío.
+     */
     constructor(){
         this.armas = [];
     }
 
-    // Getter y setter de armas
+    /**
+     * Método getter para obtener el array de las armas de la tienda.
+     * 
+     * @returns {[]} El array de las armas tienda.
+     */
     get armas(){
         return this.#armas;
     }
 
-    set armas(armas) {
-        if (Array.isArray(armas)) {
-            this.#armas = armas;
+    /**
+     * Método setter para establecer el array de armas de la tienda.
+     * 
+     * @param {[]} armasTienda El nuevo array de armas compradas.
+     * @throws {Error} Si el parámetro no es un array.
+     */
+    set armas(armasTienda) {
+        if (Array.isArray(armasTienda)) {
+            this.#armas = armasTienda;
         }
         else {
             console.error("El parámetro pasado debe ser un array")
@@ -80,6 +93,4 @@ export class Tienda{
             console.error("No tienes suficiente dinero para comprar ${armaDisponible.nombre}.");
         }
     }
-
-
 }
