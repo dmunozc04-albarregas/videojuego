@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "IM Fell English SC", serif; /* Fuente elegante y antigua */
+  background-image: url(../recursos/imagenes/backgroud-magia.png);
+}
+
+.avatares {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra los avatares horizontalmente */
+    align-items: center; /* Alinea los avatares verticalmente */
+    width: 100%; /* Se adapta mejor al contenedor */
+    gap: 1em; /* Mayor separación entre los avatares */
+    padding: 1em 0; /* Espaciado arriba y abajo */
+}
+
+.avatares img {
+    width: 10em; /* Tamaño más uniforme */
+    height: 14em; /* Altura proporcional */
+    border-radius: 50%; /* Hace las imágenes más circulares */
+    background-color: #fff;
+    object-fit: contain; /* Evita distorsión de las imágenes */
+    padding: 0.5em; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
+    transition: transform 0.3s ease-in-out; /* Animación suave */
+}
+
+.avatares img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+}
+
+
+.btn-enviar {
+  font-family: "IM Fell English SC", serif; /* Fuente elegante y antigua */
+  font-size: 24px;
+  color: #d6d6d6; /* Gris claro con toque gótico */
+  background: transparent;
+  border: 2px solid transparent;
+  padding: 15px 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); /* Brillo sutil */
+}
+
+.btn-enviar::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 400%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%) rotate(25deg);
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.btn-enviar:hover {
+  color: #ffffff; /* Brillo al pasar el mouse */
+  text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
+}
+
+.btn-enviar:hover::before {
+  opacity: 1;
+}
+
+.btn-enviar:active {
+  transform: scale(0.95);
+}
+
+.colored-toast.swal2-icon-success {
+  background-color: #a5dc86 !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+}
+
+.colored-toast .swal2-html-container {
+  color: white;
+}
