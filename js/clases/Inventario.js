@@ -1,7 +1,7 @@
 import { Arma } from "./Arma.js"
 
 /**
- * Clase específica para manejar el inventario del videojuego.
+ * Clase específica para manejar el inventario del personaje.
  * 
  * @author David Muñoz, Eva Retamar y Adrián Pérez
  */
@@ -9,16 +9,29 @@ export class Inventario {
     #tamanioInventario;
     #armasCompradas;
 
+    /**
+     * Constructor de la clase inventario. Por defecto se inicializa el array de armas vacío y el tamaño a 5.
+     */
     constructor() {
         this.tamanioInventario = 5;
         this.armasCompradas = [];
     }
 
-    // Getter y setter para el tamaño del array de inventario
+    /**
+     * Método getter para obtener el tamaño del inventario.
+     *
+     * @returns {number} El tamaño del inventario.
+     */
     get tamanioInventario() {
         return this.#tamanioInventario;
     }
 
+    /**
+     * Método setter para establecer el tamaño del inventario.
+     * 
+     * @param {number} nuevoTamanio El tamaño del inventario.
+     * @throws {Error} Si el tamaño es número entero vacío o no es un número entero.
+     */
     set tamanioInventario(nuevoTamanio) {
         if (typeof nuevoTamanio === "number" && nuevoTamanio > 0) {
             this.#tamanioInventario = nuevoTamanio;
@@ -27,11 +40,21 @@ export class Inventario {
         }
     }
 
-    // Getter y setter para armasCompradas
+    /**
+     * Método getter para obtener el array de las armas compradas por el jugador.
+     * 
+     * @returns {[]} El array de las armas compradas.
+     */
     get armasCompradas() {
         return this.#armasCompradas;
     }
 
+    /**
+     * Método setter para establecer el array de armas compradas.
+     * 
+     * @param {[]} armasCompradas El nuevo array de armas compradas.
+     * @throws {Error} Si el parámetro no es un array.
+     */
     set armasCompradas(armasCompradas) {
         if (Array.isArray(armasCompradas)) {
             this.#armasCompradas = armasCompradas;

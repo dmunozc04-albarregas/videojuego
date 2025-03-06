@@ -10,29 +10,45 @@ export class Jugador extends Personaje {
     #arma;
     #experiencia;
     #dinero;
+    #inventario;
+
     /**
-     * Constructor de la clase jugador. 
-     * @param {*} nombre Nombre del jugador
-     * @param {*} fuerza Fuerza del jugador 
-     * @param {*} resistencia Resistencia del jugador
-     * @param {*} magia Magia del jugador
-     * @param {*} nivel Nivel del jugador
-     * @param {*} imagen Imagen del jugador
-     * @param {*} arma Arma del jugador
-     * @param {*} experiencia Experiencia del jugador
-     * @param {*} dinero Dinero del jugador
+     * Constructor de la clase jugador.
+     *  
+     * @param {*} nombre Nombre del jugador.
+     * @param {*} fuerza Fuerza del jugador.
+     * @param {*} vida Vida del jugador.
+     * @param {*} magia Magia del jugador.
+     * @param {*} nivel Nivel del jugador.
+     * @param {*} imagen Imagen del jugador.
+     * @param {*} arma Arma del jugador.
+     * @param {*} experiencia Experiencia del jugador.
+     * @param {*} dinero Dinero del jugador.
+     * @param {*} inventario Invenario del jugador.
      */
-    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma, experiencia, dinero) {
-        super(nombre, fuerza, resistencia, magia, nivel, imagen, arma);
+    constructor(nombre, fuerza, vida, magia, nivel, imagen, experiencia, arma, dinero, inventario) {
+        super(nombre, fuerza, vida, magia, nivel, imagen);
+        this.#arma = arma;
         this.#experiencia = experiencia;
         this.#dinero = dinero;
+        this.inventario = inventario;
     }
 
-   
+    /**
+     * Método getter para obtener el arma usada por el jugador.
+     * 
+     * @returns {Arma} El arma del jugador.
+     */
     get arma() {
         return this.#arma;
     }
 
+    /**
+     * Método setter para establecer el arma del jugador.
+     * 
+     * @param {Arma} nuevaArma El nuevo arma del jugador.
+     * @throws {Error} Si no es una instancia de la clase Arma.
+     */
     set arma(nuevaArma) {
         if (nuevaArma instanceof Arma) {
             this.#arma = nuevaArma;
@@ -42,18 +58,19 @@ export class Jugador extends Personaje {
     }
 
     /**
-    * Método getter para obtener experiencia del jugador.
+    * Método getter para obtener la experiencia del jugador.
     * 
     * @returns {number} La experiencia del jugador.
     */
     get experiencia() {
         return this.#experiencia;
     }
+
     /**
      * Método setter para establecer la experiencia del jugador.
      * 
      * @param {number} nuevaExperiencia La nueva experiencia del jugador.
-     * @throws {Error} Si la experiencia es número entero vacío o no es válido.
+     * @throws {Error} Si la experiencia es número entero vacío o no es un numero entero.
      */
     set experiencia(nuevaExperiencia) {
         if (typeof nuevaExperiencia === "number" && nuevaExperiencia) {
@@ -62,6 +79,7 @@ export class Jugador extends Personaje {
             console.error("La experiencia debe ser un número entero no vacío ni nulo.");
         }
     }
+
     /**
     * Método getter para obtener dinero del jugador.
     * 
@@ -70,11 +88,12 @@ export class Jugador extends Personaje {
     get dinero() {
         return this.#dinero;
     }
+
     /**
      * Método setter para establecer el dinero del jugador.
      * 
      * @param {number} nuevoDinero Nuevo dinero del jugador.
-     * @throws {Error} Si el dinero es número entero vacío o no es válido.
+     * @throws {Error} Si el dinero es número entero vacío o no es un número entero.
      */
     set dinero(nuevoDinero) {
         if (typeof nuevoDinero === "number" && nuevoDinero) {
@@ -85,14 +104,39 @@ export class Jugador extends Personaje {
     }
 
     /**
+     * Método getter para obtener dinero del jugador.
+     * 
+     * @returns {string} El inventario del jugador.
+     */
+    get inventario() {
+        return this.inventario;
+    }
+
+    /**
+     * Método setter para establecer el inventario del jugador.
+     * 
+     * @param {string} nuevoInventario Nuevo inventario del jugador.
+     * @throws {Error} Si el inventario es un string no vacío ni nulo."
+     */
+    set inventario(nuevoInventario) {
+        if (typeof nuevoInventario === "string" && nuevoInventario) {
+            this.#inventario = nuevoInventario;
+        } else {
+            console.error("El inventario debe ser un string no vacío ni nulo.");
+        }
+    }
+
+    // Métodos
+
+    /**
      * Método para equipar al jugador con el arma.
-     * @param {*} nombreArma nombre del arma
+     * @param {*} nombreArma Nombre del arma.
      * @returns 
      */
     equiparArma(nombreArma) {
         const armEncontrada = this.inventario.armas.find(arma = this.#arma.nombre === nombreArma);
-    
-        if(!armEncontrada) {
+
+        if (!armEncontrada) {
             console.error("No tienes el arma ${nombeArma} en tu invenntario.");
             return;
         }
@@ -100,5 +144,4 @@ export class Jugador extends Personaje {
         this.arma = armEncontrada;
         console.log("Has equipado el arma: $this.arma.nombre");
     }
-    
 }

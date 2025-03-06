@@ -79,9 +79,9 @@
 }
 
 .botones {
-  font-family: 'IM Fell English SC', serif; /* Fuente elegante y antigua */
+  font-family: 'IM Fell English SC', serif; 
   font-size: 24px;
-  color: #d6d6d6; /* Gris claro con toque gótico */
+  color: #d6d6d6; 
   background: transparent;
   border: 2px solid transparent;
   padding: 15px 40px;
@@ -90,7 +90,7 @@
   letter-spacing: 3px;
   position: relative;
   transition: all 0.3s ease-in-out;
-  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); /* Brillo sutil */
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); 
 }
 
 .botones::before {
@@ -107,7 +107,7 @@
 }
 
 .botones:hover {
-  color: #ffffff; /* Brillo al pasar el mouse */
+  color: #ffffff; 
   text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
 }
 

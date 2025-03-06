@@ -23,7 +23,7 @@ export class Musica {
     }
 
     /**
-     * Método que sirve para desvanecer ligeramente la canción antes de pone otra.
+     * Método que sirve para desvanecer ligeramente la canción antes de poner otra.
      * 
      * @param {*} callback 
      */

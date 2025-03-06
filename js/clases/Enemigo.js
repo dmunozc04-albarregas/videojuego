@@ -7,8 +7,18 @@ import { Personaje } from "./Personaje.js";
  */
 export class Enemigo extends Personaje{
 
-    constructor(nombre, fuerza, resistencia, magia, nivel, imagen, arma) {
-        super(nombre, fuerza, resistencia, magia, nivel, imagen, arma);
+    /**
+     * Constructor de la clase Enemigo.
+     * 
+     * @param {*} nombre Nombre del enemigo.
+     * @param {*} fuerza Fuerza del enemigo.
+     * @param {*} vida Vida del enemigo.
+     * @param {*} magia Magia del enemigo.
+     * @param {*} nivel Nivel del enemigo.
+     * @param {*} imagen Nombre de la imagen del enemigo.
+     */
+    constructor(nombre, fuerza, vida, magia, nivel, imagen) {
+        super(nombre, fuerza, vida, magia, nivel, imagen);
     }
 
     // Métodos
