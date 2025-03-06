@@ -10,6 +10,7 @@ export class Jugador extends Personaje {
     #arma;
     #experiencia;
     #dinero;
+    #inventario;
 
     /**
      * Constructor de la clase jugador.
@@ -23,12 +24,14 @@ export class Jugador extends Personaje {
      * @param {*} arma Arma del jugador.
      * @param {*} experiencia Experiencia del jugador.
      * @param {*} dinero Dinero del jugador.
+     * @param {*} inventario Invenario del jugador.
      */
-    constructor(nombre, fuerza, vida, magia, nivel, imagen, arma, experiencia, dinero) {
+    constructor(nombre, fuerza, vida, magia, nivel, imagen, experiencia, arma, dinero, inventario) {
         super(nombre, fuerza, vida, magia, nivel, imagen);
         this.#arma = arma;
         this.#experiencia = experiencia;
         this.#dinero = dinero;
+        this.inventario = inventario;
     }
 
     /**
@@ -97,6 +100,29 @@ export class Jugador extends Personaje {
             this.#dinero = nuevoDinero;
         } else {
             console.error("El dinero debe ser un número entero no vacío ni nulo.");
+        }
+    }
+
+    /**
+     * Método getter para obtener dinero del jugador.
+     * 
+     * @returns {string} El inventario del jugador.
+     */
+    get inventario() {
+        return this.inventario;
+    }
+
+    /**
+     * Método setter para establecer el inventario del jugador.
+     * 
+     * @param {string} nuevoInventario Nuevo inventario del jugador.
+     * @throws {Error} Si el inventario es un string no vacío ni nulo."
+     */
+    set inventario(nuevoInventario) {
+        if (typeof nuevoInventario === "string" && nuevoInventario) {
+            this.#inventario = nuevoInventario;
+        } else {
+            console.error("El inventario debe ser un string no vacío ni nulo.");
         }
     }
 

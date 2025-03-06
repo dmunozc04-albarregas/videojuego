@@ -164,7 +164,7 @@ export class Personaje {
         if(typeof nuevaImagen === "string" && nuevaImagen) {
             this.#imagen = nuevaImagen;
         } else {
-            console.error("La magia debe ser un número no vacío ni nulo.");
+            console.error("La magia debe ser un string no vacío ni nulo.");
         }
     }
 }
