@@ -1,0 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("../recursos/imagenes/FondoLobby.webp");
+}

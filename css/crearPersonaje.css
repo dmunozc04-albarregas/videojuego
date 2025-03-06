@@ -24,7 +24,7 @@ body {
     width: 10em; /* Tamaño más uniforme */
     height: 14em; /* Altura proporcional */
     border-radius: 50%; /* Hace las imágenes más circulares */
-    background-color: #fff;
+
     object-fit: contain; /* Evita distorsión de las imágenes */
     padding: 0.5em; /* Espaciado interno */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
