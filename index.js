@@ -5,7 +5,6 @@ let guardado = JSON.parse(localStorage.getItem("guardado"));
 const continuarPartida = document.querySelector(".continuarPartida");
 const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
-const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 
 
 if (guardado) {
