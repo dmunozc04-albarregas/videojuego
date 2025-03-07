@@ -6,8 +6,13 @@
 }
 
 body {
-  font-family: "IM Fell English SC", serif; /* Fuente elegante y antigua */
-  background-image: url(../recursos/imagenes/FondoCreador.webp);
+  font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
+  background-image: url("https://wallup.net/wp-content/uploads/2016/01/295821-The_Witcher_3_Wild_Hunt-Geralt_of_Rivia-The_Witcher-landscape-mountain.jpg");
+  background-size: cover;
+}
+
+form label{
+  font-size: 1.3em;
 }
 
 .avatares {

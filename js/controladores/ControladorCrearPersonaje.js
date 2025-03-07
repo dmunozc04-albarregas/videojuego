@@ -15,6 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarAvatares();
 });
 
+// Selecciona el input de tipo range y el span donde se mostrará el valor
+const rangeInput = document.getElementById("fuerza");
+const rangeValue = document.getElementById("valorFuerza");
+
+// Añade un event listener para el evento 'input'
+rangeInput.addEventListener("input", function () {
+  // Actualiza el contenido del span con el valor actual del range
+  rangeValue.textContent = rangeInput.value;
+});
+
+const rangeInputMagic = document.getElementById("magia");
+const rangeValueMagic = document.getElementById("valorMagia");
+
+// Añade un event listener para el evento 'input'
+rangeInputMagic.addEventListener("input", function () {
+  // Actualiza el contenido del span con el valor actual del range
+  rangeValueMagic.textContent = rangeInputMagic.value;
+});
+
 // Agregar evento para reproducir sonido al pasar el mouse
 btnEnviar.addEventListener("mouseenter", () => {
   sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
@@ -33,8 +52,7 @@ function cargarAvatares() {
   for (let i = 0; i < img_avatares.length; i++) {
     avatares[i].src = img_avatares[i];
   }
-};
-
+}
 
 function crearPersonaje() {
   const Toast = Swal.mixin({

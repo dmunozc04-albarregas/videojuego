@@ -10,26 +10,27 @@
     <title>Crear Personaje</title>
 </head>
 <body>
-    <h1 class="mb-3 text-white text-center pt-1">Crear personaje</h1>
+   <div class="d-flex flex-column align-items-center mt-5">
+    <h1 class="mb-3 text-center pt-1 text-black">Crear personaje</h1>
 
-    <form action="#" class="text-white d-flex flex-column align-items-center">
-        <div class="mb-3 mt-5">
+    <form id="formulario" action="#" class="text-black d-flex flex-column align-items-center">
+        <div class="mb-3 mt-5 fw-bold text-center">
             <label for="nombrePersonaje" class="form-label">Nombre personaje</label>
-            <input type="text" class="form-control" id="nombrePersonaje">
+            <input type="text" pattern="[A-Za-z]+" minlength="3" maxlength="10" class="form-control" id="nombrePersonaje" required>
+        </div>
+
+        <div class="mb-3 fw-bold text-center">
+            <label for="fuerza" class="form-label">Fuerza: <span id="valorFuerza">50</span></label>
+            <input type="range" class="form-range" id="fuerza" required>
+            
+        </div>
+
+        <div class="mb-3 fw-bold text-center">
+            <label class="magia" for="magia" class="form-label">Magia: <span id="valorMagia">50</span></label>
+            <input type="range" class="form-range" id="magia" required>
         </div>
 
         <div class="mb-3">
-            <label for="fuerza" class="form-label">Fuerza</label>
-            <input type="range" class="form-range" id="fuerza">
-        </div>
-
-        <div class="mb-3">
-            <label for="magia" class="form-label">Magia</label>
-            <input type="range" class="form-range" id="magia">
-        </div>
-
-        <div class="mb-3">
-            <p>Elija su avatar:</p>
             <div class="avatares w-10">
                 <img src="" class="avatar avatar1" alt="Avatar 1">
                 <img src="" class="avatar avatar2" alt="Avatar 2">
@@ -38,9 +39,10 @@
             </div>
         </div>
 
-        <input class="btn-enviar" onclick="crearPersonaje()" type="submit">
+        <input class="btn-enviar" onclick="crearPersonaje()" value="Crear" type="submit">
 
     </form>
+   </div>
 
 
     <script type="module" src="../js/controladores/ControladorCrearPersonaje.js"></script>
