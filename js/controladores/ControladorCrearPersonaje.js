@@ -10,28 +10,30 @@ const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 const btnEnviar = document.querySelector(".btn-enviar");
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("form").addEventListener("submit", crearPersonaje);
-    cargarAvatares();
-  });
+  document.querySelector("form").addEventListener("submit", crearPersonaje);
+
+  cargarAvatares();
+});
 
 // Agregar evento para reproducir sonido al pasar el mouse
 btnEnviar.addEventListener("mouseenter", () => {
-    sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
-    sonidoHover.play();
-  });
+  sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
+  sonidoHover.play();
+});
 
+// Métodos
+const img_avatares = [
+  "../recursos/imagenes/personajes/Geralt.webp",
+  "../recursos/imagenes/personajes/Ciri.webp",
+  "../recursos/imagenes/personajes/Triss.webp",
+  "../recursos/imagenes/personajes/Yennefer.webp",
+];
 
-  const img_avatares = [
-    "../recursos/imagenes/Ciri.webp",
-    "../recursos/imagenes/personajes/radovid.webp",
-    "../recursos/imagenes/personajes/triss.webp",
-    "../recursos/imagenes/personajes/shani.webp",
-  ];
-
-  function cargarAvatares() {
-    for (let i = 0; i < img_avatares.length; i++) {
-      avatares[i].src = img_avatares[i];
-    }};
+function cargarAvatares() {
+  for (let i = 0; i < img_avatares.length; i++) {
+    avatares[i].src = img_avatares[i];
+  }
+};
 
 
 function crearPersonaje() {
@@ -43,7 +45,7 @@ function crearPersonaje() {
       popup: "colored-toast",
     },
     showConfirmButton: false,
-    timer: 2000, 
+    timer: 2000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.onmouseenter = Swal.stopTimer;
