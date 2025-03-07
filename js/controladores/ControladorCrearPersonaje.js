@@ -11,7 +11,6 @@ const btnEnviar = document.querySelector(".btn-enviar");
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("form").addEventListener("submit", crearPersonaje);
-
     cargarAvatares();
   });
 

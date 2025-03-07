@@ -1,7 +1,37 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    background-image: url("../recursos/imagenes/FondoLobby.webp");
+body {
+  background-image: url("../recursos/imagenes/FondoLobby.webp");
 }
+
+.navbar {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.navbar a{
+    color: #fff !important;
+}
+
+.navbar-nav ul{
+    padding-left: 2em;
+}
+
+.navbar-brand{
+    padding-left: 15em;
+    padding-right: .1em;
+    pointer-events: none;
+}
+
+.nav-item{
+    text-align: center;
+    padding-right: 3em;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    width: 70%; /* Ocupa todo el ancho disponible */
+  }
