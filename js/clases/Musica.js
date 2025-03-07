@@ -15,11 +15,9 @@ export class Musica {
      * @param {*} musica URL de la canción a reproducir.
      */
     reproducir(musica) {
-        //this.desvanecer(() => {
-            this.audio.src = musica;
-            this.audio.play();
-            this.audio.volume = 0.15;
-        //});
+        this.audio.src = musica;
+        this.audio.play();
+        this.audio.volume = 0.15;
     }
 
     /**
