@@ -6,8 +6,7 @@ const continuarPartida = document.querySelector(".continuarPartida");
 const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
 
-
-if (!guardado) {
+if (guardado) {
     continuarPartida.style.display = "flex";
     eliminarPartida.style.display = "flex";
     nuevaPartida.style.display = "none";   
@@ -45,7 +44,7 @@ document.querySelectorAll(".botones").forEach(boton => {
         if (action === "borrar-storage") {
             localStorage.clear(); // Borra todos los datos guardados
             alert("Los datos han sido borrados."); // Mensaje de confirmación
-            return;
+            location.reload();
         }
 
         if (url) {

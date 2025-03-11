@@ -27,6 +27,16 @@ export class Arma {
         this.estaComprado = estaComprado;
     }
 
+    toJSON() {
+        return {
+            nombre: this.nombre,
+            dano: this.dano,
+            precio: this.precio,
+            imagen: this.imagen,
+            estaComprado: this.estaComprado
+        };
+    }
+
     /**
      * Método getter para obtener el nombre del arma.
      * 
@@ -89,7 +99,7 @@ export class Arma {
      * @throws {Error} Si el precio es número entero vacío o no es un número entero.
      */
     set precio(precio) {
-        if (typeof precio === "number" && precio > 0) {
+        if (typeof precio === "number" && precio >= 0) {
             this.#precio = precio;
         } else {
             console.error("El precio debe ser un número entero positivo");

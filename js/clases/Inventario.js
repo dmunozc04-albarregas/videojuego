@@ -17,6 +17,13 @@ export class Inventario {
         this.armasCompradas = [];
     }
 
+    toJSON() {
+        return {
+            tamanioInventario: this.tamanioInventario,
+            armasCompradas: this.armasCompradas
+        };
+    }
+
     /**
      * Método getter para obtener el tamaño del inventario.
      *

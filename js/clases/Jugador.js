@@ -1,5 +1,6 @@
 import { Personaje } from "./Personaje.js";
 import { Arma } from "./Arma.js";
+import { Inventario } from "./Inventario.js";
 
 /**
  * Clase específica para crear al usuario que va a jugar al videojuego.
@@ -24,14 +25,29 @@ export class Jugador extends Personaje {
      * @param {*} arma Arma del jugador.
      * @param {*} experiencia Experiencia del jugador.
      * @param {*} dinero Dinero del jugador.
-     * @param {*} inventario Invenario del jugador.
+     * @param {*} inventario Inventario del jugador.
      */
-    constructor(nombre, fuerza, vida, magia, nivel, imagen, experiencia, arma, dinero, inventario) {
+    constructor(nombre, fuerza, vida, magia, nivel, imagen, arma, experiencia, dinero, inventario) {
         super(nombre, fuerza, vida, magia, nivel, imagen);
-        this.#arma = arma;
-        this.#experiencia = experiencia;
-        this.#dinero = dinero;
+        this.arma = arma;
+        this.experiencia = experiencia;
+        this.dinero = dinero;
         this.inventario = inventario;
+    }
+
+    toJSON() {
+        return {
+            nombre: this.nombre,
+            fuerza: this.fuerza,
+            vida: this.vida,
+            magia: this.magia,
+            nivel: this.nivel,
+            imagen: this.imagen,
+            arma: this.arma,
+            experiencia: this.experiencia,
+            dinero: this.dinero,
+            inventario: this.inventario
+        };
     }
 
     /**
@@ -73,7 +89,7 @@ export class Jugador extends Personaje {
      * @throws {Error} Si la experiencia es número entero vacío o no es un numero entero.
      */
     set experiencia(nuevaExperiencia) {
-        if (typeof nuevaExperiencia === "number" && nuevaExperiencia) {
+        if (typeof nuevaExperiencia === "number" && nuevaExperiencia >= 0) {
             this.#experiencia = nuevaExperiencia;
         } else {
             console.error("La experiencia debe ser un número entero no vacío ni nulo.");
@@ -96,7 +112,7 @@ export class Jugador extends Personaje {
      * @throws {Error} Si el dinero es número entero vacío o no es un número entero.
      */
     set dinero(nuevoDinero) {
-        if (typeof nuevoDinero === "number" && nuevoDinero) {
+        if (typeof nuevoDinero === "number" && nuevoDinero >= 0) {
             this.#dinero = nuevoDinero;
         } else {
             console.error("El dinero debe ser un número entero no vacío ni nulo.");
@@ -104,25 +120,25 @@ export class Jugador extends Personaje {
     }
 
     /**
-     * Método getter para obtener dinero del jugador.
+     * Método getter para obtener el inventario del jugador.
      * 
      * @returns {string} El inventario del jugador.
      */
     get inventario() {
-        return this.inventario;
+        return this.#inventario;
     }
 
     /**
      * Método setter para establecer el inventario del jugador.
      * 
-     * @param {string} nuevoInventario Nuevo inventario del jugador.
-     * @throws {Error} Si el inventario es un string no vacío ni nulo."
+     * @param {Inventario} nuevoInventario Nuevo inventario del jugador.
+     * @throws {Error} Si el parámetro no es una instancia de la clase Inventario."
      */
     set inventario(nuevoInventario) {
-        if (typeof nuevoInventario === "string" && nuevoInventario) {
+        if (nuevoInventario instanceof Inventario) {
             this.#inventario = nuevoInventario;
         } else {
-            console.error("El inventario debe ser un string no vacío ni nulo.");
+            console.error("El parámetro debe ser una instancia de la clase Inventario.");
         }
     }
 

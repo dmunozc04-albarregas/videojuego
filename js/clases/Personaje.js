@@ -22,12 +22,23 @@ export class Personaje {
      * @param {*} imagen Imagen del personaje.
      */
     constructor(nombre, fuerza, vida, magia, nivel, imagen) {
-        this.#nombre = nombre;
-        this.#fuerza = fuerza;
-        this.#vida = vida;
-        this.#magia = magia;
-        this.#nivel = nivel;
-        this.#imagen = imagen;
+        this.nombre = nombre;
+        this.fuerza = fuerza;
+        this.vida = vida;
+        this.magia = magia;
+        this.nivel = nivel;
+        this.imagen = imagen;
+    }
+
+    toJSON() {
+        return {
+            nombre: this.nombre,
+            fuerza: this.fuerza,
+            vida: this.vida,
+            magia: this.magia,
+            nivel: this.nivel,
+            imagen: this.imagen,
+        };
     }
 
     /**
