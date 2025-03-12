@@ -22,22 +22,26 @@ export class Personaje {
      * @param {*} imagen Imagen del personaje.
      */
     constructor(nombre, fuerza, vida, magia, nivel, imagen) {
-        this.nombre = nombre;
-        this.fuerza = fuerza;
-        this.vida = vida;
-        this.magia = magia;
-        this.nivel = nivel;
-        this.imagen = imagen;
+        this.#nombre = nombre;
+        this.#fuerza = fuerza;
+        this.#vida = vida;
+        this.#magia = magia;
+        this.#nivel = nivel;
+        this.#imagen = imagen;
     }
 
+    /**
+     * 
+     * @returns 
+     */
     toJSON() {
         return {
-            nombre: this.nombre,
-            fuerza: this.fuerza,
-            vida: this.vida,
-            magia: this.magia,
-            nivel: this.nivel,
-            imagen: this.imagen,
+            nombre: this.#nombre,
+            fuerza: this.#fuerza,
+            vida: this.#vida,
+            magia: this.#magia,
+            nivel: this.#nivel,
+            imagen: this.#imagen,
         };
     }
 
@@ -57,7 +61,7 @@ export class Personaje {
      * @throws {Error} Si el nombre es una cadena vacía o no es una cadena.
      */
     set nombre(nuevoNombre) {
-        if(typeof nuevoNombre === "string" && nuevoNombre) {
+        if(typeof nuevoNombre === "string" && nuevoNombre.trim() !== "") {
             this.#nombre = nuevoNombre;
         } else {
             console.error("El nombre debe ser un string no vacío ni nulo.");
@@ -80,10 +84,10 @@ export class Personaje {
      * @throws {Error} Si la fuerza es número entero vacío o no es un número entero.
      */
     set fuerza(nuevaFuerza) {
-        if(typeof nuevaFuerza === "number" && nuevaFuerza) {
+        if(Number.isInteger(nuevaFuerza) && nuevaFuerza >= 0) {
             this.#fuerza = nuevaFuerza;
         } else {
-            console.error("La fuerza debe ser un número entero no vacío ni nulo.");
+            console.error("La fuerza debe ser un número entero positivo o 0.");
         }
     }
 
@@ -103,10 +107,10 @@ export class Personaje {
      * @throws {Error} Si la vida es número entero vacío o no es un número entero.
      */
     set vida(nuevaVida) {
-        if(typeof nuevaVida === "number" && nuevaVida) {
+        if(Number.isInteger(nuevaVida) && nuevaVida >= 0) {
             this.#vida = nuevaVida;
         } else {
-            console.error("La vida debe ser un número no vacío ni nulo.");
+            console.error("La vida debe ser un número entero positivo o 0.");
         }
     }
 
@@ -126,10 +130,10 @@ export class Personaje {
      * @throws {Error} Si la magia es número entero vacío o no es un número entero.
      */
     set magia(nuevaMagia) {
-        if(typeof nuevaMagia === "number" && nuevaMagia) {
+        if(Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
             this.#magia = nuevaMagia;
         } else {
-            console.error("La magia debe ser un número no vacío ni nulo.");
+            console.error("La magia debe ser un número entero positivo o 0.");
         }
     }
 
@@ -149,10 +153,10 @@ export class Personaje {
      * @throws {Error} Si el nivel es número entero vacío o no es un número entero.
      */
     set nivel(nuevaNivel) {
-        if(typeof nuevaNivel === "number" && nuevaNivel) {
+        if(Number.isInteger(nuevaNivel) && nuevaNivel >= 0) {
             this.#nivel = nuevaNivel;
         } else {
-            console.error("La magia debe ser un número no vacío ni nulo.");
+            console.error("El nivel debe ser un número no vacío ni nulo.");
         }
     }
 
@@ -172,10 +176,37 @@ export class Personaje {
      * @throws {Error} Si la imagen es una cadena vacía o no es una cadena.
      */
     set imagen(nuevaImagen) {
-        if(typeof nuevaImagen === "string" && nuevaImagen) {
+        if(typeof nuevaImagen === "string" && nuevaImagen.trim() !== "") {
             this.#imagen = nuevaImagen;
         } else {
-            console.error("La magia debe ser un string no vacío ni nulo.");
+            console.error("La imagen debe ser un string no vacío ni nulo.");
         }
     }
+
+    atacar(objetivo) {
+        let danioRecibido = this.fuerza + arma.danio; 
+
+        console.log(`${this.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} daño.`);
+        objetivo.recibirDanio(danioRecibido);
+    }
+    
+    recibirDanio(ataque) {
+        let danioRecibido = Math.max(0, ataque);
+        this.vida -= danioRecibido;
+
+        if(this.vida === 0) {
+            console.log(`${this.nombre} ha muerto.`);
+        } else {
+            console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vida}`); 
+        }
+        return danioRecibido;
+    }
+
+    defender(danioRecibido) {
+        let defensa = Math.floor(Math.random() * (danioRecibido + 1));
+        let danioFinal = danioRecibido - defensa;
+        console.log(`${this.nombre} se defiende.`);
+        recibirDanio(danioFinal);
+    }
+
 }
