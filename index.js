@@ -7,7 +7,7 @@ const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
 
 
-if (!guardado) {
+if (guardado) {
     continuarPartida.style.display = "flex";
     eliminarPartida.style.display = "flex";
     nuevaPartida.style.display = "none";   
@@ -43,8 +43,8 @@ document.querySelectorAll(".botones").forEach(boton => {
         const action = boton.getAttribute("data-action");
 
         if (action === "borrar-storage") {
+            modalEliminarPartida();
             localStorage.clear(); // Borra todos los datos guardados
-            alert("Los datos han sido borrados."); // Mensaje de confirmación
             return;
         }
 
@@ -59,6 +59,29 @@ document.querySelectorAll(".botones").forEach(boton => {
         }
     });
 });
+
+function modalEliminarPartida() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      iconColor: "white",
+      customClass: {
+        popup: "colored-toast",
+      },
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+  
+    Toast.fire({
+      icon: "success",
+      title: "Partida eliminada correctamente",
+    });
+  }
 
 // Código para poner pantalla completa
 /*document.getElementById("start-btn").addEventListener("click", () => {
