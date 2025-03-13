@@ -4,6 +4,7 @@
 
 body {
   background-image: url("../recursos/imagenes/fondos/FondoLobby.webp");
+  overflow: hidden;
 }
 
 .navbar {
@@ -35,3 +36,7 @@ body {
     justify-content: center; /* Centra los elementos horizontalmente */
     width: 70%; /* Ocupa todo el ancho disponible */
   }
+
+.personaje img{
+  height: 40em;
+}

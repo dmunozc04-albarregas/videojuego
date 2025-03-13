@@ -75,7 +75,7 @@ export class Arma {
      * @param {number} nuevoDanio El nuevo daño del arma.
      * @throws {Error} Si el daño es número entero vacío o no es un número entero.
      */
-    set dano(nuevoDanio) {
+    set danio(nuevoDanio) {
         if (typeof nuevoDanio === "number" && nuevoDanio > 0) {
             this.#danio = nuevoDanio;
         } else {
