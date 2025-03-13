@@ -1,60 +1,43 @@
 import { Musica } from "../clases/Musica.js";
 import { Jugador } from "../clases/Jugador.js";
+import { Arma } from "../clases/Arma.js";
+import { Inventario } from "../clases/Inventario.js";
 
 // Código para controlar la música
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Creador.mp3");
 
-const avatares = document.querySelectorAll(".avatar");
-const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
-const btnEnviar = document.querySelector(".btn-enviar");
-
+// Código para cargar las imagenes de los personajes asegurándose que antes se carga todo la página
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("form").addEventListener("submit", crearPersonaje);
-
   cargarAvatares();
 });
 
-// Selecciona el input de tipo range y el span donde se mostrará el valor
-const rangeInput = document.getElementById("fuerza");
-const rangeValue = document.getElementById("valorFuerza");
+// Código para extraer los datos del formulario de la creación del personaje
+document.getElementById("formulario").addEventListener("submit", function (event) {
+  event.preventDefault();  // Evitar que el formulario se envíe por defecto
 
-// Añade un event listener para el evento 'input'
-rangeInput.addEventListener("input", function () {
-  // Actualiza el contenido del span con el valor actual del range
-  rangeValue.textContent = rangeInput.value;
-});
-
-const rangeInputMagic = document.getElementById("magia");
-const rangeValueMagic = document.getElementById("valorMagia");
-
-// Añade un event listener para el evento 'input'
-rangeInputMagic.addEventListener("input", function () {
-  // Actualiza el contenido del span con el valor actual del range
-  rangeValueMagic.textContent = rangeInputMagic.value;
-});
-
-// Agregar evento para reproducir sonido al pasar el mouse
-btnEnviar.addEventListener("mouseenter", () => {
-  sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
-  sonidoHover.play();
-});
-
-// Métodos
-const img_avatares = [
-  "../recursos/imagenes/personajes/Geralt.webp",
-  "../recursos/imagenes/personajes/Ciri.webp",
-  "../recursos/imagenes/personajes/Triss.webp",
-  "../recursos/imagenes/personajes/Yennefer.webp",
-];
-
-function cargarAvatares() {
-  for (let i = 0; i < img_avatares.length; i++) {
-    avatares[i].src = img_avatares[i];
+  // Código para obtener los datos introducidos
+  const nombre = document.getElementById("nombre").value;
+  const magia = parseInt(document.getElementById("magia").value);
+  const fuerza = parseInt(document.getElementById("fuerza").value);
+  
+  if (!idImg) {
+    alert("Por favor, selecciona una imagen.");
+    return;
   }
-}
 
-function crearPersonaje() {
+  let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
+  let inventario = new Inventario();
+  inventario.addArma(arma);
+  let jugador = new Jugador(nombre, fuerza, 100, magia, 1, idImg, arma, 0, 0, inventario);
+
+  localStorage.setItem("guardado", JSON.stringify(jugador)); // Guardar el jugador en el localStorage
+
+  setTimeout(() => {
+    window.location.href = "Lobby.html";  // Redirigir al lobby
+  }, 2000);
+
+  // Código para alerta
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -74,5 +57,53 @@ function crearPersonaje() {
   Toast.fire({
     icon: "success",
     title: "Personaje creado correctamente",
+  });
+});
+
+// Código para mostrar los valores de los input de fuerza y magia
+const rangeInput = document.getElementById("fuerza");
+const rangeValue = document.getElementById("valorFuerza");
+
+rangeInput.addEventListener("input", function () {
+  rangeValue.textContent = rangeInput.value;
+});
+
+const rangeInputMagic = document.getElementById("magia");
+const rangeValueMagic = document.getElementById("valorMagia");
+
+rangeInputMagic.addEventListener("input", function () {
+  rangeValueMagic.textContent = rangeInputMagic.value;
+});
+
+// Código para añadir el sonido de los botones
+const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
+const btnEnviar = document.querySelector(".btn-enviar");
+
+btnEnviar.addEventListener("mouseenter", () => {
+  sonidoHover.currentTime = 0;
+  sonidoHover.play();
+});
+
+// Código para mostrar las imagenes de los personajes y su funcionalidad
+const avatares = document.querySelectorAll(".avatar");
+let idImg;
+
+const img_avatares = [
+  "../recursos/imagenes/personajes/Geralt.webp",
+  "../recursos/imagenes/personajes/Ciri.webp",
+  "../recursos/imagenes/personajes/Triss.webp",
+  "../recursos/imagenes/personajes/Yennefer.webp",
+];
+
+function cargarAvatares() {
+  avatares.forEach((img, index) => {
+    img.src = img_avatares[index];
+    img.style.transition = "transform 0.3s ease";
+
+    img.addEventListener("click", () => {
+      avatares.forEach(img => img.classList.remove("selected")); // Quitamos la selección de todas
+      img.classList.add("selected"); // Agregamos la clase a la imagen seleccionada
+      idImg = img.getAttribute("src"); // Con este id vamos a saber la imagen seleccionada.
+    });
   });
 }

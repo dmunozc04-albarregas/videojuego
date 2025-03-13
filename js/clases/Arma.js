@@ -5,7 +5,7 @@
  */
 export class Arma {
     #nombre;
-    #dano;
+    #danio;
     #precio;
     #imagen;
     #estaComprado;
@@ -14,17 +14,27 @@ export class Arma {
      * Constructor de la clase Arma.
      * 
      * @param {*} nombre Nombre del arma.
-     * @param {*} dano Daño del arma.
+     * @param {*} danio Daño del arma.
      * @param {*} precio Precio de arma.
      * @param {*} imagen Imagen del arma.
      * @param {*} estaComprado Valor para comprobar si el arma está comprada o no.
      */
-    constructor(nombre, dano, precio, imagen, estaComprado) {
+    constructor(nombre, danio, precio, imagen, estaComprado) {
         this.nombre = nombre;
-        this.dano = dano;
+        this.danio = danio;
         this.precio = precio;
         this.imagen = imagen;
         this.estaComprado = estaComprado;
+    }
+
+    toJSON() {
+        return {
+            nombre: this.nombre,
+            danio: this.danio,
+            precio: this.precio,
+            imagen: this.imagen,
+            estaComprado: this.estaComprado
+        };
     }
 
     /**
@@ -55,19 +65,19 @@ export class Arma {
      * 
      * @returns {number} El daño del arma.
      */
-    get dano() {
-        return this.#dano;
+    get danio() {
+        return this.#danio;
     }
 
     /**
      * Método setter para establecer el daño del arma.
      * 
-     * @param {number} nuevoDano El nuevo daño del arma.
+     * @param {number} nuevoDanio El nuevo daño del arma.
      * @throws {Error} Si el daño es número entero vacío o no es un número entero.
      */
-    set dano(nuevoDano) {
-        if (typeof nuevoDano === "number" && nuevoDano > 0) {
-            this.#dano = nuevoDano;
+    set dano(nuevoDanio) {
+        if (typeof nuevoDanio === "number" && nuevoDanio > 0) {
+            this.#danio = nuevoDanio;
         } else {
             console.error("El daño debe ser un número entero positivo");
         }
@@ -85,11 +95,11 @@ export class Arma {
     /**
      * Método setter para establecer el precio del arma.
      * 
-     * @param {number} nuevoDano El nuevo precio del arma.
+     * @param {number} precio El nuevo precio del arma.
      * @throws {Error} Si el precio es número entero vacío o no es un número entero.
      */
     set precio(precio) {
-        if (typeof precio === "number" && precio > 0) {
+        if (typeof precio === "number" && precio >= 0) {
             this.#precio = precio;
         } else {
             console.error("El precio debe ser un número entero positivo");

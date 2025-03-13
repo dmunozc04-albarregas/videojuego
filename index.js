@@ -6,7 +6,6 @@ const continuarPartida = document.querySelector(".continuarPartida");
 const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
 
-
 if (guardado) {
     continuarPartida.style.display = "flex";
     eliminarPartida.style.display = "flex";
@@ -23,12 +22,12 @@ const musica = new Musica();
 document.addEventListener('keydown', function(event) {
     if (event.key === 'F11') {
         document.getElementById("pre-play").style.display = "none";
-        musica.reproducir("../recursos/sonidos/Inicio.mp3");
+        musica.reproducir("./recursos/sonidos/Inicio.mp3");
     }
 });
 
 // Agregar evento para reproducir sonido al pasar el ratón por los botones
-const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
+const sonidoHover = new Audio("./recursos/sonidos/hover-sound.mp3");
 document.querySelectorAll(".botones").forEach(boton => {
 boton.addEventListener("mouseenter", () => {
     sonidoHover.currentTime = 0; // Reiniciar el audio para que se escuche cada vez
@@ -45,6 +44,7 @@ document.querySelectorAll(".botones").forEach(boton => {
         if (action === "borrar-storage") {
             modalEliminarPartida();
             localStorage.clear(); // Borra todos los datos guardados
+            alert("Los datos han sido borrados."); // Mensaje de confirmación
             return;
         }
 

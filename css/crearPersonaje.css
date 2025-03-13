@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
-
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
-  background-image: url("https://wallup.net/wp-content/uploads/2016/01/295821-The_Witcher_3_Wild_Hunt-Geralt_of_Rivia-The_Witcher-landscape-mountain.jpg");
+  background-image: url("../recursos/imagenes/fondos/FondoCreador.webp");
   background-size: cover;
 }
 
@@ -29,17 +28,26 @@ form label{
     width: 10em; /* Tamaño más uniforme */
     height: 14em; /* Altura proporcional */
     border-radius: 50%; /* Hace las imágenes más circulares */
-
     object-fit: contain; /* Evita distorsión de las imágenes */
     padding: 0.5em; /* Espaciado interno */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
     transition: transform 0.3s ease-in-out; /* Animación suave */
+    cursor: pointer;
 }
 
-.avatares img:hover {
-    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+.avatares img:hover:not(.selected) {
+  transform: scale(1.1);
 }
 
+/* Imagen seleccionada (cuando se hace clic) */
+.avatares img.selected {
+  transform: scale(1.3);
+  box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8); /* Brillo dorado */
+}
+
+.avatares img:not(.selected) {
+  transform: scale(0.9);
+}
 
 .btn-enviar {
   font-family: "IM Fell English SC", serif; /* Fuente elegante y antigua */
