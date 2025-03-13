@@ -45,7 +45,7 @@ document.querySelectorAll(".botones").forEach(boton => {
             modalEliminarPartida();
             localStorage.clear(); // Borra todos los datos guardados
             alert("Los datos han sido borrados."); // Mensaje de confirmación
-            return;
+            location.reload();
         }
 
         if (url) {
