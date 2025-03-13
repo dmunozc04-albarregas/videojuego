@@ -76,7 +76,7 @@ function modalEliminarPartida() {
 
   Toast.fire({
     icon: "error",
-    title: "Error",
+    title: "La partida ha sido eliminada correctamente",
   });
 }
 
