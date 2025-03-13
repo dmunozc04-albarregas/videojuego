@@ -22,7 +22,26 @@ document.getElementById("formulario").addEventListener("submit", function (event
   const fuerza = parseInt(document.getElementById("fuerza").value);
   
   if (!idImg) {
-    alert("Por favor, selecciona una imagen.");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      iconColor: "white",
+      customClass: {
+        popup: "colored-toast",
+      },
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+  
+    Toast.fire({
+      icon: "error",
+      title: "Por favor, selecciona una imagen",
+    });
     return;
   }
 
@@ -46,7 +65,7 @@ document.getElementById("formulario").addEventListener("submit", function (event
       popup: "colored-toast",
     },
     showConfirmButton: false,
-    timer: 2000,
+    timer: 1500,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.onmouseenter = Swal.stopTimer;
