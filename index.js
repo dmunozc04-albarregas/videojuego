@@ -43,7 +43,7 @@ document.querySelectorAll(".botones").forEach((boton) => {
 
     if (action === "borrar-storage") {
       localStorage.clear(); // Borra todos los datos guardados
-      alerta("error", "La partida se ha eliminado correctamente");
+      alerta("success", "La partida se ha eliminado correctamente");
       setTimeout(() => {
         location.reload();
       }, 2000);
