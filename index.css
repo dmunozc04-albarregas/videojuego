@@ -41,22 +41,11 @@
   flex-direction: column;
   z-index: 999;
 }
+
 #pre-play p {
   color: #fff;
   font-size: 24px;
   margin-bottom: 20px;
-}
-#start-btn {
-  font-size: 20px;
-  padding: 10px 20px;
-  background-color: red;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-#start-btn:hover {
-  background-color: darkred;
 }
 
 #contenedor {

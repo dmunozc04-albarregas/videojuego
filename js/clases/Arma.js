@@ -145,7 +145,7 @@ export class Arma {
      * @throws {Error} Si es un booleon vacío o no es un boolean.
      */
     set estaComprado(nuevoEstaComprado) {
-        if (typeof nuevoEstaComprado === "boolean" && nuevoEstaComprado) {
+        if (typeof nuevoEstaComprado === "boolean") {
             this.#estaComprado = nuevoEstaComprado;
         } else {
             console.error("EstaComprado debe ser un boolean");

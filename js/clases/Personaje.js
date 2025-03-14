@@ -22,12 +22,12 @@ export class Personaje {
      * @param {*} imagen Imagen del personaje.
      */
     constructor(nombre, fuerza, vida, magia, nivel, imagen) {
-        this.#nombre = nombre;
-        this.#fuerza = fuerza;
-        this.#vida = vida;
-        this.#magia = magia;
-        this.#nivel = nivel;
-        this.#imagen = imagen;
+        this.nombre = nombre;
+        this.fuerza = fuerza;
+        this.vida = vida;
+        this.magia = magia;
+        this.nivel = nivel;
+        this.imagen = imagen;
     }
 
     /**
@@ -36,12 +36,12 @@ export class Personaje {
      */
     toJSON() {
         return {
-            nombre: this.#nombre,
-            fuerza: this.#fuerza,
-            vida: this.#vida,
-            magia: this.#magia,
-            nivel: this.#nivel,
-            imagen: this.#imagen,
+            nombre: this.nombre,
+            fuerza: this.fuerza,
+            vida: this.vida,
+            magia: this.magia,
+            nivel: this.nivel,
+            imagen: this.imagen,
         };
     }
 
@@ -183,6 +183,11 @@ export class Personaje {
         }
     }
 
+    /**
+     * Método que sirve para atacar.
+     * 
+     * @param {*} objetivo Objetivo al que se ataca.
+     */
     atacar(objetivo) {
         let danioRecibido = this.fuerza + arma.danio; 
 
@@ -190,6 +195,12 @@ export class Personaje {
         objetivo.recibirDanio(danioRecibido);
     }
     
+    /**
+     * Método que sirve para recibir daño.
+     * 
+     * @param {*} ataque Daño del ataque.
+     * @returns 
+     */
     recibirDanio(ataque) {
         let danioRecibido = Math.max(0, ataque);
         this.vida -= danioRecibido;
@@ -200,13 +211,18 @@ export class Personaje {
             console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vida}`); 
         }
         return danioRecibido;
+
     }
 
+    /**
+     * Método que sirve para reducir el daño recibido con un componente random.
+     * 
+     * @param {*} danioRecibido Daño recibido.
+     */
     defender(danioRecibido) {
         let defensa = Math.floor(Math.random() * (danioRecibido + 1));
         let danioFinal = danioRecibido - defensa;
         console.log(`${this.nombre} se defiende.`);
         recibirDanio(danioFinal);
     }
-
 }

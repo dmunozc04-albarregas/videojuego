@@ -6,13 +6,45 @@ import { Arma } from "./Arma.js"
  * @author David Muñoz, Eva Retamar y Adrián Pérez
  */
 export class Tienda{
+    #tamanioTienda;
     #armas;
 
     /**
-     * Constructor de la clase tienda. Por defecto se inicializa el array de armas a vacío.
+     * Constructor de la clase tienda. Por defecto se inicializa el array de armas a vacío y el tamaño del array a 5.
      */
     constructor(){
+        this.tamanioTienda = 5;
         this.armas = [];
+    }
+
+    toJSON() {
+        return {
+            tamanioTienda: this.tamanioTienda,
+            armas: this.armas
+        };
+    }
+
+    /**
+     * Método getter para obtener el tamaño de la tienda.
+     *
+     * @returns {number} El tamaño de la tienda.
+     */
+    get tamanioTienda() {
+        return this.#tamanioTienda;
+    }
+
+    /**
+     * Método setter para establecer el tamaño de la tienda.
+     * 
+     * @param {number} nuevoTamanio El tamaño de la tienda.
+     * @throws {Error} Si el tamaño es número entero vacío o no es un número entero.
+     */
+    set tamanioTienda(nuevoTamanio) {
+        if (typeof nuevoTamanio === "number" && nuevoTamanio > 0) {
+            this.#tamanioTienda = nuevoTamanio;
+        } else {
+            console.error("El tamaño del array debe ser un número entero positivo");
+        }
     }
 
     /**
@@ -77,6 +109,13 @@ export class Tienda{
         }
     }
 
+    /**
+     * Método para comprar armas nuevas.
+     * 
+     * @param {*} jugador Jugador que va a comprar el arma.
+     * @param {*} nombreArma Nombre del arma a comprar.
+     * @returns 
+     */
     comprarArma(jugador, nombreArma) {
         const armaDisponible = this.#armas.find(a => a.nombre === nombreArma);
 

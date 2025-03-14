@@ -146,6 +146,7 @@ export class Jugador extends Personaje {
 
     /**
      * Método para equipar al jugador con el arma.
+     * 
      * @param {*} nombreArma Nombre del arma.
      * @returns 
      */
@@ -153,7 +154,7 @@ export class Jugador extends Personaje {
         const armEncontrada = this.inventario.armas.find(arma = this.#arma.nombre === nombreArma);
 
         if (!armEncontrada) {
-            console.error("No tienes el arma ${nombeArma} en tu invenntario.");
+            console.error("No tienes el arma ${nombeArma} en tu inventario.");
             return;
         }
 

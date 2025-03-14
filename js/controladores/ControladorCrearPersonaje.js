@@ -2,6 +2,7 @@ import { Musica } from "../clases/Musica.js";
 import { Jugador } from "../clases/Jugador.js";
 import { Arma } from "../clases/Arma.js";
 import { Inventario } from "../clases/Inventario.js";
+import { Tienda } from "../clases/Tienda.js";
 
 // Código para controlar la música
 const musica = new Musica();
@@ -12,71 +13,27 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarAvatares();
 });
 
-// Código para extraer los datos del formulario de la creación del personaje
+// Código para la creación del personaje y la partida
 document.getElementById("formulario").addEventListener("submit", function (event) {
-  event.preventDefault();  // Evitar que el formulario se envíe por defecto
+  event.preventDefault();  
+  let array = [];
 
-  // Código para obtener los datos introducidos
-  const nombre = document.getElementById("nombre").value;
-  const magia = parseInt(document.getElementById("magia").value);
-  const fuerza = parseInt(document.getElementById("fuerza").value);
-  
   if (!idImg) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      iconColor: "white",
-      customClass: {
-        popup: "colored-toast",
-      },
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      },
-    });
-  
-    Toast.fire({
-      icon: "error",
-      title: "Por favor, selecciona una imagen",
-    });
+    alerta("error", "Por favor, selecciona una imagen");
     return;
   }
 
-  let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
-  let inventario = new Inventario();
-  inventario.addArma(arma);
-  let jugador = new Jugador(nombre, fuerza, 100, magia, 1, idImg, arma, 0, 0, inventario);
+  crearPartida(array);
 
-  localStorage.setItem("guardado", JSON.stringify(jugador)); // Guardar el jugador en el localStorage
+  localStorage.setItem("guardado", JSON.stringify(array)); // Guardar el jugador en el localStorage
 
   setTimeout(() => {
-    window.location.href = "Lobby.html";  // Redirigir al lobby
+    musica.desvanecer(() => {
+      window.location.href = "Lobby.html";
+    });
   }, 2000);
 
-  // Código para alerta
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    iconColor: "white",
-    customClass: {
-      popup: "colored-toast",
-    },
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.onmouseenter = Swal.stopTimer;
-      toast.onmouseleave = Swal.resumeTimer;
-    },
-  });
-
-  Toast.fire({
-    icon: "success",
-    title: "Personaje creado correctamente",
-  });
+  alerta("success", "Personaje creado correctamente");
 });
 
 // Código para mostrar los valores de los input de fuerza y magia
@@ -114,6 +71,9 @@ const img_avatares = [
   "../recursos/imagenes/personajes/Yennefer.webp",
 ];
 
+/**
+ * Método para cargar los avatares y añadir el evento de click a ellos.
+ */
 function cargarAvatares() {
   avatares.forEach((img, index) => {
     img.src = img_avatares[index];
@@ -125,4 +85,76 @@ function cargarAvatares() {
       idImg = img.getAttribute("src"); // Con este id vamos a saber la imagen seleccionada.
     });
   });
+}
+
+/**
+ * Método para mostrar las alertas.
+ * 
+ * @param {*} tipo Tipo de alerta.
+ * @param {*} mensaje Mensaje a mostrar en la alerta.
+ */
+function alerta(tipo, mensaje) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    iconColor: "white",
+    customClass: {
+      popup: "colored-toast",
+    },
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  });
+
+  Toast.fire({
+    icon: tipo,
+    title: mensaje,
+  });
+}
+
+/**
+ * Método para crear todo lo relacionado con la partida.
+ * 
+ * @param {*} array Array donde se guardarán los datos para el localStorage.
+ */
+function crearPartida(array) {
+  crearPersonaje(array);
+  crearTienda(array);
+}
+
+/**
+ * Método para crear el personaje y sus atributos.
+ * 
+ * @param {*} array Array donde se guardarán los datos para el localStorage.
+ */
+function crearPersonaje(array) {
+  const nombre = document.getElementById("nombre").value;
+  const magia = parseInt(document.getElementById("magia").value);
+  const fuerza = parseInt(document.getElementById("fuerza").value);
+  let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
+  let inventario = new Inventario();
+  inventario.addArma(arma);
+  let jugador = new Jugador(nombre, fuerza, 100, magia, 1, idImg, arma, 0, 0, inventario);
+  array.push(jugador);
+}
+
+/**
+ * Método para crear la tienda con las armas del juego.
+ * 
+ * @param {*} array Array donde se guardarán los datos para el localStorage.
+ */
+function crearTienda (array) {
+  let arma1 = new Arma("Longclaw", 40, 100, "../recursos/imagenes/armas/Arma1.webp", false);
+  let arma2 = new Arma("Aerondight", 60, 200, "../recursos/imagenes/armas/Arma2.webp", false);
+  let arma3 = new Arma("Ofieri kilij", 80, 300, "../recursos/imagenes/armas/Arma3.webp", false);
+  let arma4 = new Arma("Toussaint steel sword", 100, 400, "../recursos/imagenes/armas/Arma4.webp", false);
+  let arma5 = new Arma("Gwestog", 120, 500, "../recursos/imagenes/armas/Arma5.webp", false);
+  let tienda = new Tienda();
+
+  tienda.addArma(arma1);
+  tienda.addArma(arma2);
+  tienda.addArma(arma3);
+  tienda.addArma(arma4);
+  tienda.addArma(arma5);
+  array.push(tienda);
 }

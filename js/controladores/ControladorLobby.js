@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const musica = new Musica();
   musica.reproducir("../recursos/sonidos/Lobby.mp3");
 
-  const personaje = JSON.parse(localStorage.getItem("guardado"));
+  const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
   console.log("Objeto personaje:", personaje);
 
   // Código para cargar la imagen del personaje

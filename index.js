@@ -43,7 +43,7 @@ document.querySelectorAll(".botones").forEach((boton) => {
 
     if (action === "borrar-storage") {
       localStorage.clear(); // Borra todos los datos guardados
-      modalEliminarPartida();
+      alerta("error", "La partida se ha eliminado correctamente");
       setTimeout(() => {
         location.reload();
       }, 2000);
@@ -61,7 +61,7 @@ document.querySelectorAll(".botones").forEach((boton) => {
   });
 });
 
-function modalEliminarPartida() {
+function alerta(tipo, mensaje) {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -75,24 +75,7 @@ function modalEliminarPartida() {
   });
 
   Toast.fire({
-    icon: "error",
-    title: "La partida ha sido eliminada correctamente",
+    icon: tipo,
+    title: mensaje,
   });
 }
-
-// Código para poner pantalla completa
-/*document.getElementById("start-btn").addEventListener("click", () => {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari y Opera
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
-    }
-    
-    // Ocultar la pantalla de inicio
-    document.getElementById("pre-play").style.display = "none";
-});*/
