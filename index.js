@@ -6,7 +6,7 @@ const continuarPartida = document.querySelector(".continuarPartida");
 const nuevaPartida = document.querySelector(".nuevaPartida");
 const eliminarPartida = document.querySelector(".eliminarPartida");
 
-if (guardado) {
+if (!guardado) {
   continuarPartida.style.display = "flex";
   eliminarPartida.style.display = "flex";
   nuevaPartida.style.display = "none";
