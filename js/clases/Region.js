@@ -6,7 +6,6 @@ import { Enemigo } from "./Enemigo.js"
  * @author David Muñoz, Eva Retamar y Adrián Pérez
  */
 export class Region {
-    #idRegion;
     #imgRegion;
     #tamanioEnemigos;
     #enemigos;
@@ -14,37 +13,20 @@ export class Region {
     /**
      * Constructor de la clase región. Por defecto se inicializa el array de enemigos vacío y el tamaño a 3.
      * 
-     * @param {*} identificadorRegion Identificador de la región.
      * @param {*} imagenRegion Nombre de la imagen de la región.
      */
-    constructor(identificadorRegion, imagenRegion) {
-        this.idRegion = identificadorRegion;
+    constructor(imagenRegion) {
         this.imgRegion = imagenRegion;
         this.tamanioEnemigos = 3;
         this.enemigos = [];
     }
-    
-    /**
-    * Método getter para obtener el id de la región.
-    * 
-    * @returns {number} El id de la región.
-    */
-    get idRegion() {
-        return this.#idRegion;
-    }
 
-    /**
-     * Método setter para establecer el id de la región.
-     * 
-     * @param {number} nuevaIdRegion El nuevo id de la región.
-     * @throws {Error} Si el id es número entero vacío o no es un número entero.
-     */
-    set idRegion(nuevaIdRegion) {
-        if (typeof nuevaIdRegion === "number" && nuevaIdRegion > 0) {
-            this.#idRegion = nuevaIdRegion;
-        } else {
-            console.error("El identificador debe ser un número entero positivo");
-        }
+    toJSON() {
+        return {
+            imgRegion: this.imgRegion,
+            tamanioEnemigos: this.tamanioEnemigos,
+            enemigos: this.enemigos
+        };
     }
 
     /**

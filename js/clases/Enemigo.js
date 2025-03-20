@@ -21,5 +21,16 @@ export class Enemigo extends Personaje{
         super(nombre, fuerza, vida, magia, nivel, imagen);
     }
 
+    toJSON() {
+        return {
+            nombre: this.nombre,
+            fuerza: this.fuerza,
+            vida: this.vida,
+            magia: this.magia,
+            nivel: this.nivel,
+            imagen: this.imagen
+        };
+    }
+
     // Métodos
 }

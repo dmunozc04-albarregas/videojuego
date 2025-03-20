@@ -3,6 +3,8 @@ import { Jugador } from "../clases/Jugador.js";
 import { Arma } from "../clases/Arma.js";
 import { Inventario } from "../clases/Inventario.js";
 import { Tienda } from "../clases/Tienda.js";
+import { Enemigo } from "../clases/Enemigo.js";
+import { Region } from "../clases/Region.js";
 
 // Código para controlar la música
 const musica = new Musica();
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Código para la creación del personaje y la partida
 document.getElementById("formulario").addEventListener("submit", function (event) {
-  event.preventDefault();  
+  event.preventDefault();
   let array = [];
 
   if (!idImg) {
@@ -120,6 +122,7 @@ function alerta(tipo, mensaje) {
 function crearPartida(array) {
   crearPersonaje(array);
   crearTienda(array);
+  crearRegiones(array);
 }
 
 /**
@@ -143,7 +146,7 @@ function crearPersonaje(array) {
  * 
  * @param {*} array Array donde se guardarán los datos para el localStorage.
  */
-function crearTienda (array) {
+function crearTienda(array) {
   let arma1 = new Arma("Longclaw", 40, 100, "../recursos/imagenes/armas/Arma1.webp", false);
   let arma2 = new Arma("Aerondight", 60, 200, "../recursos/imagenes/armas/Arma2.webp", false);
   let arma3 = new Arma("Ofieri kilij", 80, 300, "../recursos/imagenes/armas/Arma3.webp", false);
@@ -157,4 +160,40 @@ function crearTienda (array) {
   tienda.addArma(arma4);
   tienda.addArma(arma5);
   array.push(tienda);
+}
+
+function crearRegiones(array) {
+  let regiones = [];
+
+  // Primera región
+  let soldado = new Enemigo("Soldado", 10, 50, 10, 1, "../recursos/imagenes/regiones/velen/enemigos/Soldado.webp");
+  let grifo = new Enemigo("Grifo", 20, 60, 20, 2, "../recursos/imagenes/regiones/velen/enemigos/Grifo.webp");
+  let leshen = new Enemigo("Leshen", 30, 70, 30, 3, "../recursos/imagenes/regiones/velen/enemigos/Leshen.webp");
+  let velen = new Region("../recursos/imagenes/regiones/velen/Velen.webp");
+  velen.addEnemigos(soldado);
+  velen.addEnemigos(grifo);
+  velen.addEnemigos(leshen);
+  regiones.push(velen);
+
+  // Segunda región
+  let berserker = new Enemigo("Berserker", 40, 80, 40, 4, "../recursos/imagenes/regiones/skellige/enemigos/Berserker.webp");
+  let sirena = new Enemigo("Sirena", 50, 90, 50, 5, "../recursos/imagenes/regiones/skellige/enemigos/Sirena.webp");
+  let eredin = new Enemigo("Eredin", 60, 100, 60, 6, "../recursos/imagenes/regiones/skellige/enemigos/Eredin.webp");
+  let skellige = new Region("../recursos/imagenes/regiones/skellige/Skellige.webp");
+  skellige.addEnemigos(berserker);
+  skellige.addEnemigos(sirena);
+  skellige.addEnemigos(eredin);
+  regiones.push(skellige);
+
+  // Tercera región
+  let caballero = new Enemigo("Caballero", 70, 110, 70, 7, "../recursos/imagenes/regiones/toussaint/enemigos/Caballero.webp");
+  let golyat = new Enemigo("Golyat", 80, 120, 80, 8, "../recursos/imagenes/regiones/toussaint/enemigos/Golyat.webp");
+  let vampiro = new Enemigo("Vampiro", 90, 130, 90, 9, "../recursos/imagenes/regiones/toussaint/enemigos/Vampiro.webp");
+  let toussaint = new Region("../recursos/imagenes/regiones/toussaint/Toussaint.webp");
+  toussaint.addEnemigos(caballero);
+  toussaint.addEnemigos(golyat);
+  toussaint.addEnemigos(vampiro);
+  regiones.push(toussaint);
+
+  array.push(regiones);
 }
