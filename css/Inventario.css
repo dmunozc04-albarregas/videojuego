@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box !important;
+}
+
+body{
+    background-image: url("https://wallpaperaccess.com/full/1867226.jpg") !important;
+}
+
+.container{
+    gap: 30em !important;
+    padding-top: 5em !important;
+}
+
+td{
+    border: 2px solid brown !important;
+}
+
+td img{
+    height: 6em;
+}
+
+td:hover{
+    background-color: #ddd !important;
+}
+
+#avatar-personaje{
+    width: 16em;
+    transform-origin: center bottom;
+    animation: idleAnimation 3s infinite ease-in-out;
+}
+
+@keyframes idleAnimation {
+    0% {
+        transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+    }
+    50% {
+        transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
+    }
+    100% {
+        transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+    }
+}
+
+/*#avatar-personaje:hover{
+    transform: rotateY(-10deg) rotateX(5deg);
+
+}*/
