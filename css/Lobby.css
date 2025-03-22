@@ -8,6 +8,7 @@ body {
   font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
   background-image: url("../recursos/imagenes/fondos/FondoLobby.webp");
   overflow: hidden;
+  /*cursor: crosshair !important;*/
 }
 
 .navbar {
