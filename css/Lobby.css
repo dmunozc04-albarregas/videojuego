@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
+  font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
   background-image: url("../recursos/imagenes/fondos/FondoLobby.webp");
   overflow: hidden;
   /*cursor: crosshair !important;*/
@@ -14,14 +14,16 @@ body {
 .navbar {
   background-color: #000 !important;
   color: #fff !important;
+  position: absolute;
+  width: 100%;
 }
 
-.navbar a{
-    color: #fff !important;
+.navbar a {
+  color: #fff !important;
 }
 
-.navbar-nav ul{
-    padding-left: 2em;
+.navbar-nav ul {
+  padding-left: 2em;
 }
 
 /*.navbar-brand{
@@ -30,24 +32,36 @@ body {
     pointer-events: none;
 }*/
 
-.nav-item{
-    text-align: center;
-    padding-right: 10em !important;
+.nav-item {
+  text-align: center;
+  padding-right: 10em !important;
 }
 
 .navbar-nav {
-    display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    width: 100%; /* Ocupa todo el ancho disponible */
-  }
-
-.personaje img{
-  height: 40em;
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  width: 100%; /* Ocupa todo el ancho disponible */
 }
 
-.btn-jugar {  
+.personaje {
+  z-index: 1;
+  width: 25em;
+  background-color: #000 !important;
+  margin-left: 65em !important;
+}
+
+.personaje img {
+  width: 10em;
+  height: 12em;
+}
+
+.barra-verde { 
+  accent-color: #0aff58; 
+}  
+
+.btn-jugar {
   font-size: 24px;
-  color: #d6d6d6; 
+  color: #d6d6d6;
   background: transparent;
   border: 2px solid transparent;
   padding: 15px 40px;
@@ -58,7 +72,7 @@ body {
   letter-spacing: 3px;
   position: absolute;
   transition: all 0.3s ease-in-out;
-  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); 
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
 }
 
 .btn-jugar::before {
@@ -68,14 +82,18 @@ body {
   left: 50%;
   width: 120%;
   height: 400%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 40%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 40%
+  );
   transform: translate(-50%, -50%) rotate(25deg);
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 }
 
 .btn-jugar:hover {
-  color: #ffffff; 
+  color: #ffffff;
   text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
 }
 

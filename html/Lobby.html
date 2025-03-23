@@ -12,9 +12,21 @@
 </head>
 
 <body>
-  <div class="personaje">
-    <h1 class="text-center text-white" id="nombre-personaje"></h1>
-    <img class="mx-auto d-block img-fluid w-10" id="personaje" src="" alt="Personaje elegido por el usuario">
+  <div class="personaje text-white d-flex flex-row mt-2 p-4">
+
+    <div>
+      <h1 class="text-center text-white" id="nombre-personaje"></h1>
+      <img class="img-fluid w-10" id="personaje" src="" alt="Personaje elegido por el usuario">
+    </div>
+
+    <div class="pt-5 px-4">
+      <p>Vida: <span id="vida-personaje"></span><br>
+        <progress style="width: 4em;" id="barra-vida-personaje" max="100"></progress>
+      </p>
+      <p>Fuerza: <span id="fuerza-personaje"></span></p>
+      <p>Magia: <span id="magia-personaje"></span></p>
+      <p>Nivel: <span id="nivel-personaje"></span></progress></p>
+    </div>
   </div>
 
   <button class="btn-jugar z-99">Jugar</button>
