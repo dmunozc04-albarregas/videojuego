@@ -24,21 +24,21 @@ body {
     padding-left: 2em;
 }
 
-.navbar-brand{
+/*.navbar-brand{
     padding-left: 15em;
     padding-right: .1em;
     pointer-events: none;
-}
+}*/
 
 .nav-item{
     text-align: center;
-    padding-right: 3em;
+    padding-right: 10em !important;
 }
 
 .navbar-nav {
     display: flex;
     justify-content: center; /* Centra los elementos horizontalmente */
-    width: 70%; /* Ocupa todo el ancho disponible */
+    width: 100%; /* Ocupa todo el ancho disponible */
   }
 
 .personaje img{
