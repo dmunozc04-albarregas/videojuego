@@ -14,7 +14,9 @@ body {
 .navbar {
   background-color: #000 !important;
   color: #fff !important;
-  position: absolute;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
 }
 
@@ -32,26 +34,34 @@ body {
     pointer-events: none;
 }*/
 
-.nav-item {
-  text-align: center;
-  padding-right: 10em !important;
-}
-
 .navbar-nav {
   display: flex;
   justify-content: center; /* Centra los elementos horizontalmente */
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%;
+}
+
+.nav-item {
+  /* Elimina o ajusta el padding para no descentrar */
+  text-align: center;
+  padding: 0 4em; /* Ajusta el valor según necesites */
+  gap: em;
 }
 
 .personaje {
-  z-index: 1;
-  width: 25em;
+  width: 22em;
   background-color: #000 !important;
-  margin-left: 65em !important;
+  position: absolute;
+  top: 8em !important;
+  right: 0em !important;
+  border: 2px solid #fff;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .personaje img {
-  object-fit: none;
+  object-fit: contain;
   object-position: top;
   width: 10em;
   height: 20em;
@@ -66,10 +76,7 @@ body {
   color: #d6d6d6;
   background: transparent;
   border: 2px solid transparent;
-  padding: 15px 40px;
   cursor: pointer;
-  top: 25em;
-  left: 42em;
   text-transform: uppercase;
   letter-spacing: 3px;
   position: absolute;
@@ -83,7 +90,7 @@ body {
   top: 50%;
   left: 50%;
   width: 120%;
-  height: 400%;
+  height: 300%;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.2) 0%,

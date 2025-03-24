@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="personaje text-white d-flex flex-row mt-2 p-4">
+  <div class="personaje text-white d-flex flex-row p-4">
 
     <div>
       <h1 class="text-center text-white" id="nombre-personaje"></h1>
@@ -20,16 +20,14 @@
     </div>
 
     <div class="pt-5 px-4">
-      <p>Vida: <span id="vida-personaje"></span><br>
+      <h5>Vida: <span id="vida-personaje"></span><br>
         <progress style="width: 4em;" id="barra-vida-personaje" max="100"></progress>
-      </p>
-      <p>Fuerza: <span id="fuerza-personaje"></span></p>
-      <p>Magia: <span id="magia-personaje"></span></p>
-      <p>Nivel: <span id="nivel-personaje"></span></progress></p>
+      </h5>
+      <h5>Fuerza: <span id="fuerza-personaje"></span></h5>
+      <h5>Magia: <span id="magia-personaje"></span></h5>
+      <h5>Nivel: <span id="nivel-personaje"></span></progress></p>
     </div>
   </div>
-
-  <button class="btn-jugar z-99">Jugar</button>
 
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
     <div class="container-fluid fw-bold">
@@ -47,7 +45,7 @@
           <li class="nav-item">
             <a class="nav-link" href="./Inventario.html">Inventario</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item btn-jugar">
             <a class="nav-link" href="#">JUGAR</a>
           </li>
           <li class="nav-item">
