@@ -51,8 +51,10 @@ body {
 }
 
 .personaje img {
+  object-fit: none;
+  object-position: top;
   width: 10em;
-  height: 12em;
+  height: 20em;
 }
 
 .barra-verde { 
