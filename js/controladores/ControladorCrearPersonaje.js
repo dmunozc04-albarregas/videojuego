@@ -123,6 +123,7 @@ function crearPartida(array) {
   crearPersonaje(array);
   crearTienda(array);
   crearRegiones(array);
+  array[3] = { region: 1, enemigo: 1 };
 }
 
 /**

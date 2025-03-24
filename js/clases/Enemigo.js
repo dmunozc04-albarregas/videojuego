@@ -32,5 +32,16 @@ export class Enemigo extends Personaje{
         };
     }
 
+    static fromJSON(datos) {
+        return new Enemigo(
+            datos.nombre,
+            datos.fuerza,
+            datos.vida,
+            datos.magia,
+            datos.nivel,
+            datos.imagen,
+        );
+    }
+
     // Métodos
 }

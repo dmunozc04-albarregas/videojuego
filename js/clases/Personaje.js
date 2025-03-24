@@ -1,3 +1,5 @@
+import { Jugador } from "./Jugador.js";
+
 /**
  * Clase base para crear al jugador y a los enemigos del videojuego.
  * 
@@ -107,7 +109,7 @@ export class Personaje {
      * @throws {Error} Si la vida es número entero vacío o no es un número entero.
      */
     set vida(nuevaVida) {
-        if(Number.isInteger(nuevaVida) && nuevaVida >= 0) {
+        if(Number.isInteger(nuevaVida)) {
             this.#vida = nuevaVida;
         } else {
             console.error("La vida debe ser un número entero positivo o 0.");
@@ -188,8 +190,15 @@ export class Personaje {
      * 
      * @param {*} objetivo Objetivo al que se ataca.
      */
-    atacar(objetivo) {
-        let danioRecibido = this.fuerza + arma.danio; 
+    atacar(objetivo, jugador) {
+        let danioRecibido;
+
+        if (jugador instanceof Jugador) {
+            danioRecibido = this.fuerza + jugador.arma.danio; 
+        }
+        else {
+            danioRecibido = this.fuerza; 
+        }
 
         console.log(`${this.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} daño.`);
         objetivo.recibirDanio(danioRecibido);
@@ -202,16 +211,16 @@ export class Personaje {
      * @returns 
      */
     recibirDanio(ataque) {
-        let danioRecibido = Math.max(0, ataque);
+        //let danioRecibido = Math.max(0, ataque);
+        let danioRecibido = this.defender(ataque)
         this.vida -= danioRecibido;
 
-        if(this.vida === 0) {
+        if(this.vida <= 0) {
             console.log(`${this.nombre} ha muerto.`);
         } else {
             console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vida}`); 
         }
-        return danioRecibido;
-
+        //return danioRecibido;
     }
 
     /**
@@ -223,6 +232,7 @@ export class Personaje {
         let defensa = Math.floor(Math.random() * (danioRecibido + 1));
         let danioFinal = danioRecibido - defensa;
         console.log(`${this.nombre} se defiende.`);
-        recibirDanio(danioFinal);
+        //recibirDanio(danioFinal);
+        return danioFinal;
     }
 }

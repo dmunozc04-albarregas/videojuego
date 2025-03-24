@@ -50,6 +50,21 @@ export class Jugador extends Personaje {
         };
     }
 
+    static fromJSON(datos) {
+        return new Jugador(
+            datos.nombre,
+            datos.fuerza,
+            datos.vida,
+            datos.magia,
+            datos.nivel,
+            datos.imagen,
+            datos.arma,
+            datos.experiencia,
+            datos.dinero,
+            datos.inventario
+        );
+    }
+
     /**
      * Método getter para obtener el arma usada por el jugador.
      * 
