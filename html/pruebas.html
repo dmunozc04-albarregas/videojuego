@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen con Áreas Interactivas</title>
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .imagemap {
+            position: relative;
+        }
+
+        .imagemap img {
+            display: block;
+        }
+
+        .imagemap .area {
+            position: absolute;
+            display: block;
+            text-align: center;
+            color: white; /* Texto en blanco */
+            font-size: 14px; /* Ajusta el tamaño del texto */
+            pointer-events: auto; /* Los enlaces deben ser clicables */
+            z-index: 1; /* Asegurarse de que el texto esté encima de la imagen */
+            white-space: nowrap; /* Evita que el texto se ajuste */
+            transition: box-shadow 0.15s ease-in-out;
+        }
+
+        /* Estilo cuando pasas el ratón sobre el enlace */
+        .imagemap .area:hover {
+            box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5);
+        }
+
+        .imagemap .area h3 {
+            margin: 0;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="imageMap" src="https://1.bp.blogspot.com/-WL4PIG2--dM/WcbnDuEGx7I/AAAAAAAAAH4/VAlTjn8Rphs-OcoiD_z_BZbYWAuxK2-1QCK4BGAYYCw/s1600/K9LZvda.jpg"
+        usemap="#image_map" width="1600" height="1600">
+
+    <map name="image_map">
+        <!-- Actualización de las coordenadas de la Región 1 -->
+        <area alt="Región 1" title="Región 1" href="https://example.com/region1"
+            coords="231,386,235,325,319,252,403,222,468,248,552,304,485,386,455,432,357,451,273,451,210,397,214,365,214,365,222,346,222,346,233,332"
+            shape="polygon" data-highlight="highlight-1">
+        <area alt="Región 2" title="Región 2" href="https://example.com/region2" coords="621,260,1013,592" shape="rect"
+            data-highlight="highlight-2">
+        <area alt="Región 3" title="Región 3" href="https://example.com/region3" coords="1062,241,1429,543" shape="rect"
+            data-highlight="highlight-3">
+    </map>
+
+    <script>
+        var images = document.querySelectorAll('img[usemap]');
+        images.forEach(function (image) {
+            var mapid = image.getAttribute('usemap').substr(1);
+            var imagewidth = image.getAttribute('width');
+            var imageheight = image.getAttribute('height');
+            var imagemap = document.querySelector('map[name="' + mapid + '"]');
+            var areas = imagemap.querySelectorAll('area');
+
+            // Eliminar el usemap y el mapa de la página
+            image.removeAttribute('usemap');
+            imagemap.remove();
+
+            // Crear un contenedor wrapper
+            var wrapper = document.createElement('div');
+            wrapper.classList.add('imagemap');
+            image.parentNode.insertBefore(wrapper, image);
+            wrapper.appendChild(image);
+
+            // Recorrer las áreas
+            areas.forEach(function (area) {
+                var coords = area.getAttribute('coords').split(',');
+                var polygonCoords = [];
+                for (var i = 0; i < coords.length; i += 2) {
+                    polygonCoords.push({
+                        x: parseInt(coords[i]),
+                        y: parseInt(coords[i + 1])
+                    });
+                }
+
+                // Normalizar las coordenadas (convertir a porcentaje)
+                var normalizedCoords = polygonCoords.map(function (point) {
+                    return {
+                        x: (point.x / imagewidth) * 100,
+                        y: (point.y / imageheight) * 100
+                    };
+                });
+
+                // Crear el enlace para la región
+                var areaLink = document.createElement('a');
+                areaLink.setAttribute('href', area.getAttribute('href')); // Hacer el enlace clicable
+                areaLink.setAttribute('title', area.getAttribute('title'));
+                areaLink.classList.add('area');
+                
+                // Crear el <h3> con el nombre de la región
+                var h3 = document.createElement('h3');
+                h3.textContent = area.getAttribute('title'); // Título de la región
+                areaLink.appendChild(h3);
+
+                // Calcular el área de la región para posicionar el texto
+                var minX = Math.min(...normalizedCoords.map(function (point) { return point.x; }));
+                var minY = Math.min(...normalizedCoords.map(function (point) { return point.y; }));
+                var maxX = Math.max(...normalizedCoords.map(function (point) { return point.x; }));
+                var maxY = Math.max(...normalizedCoords.map(function (point) { return point.y; }));
+
+                areaLink.style.left = minX + '%';
+                areaLink.style.top = minY + '%';
+                areaLink.style.width = (maxX - minX) + '%';
+                areaLink.style.height = (maxY - minY) + '%';
+
+                // Añadir el enlace al contenedor
+                wrapper.appendChild(areaLink);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
