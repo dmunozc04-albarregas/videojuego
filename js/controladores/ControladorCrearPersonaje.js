@@ -123,6 +123,7 @@ function crearPartida(array) {
   crearPersonaje(array);
   crearTienda(array);
   crearRegiones(array);
+  array[3] = { region: 1, enemigo: 1 };
 }
 
 /**
@@ -135,8 +136,10 @@ function crearPersonaje(array) {
   const magia = parseInt(document.getElementById("magia").value);
   const fuerza = parseInt(document.getElementById("fuerza").value);
   let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
+  let arma2 = new Arma("Espada intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
   let inventario = new Inventario();
   inventario.addArma(arma);
+  inventario.addArma(arma2);
   let jugador = new Jugador(nombre, fuerza, 100, magia, 1, idImg, arma, 0, 0, inventario);
   array.push(jugador);
 }

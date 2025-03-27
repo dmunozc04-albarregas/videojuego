@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/Combate.css">
+    <title>Combate</title>
+</head>
+
+<body>
+    <div id="combate">
+        <div id="escenaCombate">
+            <div id="jugador" class="personaje">
+                <img id="imgJugador" src="" alt="Jugador">
+                <p id="nombreJugador"></p>
+            </div>
+            <div id="vs">VS</div>
+
+            <div id="enemigo" class="personaje">
+                <img id="imgEnemigo" src="" alt="Enemigo">
+                <p id="nombreEnemigo"></p>
+            </div>
+        </div>
+        <p id="estadoCombate">¡Es tu turno!</p>
+        <div class="botones">
+            <button id="btnAtacar">⚔️ Atacar</button>
+            <button id="btnDefender">🛡️ Defender</button>
+        </div>
+    </div>    
+
+    <script type="module" src="../js/controladores/ControladorCombate.js"></script>
+</body>
+
+</html>

@@ -1,63 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
+  font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
   background-image: url("../recursos/imagenes/fondos/FondoLobby.webp");
   overflow: hidden;
+  /*cursor: crosshair !important;*/
 }
 
 .navbar {
   background-color: #000 !important;
   color: #fff !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
-.navbar a{
-    color: #fff !important;
+.navbar a {
+  color: #fff !important;
 }
 
-.navbar-nav ul{
-    padding-left: 2em;
+.navbar-nav ul {
+  padding-left: 2em;
 }
 
-.navbar-brand{
+/*.navbar-brand{
     padding-left: 15em;
     padding-right: .1em;
     pointer-events: none;
-}
-
-.nav-item{
-    text-align: center;
-    padding-right: 3em;
-}
+}*/
 
 .navbar-nav {
-    display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    width: 70%; /* Ocupa todo el ancho disponible */
-  }
-
-.personaje img{
-  height: 40em;
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  width: 100%;
 }
 
-.btn-jugar {  
+.nav-item {
+  /* Elimina o ajusta el padding para no descentrar */
+  text-align: center;
+  padding: 0 4em; /* Ajusta el valor según necesites */
+  gap: em;
+}
+
+.personaje {
+  width: 22em;
+  background-color: #000 !important;
+  position: absolute;
+  top: 8em !important;
+  right: 0em !important;
+  border: 2px solid #fff;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.personaje img {
+  object-fit: contain;
+  object-position: top;
+  width: 10em;
+  height: 20em;
+}
+
+.barra-verde { 
+  accent-color: #0aff58; 
+}  
+
+.btn-jugar {
   font-size: 24px;
-  color: #d6d6d6; 
+  color: #d6d6d6;
   background: transparent;
   border: 2px solid transparent;
-  padding: 15px 40px;
   cursor: pointer;
-  top: 25em;
-  left: 42em;
   text-transform: uppercase;
   letter-spacing: 3px;
   position: absolute;
   transition: all 0.3s ease-in-out;
-  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5); 
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
 }
 
 .btn-jugar::before {
@@ -66,15 +90,19 @@ body {
   top: 50%;
   left: 50%;
   width: 120%;
-  height: 400%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 40%);
+  height: 300%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 40%
+  );
   transform: translate(-50%, -50%) rotate(25deg);
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 }
 
 .btn-jugar:hover {
-  color: #ffffff; 
+  color: #ffffff;
   text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
 }
 

@@ -120,4 +120,76 @@ export class Combate {
             console.error("El parámetro pasado no es un objeto de la clase Región");
         }
     }
+
+    // Métodos
+
+    /**
+    * Verifica si el combate ha terminado.
+    * 
+    * @returns {boolean} true si el combate terminó, false si sigue.
+    */
+    verificarEstadoCombate(jugador, enemigo) {
+        if (jugador.vida <= 0) {
+            document.getElementById("estadoCombate").textContent = "¡Has sido derrotado!";
+            return true;
+        } else if (enemigo.vida <= 0) {
+            document.getElementById("estadoCombate").textContent = "¡Has ganado el combate!";
+            return true;
+        }
+        return false;
+    }
+
+    /**
+    * Ejecuta la acción del jugador en su turno y actualiza la UI.
+    * 
+    * @param {string} accion Acción elegida por el jugador.
+    */
+    turnoJugadorAccion(accion, turnoJugador, jugador, enemigo) {
+        if (!turnoJugador) return; // No puede actuar si no es su turno
+
+        let estadoCombate = document.getElementById("estadoCombate");
+
+        switch (accion) {
+            case "atacar":
+                jugador.atacar(enemigo, jugador);
+                estadoCombate.textContent = `${jugador.nombre} atacó a ${enemigo.nombre}`;
+                break;
+            case "defender":
+                jugador.defender();
+                estadoCombate.textContent = `${jugador.nombre} se defendió`;
+                break;
+            default:
+                return;
+        }
+
+        if (this.verificarEstadoCombate(jugador, enemigo)) return;
+
+        turnoJugador = false;
+        setTimeout(this.turnoEnemigo(turnoJugador, jugador, enemigo), 1000);
+    }
+
+    /**
+     * Ejecuta el turno del enemigo automáticamente y actualiza la UI.
+     */
+    turnoEnemigo(turnoJugador, jugador, enemigo) {
+        if (turnoJugador) return;
+
+        let estadoCombate = document.getElementById("estadoCombate");
+        /*const acciones = ["atacar", "defender"];
+        const accionAleatoria = acciones[Math.floor(Math.random() * acciones.length)];*/
+        const accionAleatoria = "atacar";
+
+        if (accionAleatoria === "atacar") {
+            enemigo.atacar(jugador, enemigo);
+            estadoCombate.textContent = `${enemigo.nombre} atacó a ${jugador.nombre}`;
+        } else {
+            enemigo.defender();
+            estadoCombate.textContent = `${enemigo.nombre} se defendió`;
+        }
+
+        if (this.verificarEstadoCombate(jugador, enemigo)) return;
+
+        turnoJugador = true;
+        estadoCombate.textContent = "¡Es tu turno!";
+    }
 }

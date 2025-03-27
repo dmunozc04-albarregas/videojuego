@@ -37,6 +37,16 @@ export class Arma {
         };
     }
 
+    static fromJSON(datos) {
+        return new Arma(
+            datos.nombre,
+            datos.danio,
+            datos.precio,
+            datos.imagen,
+            datos.estaComprado
+        );
+    }
+
     /**
      * Método getter para obtener el nombre del arma.
      * 

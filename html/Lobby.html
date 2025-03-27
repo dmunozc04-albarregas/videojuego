@@ -12,13 +12,30 @@
 </head>
 
 <body>
+  <div class="personaje text-white d-flex flex-row p-4">
+
+    <div>
+      <h1 class="text-center text-white" id="nombre-personaje"></h1>
+      <img class="img-fluid w-10" id="personaje" src="" alt="Personaje elegido por el usuario">
+    </div>
+
+    <div class="pt-5 px-4">
+      <h5>Vida: <span id="vida-personaje"></span><br>
+        <progress style="width: 4em;" id="barra-vida-personaje" max="100"></progress>
+      </h5>
+      <h5>Fuerza: <span id="fuerza-personaje"></span></h5>
+      <h5>Magia: <span id="magia-personaje"></span></h5>
+      <h5>Nivel: <span id="nivel-personaje"></span></progress></p>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
     <div class="container-fluid fw-bold">
-      <a class="navbar-brand" href="#" disabled>
+      <!--<a class="navbar-brand" href="#" disabled>
         <img src="../recursos/imagenes/Icono.ico" alt="Logo" width="30" height="35"
           class="d-inline-block align-text-top">
         <b>The Witcher</b>
-      </a>
+      </a>-->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,25 +43,21 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Inventario</a>
+            <a class="nav-link" href="./Inventario.html">Inventario</a>
+          </li>
+          <li class="nav-item //btn-jugar//">
+            <a class="nav-link" href="./Region.html">JUGAR</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Tienda</a>
+            <a class="nav-link" href="./Tienda.html">Tienda</a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../index.html">Salir</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
   </nav>
-
-  <div class="personaje">
-    <h1 class="text-center text-white" id="nombre-personaje"></h1>
-    <img class="mx-auto d-block img-fluid w-10" id="personaje" src="" alt="Personaje elegido por el usuario">
-  </div>
-
-  <button class="btn-jugar z-99">Jugar</button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

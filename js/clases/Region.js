@@ -29,6 +29,14 @@ export class Region {
         };
     }
 
+    static fromJSON(datos) {
+        return new Region(
+            datos.imgRegion,
+            datos.tamanioEnemigos,
+            datos.enemigos
+        );
+    }
+
     /**
     * Método getter para obtener la imagen de la región.
     * 

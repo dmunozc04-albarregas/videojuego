@@ -13,7 +13,7 @@ export class Inventario {
      * Constructor de la clase inventario. Por defecto se inicializa el array de armas vacío y el tamaño a 5.
      */
     constructor() {
-        this.tamanioInventario = 5;
+        this.tamanioInventario = 9;
         this.armasCompradas = [];
     }
 
@@ -22,6 +22,13 @@ export class Inventario {
             tamanioInventario: this.tamanioInventario,
             armasCompradas: this.armasCompradas
         };
+    }
+
+    static fromJSON(datos) {
+        return new Inventario(
+            datos.tamanioInventario,
+            datos.armasCompradas
+        );
     }
 
     /**
