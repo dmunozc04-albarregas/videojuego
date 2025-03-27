@@ -75,7 +75,6 @@ body {
     height: 250px; /* Aumenta aún más el tamaño de la imagen */
     object-fit: contain;
     border-radius: 8px;
-    border: 2px solid #fff;
 }
 
 /* Estilos generales para las barras de progreso */
@@ -102,7 +101,13 @@ body {
     font-size: 30px;
     font-weight: bold;
     color: #000; /* Cambié el color a negro, ajusta si lo prefieres diferente */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    text-shadow: 
+    1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
+    -1px -1px 0px #fff,
+    1px -1px 0px #fff,
+    -1px 1px #fff,
+    1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
+    -1px -1px 0px #fff;
 }
 
 /* Caja de mensaje de combate */
