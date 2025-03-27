@@ -1,6 +1,6 @@
 import { Musica } from "../clases/Musica.js";
 
-// Código para el DOm
+// Código para el DOM
 document.addEventListener("DOMContentLoaded", () => {
   // Código para controlar la música
   const musica = new Musica();
