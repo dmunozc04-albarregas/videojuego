@@ -38,6 +38,39 @@ document.getElementById("formulario").addEventListener("submit", function (event
   alerta("success", "Personaje creado correctamente");
 });
 
+const fuerzaInput = document.getElementById("fuerza");
+const magiaInput = document.getElementById("magia");
+const fuerzaValue = document.getElementById("valorFuerza");
+const magiaValue = document.getElementById("valorMagia");
+
+const MAX_PUNTOS = 80;
+const MIN_PUNTOS = 20;
+
+function actualizarValores(input, otroInput, valueDisplay) {
+  let valorActual = parseInt(input.value);
+  let otroValor = parseInt(otroInput.value);
+
+  //Asegurar que ambos tengan al menos 20 puntos
+  if (valorActual < MIN_PUNTOS) {
+    valorActual = MIN_PUNTOS;
+  }
+
+  //Asegurar que la suma de ambos no supere 80 puntos
+  if (valorActual + otroValor > MAX_PUNTOS) {
+    valorActual = MAX_PUNTOS - otroValor; //Ajustar para que la suma sea 80
+  }
+
+  input.value = valorActual;
+  valueDisplay.textContent = valorActual;
+}
+
+fuerzaInput.addEventListener("input", function () {
+  actualizarValores(fuerzaInput, magiaInput, fuerzaValue);
+});
+magiaInput.addEventListener("input", function () {
+  actualizarValores(magiaInput, fuerzaInput, magiaValue);
+});
+/*
 // Código para mostrar los valores de los input de fuerza y magia
 const rangeInput = document.getElementById("fuerza");
 const rangeValue = document.getElementById("valorFuerza");
@@ -52,7 +85,7 @@ const rangeValueMagic = document.getElementById("valorMagia");
 rangeInputMagic.addEventListener("input", function () {
   rangeValueMagic.textContent = rangeInputMagic.value;
 });
-
+*/
 // Código para añadir el sonido de los botones
 const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 const btnEnviar = document.querySelector(".btn-enviar");
