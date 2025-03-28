@@ -157,7 +157,8 @@ export class Combate {
             if (this.estaVivo(this.enemigo)) {
                 setTimeout(this.turnoEnemigo("atacar", vidaMaxJugador), 3000);
             } else {
-                this.mostrarMensajeFinal("victoria");
+                Combate.mostrarMensajeFinal("¡Has ganado!");
+                this.actualizarEstadoPartida();
             }
         }, 3000);
     }
@@ -186,7 +187,7 @@ export class Combate {
                 this.activarBotones();
                 document.getElementById("estadoCombate").textContent = `Turno de ${this.jugador.nombre}`;
             } else {
-                this.mostrarMensajeFinal("derrota");
+                Combate.mostrarMensajeFinal("Has perdido...");
             }
         }, 3000);
     }
@@ -208,6 +209,24 @@ export class Combate {
     }
 
     /**
+     * Método que sirve para actualizar la region y el enemigo en caso de que el jugador gane el combate.
+     */
+    actualizarEstadoPartida() {
+        let guardado = JSON.parse(localStorage.getItem("guardado"));
+
+        if(guardado[3].enemigo === 3) {
+            let siguienteRegion = guardado[3].region + 1;
+            guardado[3] = { region: siguienteRegion, enemigo: 1 };
+        }
+        else {
+            let siguienteEnemigo = guardado[3].enemigo + 1;
+            guardado[3].enemigo = siguienteEnemigo;
+        }
+
+        localStorage.setItem("guardado", JSON.stringify(guardado));
+    }
+
+    /**
      * Método que sirve para desactivar los botones del usuario cuando no es su turno.
      */
     desactivarBotones() {
@@ -224,11 +243,11 @@ export class Combate {
     /**
      * Método que sirve para mostrar progresivamente el mensaje final del combate.
      * 
-     * @param {*} resultado Determinar si el mensaje a mostrar es victoria o derrota.
+     * @param {*} texto Determinar si el mensaje a mostrar es victoria o derrota.
      */
-    mostrarMensajeFinal(resultado) {
+    static mostrarMensajeFinal(texto) {
         const mensaje = document.getElementById("mensajeFinal");
-        mensaje.textContent = resultado === "victoria" ? "Has ganado" : "Has perdido";
+        mensaje.textContent = texto;
         mensaje.classList.remove("oculto");
         mensaje.classList.add("fondo-difuminado");
     
