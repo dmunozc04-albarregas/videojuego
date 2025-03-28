@@ -108,7 +108,7 @@ armasConVacios.forEach((arma, index) => {
         if (arma) {
             alerta("success", `${arma.nombre} equipada para el combate`);
         } else {
-            alerta("error", "El slot está vacío");
+            alerta("error", "No tienes un arma equipada en este slot");
         }
     });
 
