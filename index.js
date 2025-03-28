@@ -46,7 +46,7 @@ document.querySelectorAll(".botones").forEach((boton) => {
       alerta("success", "La partida se ha eliminado correctamente");
       setTimeout(() => {
         location.reload();
-      }, 2000);
+      }, 1500);
     }
 
     if (url) {
