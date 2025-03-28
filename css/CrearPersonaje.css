@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  
 }
 
 body {
@@ -12,6 +13,16 @@ body {
 
 form label{
   font-size: 1.3em;
+}
+
+form label, h1 {
+  text-shadow: 
+  1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
+  -1px -1px 0px #fff,
+  1px -1px 0px #fff,
+  -1px 1px #fff,
+  1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
+  -1px -1px 0px #fff;
 }
 
 .avatares {
@@ -92,6 +103,7 @@ form label{
   transform: translate(-50%, -50%) rotate(25deg);
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
+  
 }
 
 .btn-enviar:hover {
