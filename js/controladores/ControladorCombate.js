@@ -147,6 +147,20 @@ import { Arma } from "../clases/Arma.js";
 
 // Traemos los datos guardados necesarios para el combate
 const guardado = JSON.parse(localStorage.getItem("guardado"));
+let datosJugador;
+let datosRegiones;
+let datosRegion;
+let datosEnemigo;
+
+let enemigo;
+let region;
+let inventario;
+let arma;
+let jugador;
+let vidaMaximaJugador;
+let vidaMaximaEnemigo;
+
+let combate;
 
 function comprobarFinJuego() {
     // Si no hay más regiones para jugar, mostramos el mensaje y redirigimos al lobby
@@ -165,22 +179,22 @@ if (comprobarFinJuego()) {
     }, 2000);
 } else {
     // Si el juego no ha terminado, ejecutamos el resto del código
-    const datosJugador = guardado[0];
-    const datosRegiones = guardado[2];
-    const datosRegion = datosRegiones[(guardado[3].region) - 1];
-    const datosEnemigo = datosRegion.enemigos[(guardado[3].enemigo) - 1];
+    datosJugador = guardado[0];
+    datosRegiones = guardado[2];
+    datosRegion = datosRegiones[(guardado[3].region) - 1];
+    datosEnemigo = datosRegion.enemigos[(guardado[3].enemigo) - 1];
 
-    const enemigo = Enemigo.fromJSON(datosEnemigo);
-    const region = Region.fromJSON(datosRegion);
-    const inventario = Inventario.fromJSON(datosJugador.inventario);
-    const arma = Arma.fromJSON(datosJugador.arma);
+    enemigo = Enemigo.fromJSON(datosEnemigo);
+    region = Region.fromJSON(datosRegion);
+    inventario = Inventario.fromJSON(datosJugador.inventario);
+    arma = Arma.fromJSON(datosJugador.arma);
     datosJugador.inventario = inventario;
     datosJugador.arma = arma;
-    const jugador = Jugador.fromJSON(datosJugador);
-    const vidaMaximaJugador = jugador.vida;
-    const vidaMaximaEnemigo = enemigo.vida;
+    jugador = Jugador.fromJSON(datosJugador);
+    vidaMaximaJugador = jugador.vida;
+    vidaMaximaEnemigo = enemigo.vida;
 
-    const combate = new Combate(jugador, enemigo, arma, region);
+    combate = new Combate(jugador, enemigo, arma, region);
 
     // Código para controlar cuando se cargue la página y realizar diferentes acciones
     document.addEventListener("DOMContentLoaded", () => {
