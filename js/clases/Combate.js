@@ -124,72 +124,117 @@ export class Combate {
     // Métodos
 
     /**
-    * Verifica si el combate ha terminado.
-    * 
-    * @returns {boolean} true si el combate terminó, false si sigue.
-    */
-    verificarEstadoCombate(jugador, enemigo) {
-        if (jugador.vida <= 0) {
-            document.getElementById("estadoCombate").textContent = "¡Has sido derrotado!";
-            return true;
-        } else if (enemigo.vida <= 0) {
-            document.getElementById("estadoCombate").textContent = "¡Has ganado el combate!";
-            return true;
-        }
-        return false;
+     * Método que sirve para comprobar si el contrincante sigue vivo para terminar el combate.
+     * 
+     * @param {*} personaje Contrincante.
+     * @returns Devuelve verdadero si el contrincante sigue vivo y continúa el combate. Falso en caso contrario.
+     */
+    estaVivo(personaje) {
+        return personaje.vida > 0;
     }
 
     /**
-    * Ejecuta la acción del jugador en su turno y actualiza la UI.
-    * 
-    * @param {string} accion Acción elegida por el jugador.
-    */
-    turnoJugadorAccion(accion, turnoJugador, jugador, enemigo) {
-        if (!turnoJugador) return; // No puede actuar si no es su turno
-
-        let estadoCombate = document.getElementById("estadoCombate");
+     * Método que sirve para realizar la acción seleccionada por el jugador.
+     * 
+     * @param {*} accion Acción seleccionada.
+     * @param {*} vidaMaxEnemigo Vida máxima del enemigo.
+     * @param {*} vidaMaxJugador Vida máxima del jugador.
+     */
+    turnoJugadorAccion(accion, vidaMaxEnemigo, vidaMaxJugador) {
+        this.desactivarBotones();
 
         switch (accion) {
-            case "atacar":
-                jugador.atacar(enemigo, jugador);
-                estadoCombate.textContent = `${jugador.nombre} atacó a ${enemigo.nombre}`;
-                break;
-            case "defender":
-                jugador.defender();
-                estadoCombate.textContent = `${jugador.nombre} se defendió`;
+            case "atacar":     
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.atacar(this.enemigo, this.jugador);         
                 break;
             default:
-                return;
+                break;
         }
 
-        if (this.verificarEstadoCombate(jugador, enemigo)) return;
+        setTimeout(() => {
+            this.actualizarBarraVida("Enemigo", vidaMaxEnemigo, this.enemigo.vida);
 
-        turnoJugador = false;
-        setTimeout(this.turnoEnemigo(turnoJugador, jugador, enemigo), 1000);
+            if (this.estaVivo(this.enemigo)) {
+                setTimeout(this.turnoEnemigo("atacar", vidaMaxJugador), 3000);
+            } else {
+                this.mostrarMensajeFinal("victoria");
+            }
+        }, 3000);
     }
 
     /**
-     * Ejecuta el turno del enemigo automáticamente y actualiza la UI.
+     * Método que sirve para controlar la IA del enemigo y qué hace en su turno.
+     * 
+     * @param {*} accion 
+     * @param {*} vidaMaxJugador Vida máxima del jugador.
      */
-    turnoEnemigo(turnoJugador, jugador, enemigo) {
-        if (turnoJugador) return;
+    turnoEnemigo(accion, vidaMaxJugador) {
+        document.getElementById("estadoCombate").textContent = `Turno de ${this.enemigo.nombre}`;
 
-        let estadoCombate = document.getElementById("estadoCombate");
-        /*const acciones = ["atacar", "defender"];
-        const accionAleatoria = acciones[Math.floor(Math.random() * acciones.length)];*/
-        const accionAleatoria = "atacar";
-
-        if (accionAleatoria === "atacar") {
-            enemigo.atacar(jugador, enemigo);
-            estadoCombate.textContent = `${enemigo.nombre} atacó a ${jugador.nombre}`;
-        } else {
-            enemigo.defender();
-            estadoCombate.textContent = `${enemigo.nombre} se defendió`;
+        switch (accion) {
+            case "atacar":     
+                document.getElementById("mensajeDeCombate").textContent = this.enemigo.atacar(this.jugador, this.enemigo);         
+                break;
+            default:
+                break;
         }
 
-        if (this.verificarEstadoCombate(jugador, enemigo)) return;
+        setTimeout(() => {
+            this.actualizarBarraVida("Jugador", vidaMaxJugador, this.jugador.vida);
 
-        turnoJugador = true;
-        estadoCombate.textContent = "¡Es tu turno!";
+            if (this.estaVivo(this.jugador)) {
+                this.activarBotones();
+                document.getElementById("estadoCombate").textContent = `Turno de ${this.jugador.nombre}`;
+            } else {
+                this.mostrarMensajeFinal("derrota");
+            }
+        }, 3000);
+    }
+
+    /**
+     * Método que sirve para actualizar la barra de vida correspondiente tras cada turno.
+     * 
+     * @param {*} personaje Personaje del que hay actualizar su barra.
+     * @param {*} vidaMax Vida máxima del personaje.
+     * @param {*} vidaActual Vida actual del personaje.
+     */
+    actualizarBarraVida(personaje, vidaMax, vidaActual) {
+        let barraVida = document.getElementById(`barraVida${personaje}`);
+        let textoVida = document.getElementById(`textoVida${personaje}`);
+        let porcentajeVida = (vidaActual / vidaMax) * 100;
+
+        barraVida.style.width = `${porcentajeVida}%`;
+        textoVida.textContent = `${vidaActual}/${vidaMax}`;
+    }
+
+    /**
+     * Método que sirve para desactivar los botones del usuario cuando no es su turno.
+     */
+    desactivarBotones() {
+        document.querySelectorAll(".botones button").forEach(btn => btn.disabled = true);
+    }
+
+    /**
+     * Método que sirve para volver a activar los botones del usuario al ser su turno.
+     */
+    activarBotones() {
+        document.querySelectorAll(".botones button").forEach(btn => btn.disabled = false);
+    }
+
+    /**
+     * Método que sirve para mostrar progresivamente el mensaje final del combate.
+     * 
+     * @param {*} resultado Determinar si el mensaje a mostrar es victoria o derrota.
+     */
+    mostrarMensajeFinal(resultado) {
+        const mensaje = document.getElementById("mensajeFinal");
+        mensaje.textContent = resultado === "victoria" ? "Has ganado" : "Has perdido";
+        mensaje.classList.remove("oculto");
+        mensaje.classList.add("fondo-difuminado");
+    
+        // Aparece progresivamente
+        setTimeout(() => {
+            mensaje.style.opacity = "1";
+        }, 100);
     }
 }

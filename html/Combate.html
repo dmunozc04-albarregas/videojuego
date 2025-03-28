@@ -16,7 +16,7 @@
         <div class="area-combate">
             <!-- Parte superior (estado de combate) -->
             <div class="estado-combate">
-                <p id="estadoCombate">¡Es tu turno!</p>
+                <p id="estadoCombate"></p>
             </div>
 
             <!-- Imagenes y barras de vida -->
@@ -27,7 +27,9 @@
                     <img id="imgJugador" src="" alt="Jugador">
                     <!-- Barra de vida -->
                     <div class="progress" style="background-color: transparent;">
-                        <div id="barraVidaJugador" class="progress-bar" role="progressbar" style="width: 100%; background-color: #4CAF50;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="barraVidaJugador" class="progress-bar" role="progressbar" style="width: 100%; background-color: #4CAF50;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <span id="textoVidaJugador"></span> <!-- Aquí pondremos el texto con la vida -->
+                        </div>
                     </div>
                     <!-- Nombre -->
                     <p id="nombreJugador"></p>
@@ -39,7 +41,9 @@
                 <div class="personaje enemigo">
                     <img id="imgEnemigo" src="" alt="Enemigo">
                     <div class="progress" style="background-color: transparent;">
-                        <div id="barraVidaEnemigo" class="progress-bar" role="progressbar" style="width: 100%; background-color: #4CAF50;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div id="barraVidaEnemigo" class="progress-bar" role="progressbar" style="width: 100%; background-color: #4CAF50;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <span id="textoVidaEnemigo"></span>
+                        </div>
                     </div>
                     <p id="nombreEnemigo"></p>
                 </div>
@@ -47,19 +51,29 @@
 
             <!-- Mensaje de texto -->
             <div class="mensaje-combate">
-                <p id="mensajeDeCombate">¡Comienza el combate!</p>
+                <p id="mensajeDeCombate"></p>
             </div>
         </div>
 
         <!-- Controles (Botones de acción) -->
         <div class="acciones">
             <div class="botones">
-                <button id="btnAtacar">⚔️ Atacar</button>
-                <button id="btnCambiar">🔄 Magia</button>
-                <button id="btnHuir">🏃 Huir</button>
+                <button id="btnAtacar" disabled="true">⚔️ Atacar</button>
+                <button id="btnCambiar" disabled="true">🔄 Magia</button>
+                <button id="btnHuir" disabled="true">🏃 Huir</button>
             </div>
         </div>
     </div>
+
+    <div id="fondoDifuminado" class="fondo-difuminado">
+        <div class="mensaje-final">
+            <p>¡Elige Cara o Cruz!</p>
+            <button id="btnCara">Cara</button>
+            <button id="btnCruz">Cruz</button>
+        </div>
+    </div>
+
+    <div id="mensajeFinal" class="mensaje-final oculto"></div>
 
     <script type="module" src="../js/controladores/ControladorCombate.js"></script>
 </body>

@@ -192,6 +192,8 @@ export class Personaje {
      */
     atacar(objetivo, jugador) {
         let danioRecibido;
+        let danioFinal;
+        let mensaje;
 
         if (jugador instanceof Jugador) {
             danioRecibido = this.fuerza + jugador.arma.danio; 
@@ -201,7 +203,9 @@ export class Personaje {
         }
 
         console.log(`${this.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} daño.`);
-        objetivo.recibirDanio(danioRecibido);
+        danioFinal = objetivo.recibirDanio(danioRecibido);
+
+        return `${jugador.nombre} ataca a ${objetivo.nombre} pero este se defiende y recibe ${danioFinal} de daño final`;
     }
     
     /**
@@ -211,16 +215,18 @@ export class Personaje {
      * @returns 
      */
     recibirDanio(ataque) {
-        //let danioRecibido = Math.max(0, ataque);
         let danioRecibido = this.defender(ataque)
-        this.vida -= danioRecibido;
+        //this.vida -= danioRecibido;
 
-        if(this.vida <= 0) {
+        if(this.vida - danioRecibido < 0) {
             console.log(`${this.nombre} ha muerto.`);
+            this.vida = 0;
         } else {
             console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vida}`); 
+            this.vida -= danioRecibido;
         }
-        //return danioRecibido;
+
+        return danioRecibido;
     }
 
     /**

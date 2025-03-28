@@ -169,9 +169,9 @@ function crearRegiones(array) {
   let regiones = [];
 
   // Primera región
-  let soldado = new Enemigo("Soldado", 10, 50, 10, 1, "../recursos/imagenes/regiones/velen/enemigos/Soldado.webp");
-  let grifo = new Enemigo("Grifo", 20, 60, 20, 2, "../recursos/imagenes/regiones/velen/enemigos/Grifo.webp");
-  let leshen = new Enemigo("Leshen", 30, 70, 30, 3, "../recursos/imagenes/regiones/velen/enemigos/Leshen.webp");
+  let soldado = new Enemigo("Soldado", 10, 50, 10, 1, "../recursos/imagenes/regiones/Velen/enemigos/Soldado.webp");
+  let grifo = new Enemigo("Grifo", 20, 60, 20, 2, "../recursos/imagenes/regiones/Velen/enemigos/Grifo.webp");
+  let leshen = new Enemigo("Leshen", 30, 70, 30, 3, "../recursos/imagenes/regiones/Velen/enemigos/Leshen.webp");
   let velen = new Region("Velen");
   velen.addEnemigos(soldado);
   velen.addEnemigos(grifo);
@@ -179,9 +179,9 @@ function crearRegiones(array) {
   regiones.push(velen);
 
   // Segunda región
-  let berserker = new Enemigo("Berserker", 40, 80, 40, 4, "../recursos/imagenes/regiones/skellige/enemigos/Berserker.webp");
-  let sirena = new Enemigo("Sirena", 50, 90, 50, 5, "../recursos/imagenes/regiones/skellige/enemigos/Sirena.webp");
-  let eredin = new Enemigo("Eredin", 60, 100, 60, 6, "../recursos/imagenes/regiones/skellige/enemigos/Eredin.webp");
+  let berserker = new Enemigo("Berserker", 40, 80, 40, 4, "../recursos/imagenes/regiones/Skellige/enemigos/Berserker.webp");
+  let sirena = new Enemigo("Sirena", 50, 90, 50, 5, "../recursos/imagenes/regiones/Skellige/enemigos/Sirena.webp");
+  let eredin = new Enemigo("Eredin", 60, 100, 60, 6, "../recursos/imagenes/regiones/Skellige/enemigos/Eredin.webp");
   let skellige = new Region("Skellige");
   skellige.addEnemigos(berserker);
   skellige.addEnemigos(sirena);
@@ -189,9 +189,9 @@ function crearRegiones(array) {
   regiones.push(skellige);
 
   // Tercera región
-  let caballero = new Enemigo("Caballero", 70, 110, 70, 7, "../recursos/imagenes/regiones/toussaint/enemigos/Caballero.webp");
-  let golyat = new Enemigo("Golyat", 80, 120, 80, 8, "../recursos/imagenes/regiones/toussaint/enemigos/Golyat.webp");
-  let vampiro = new Enemigo("Vampiro", 90, 130, 90, 9, "../recursos/imagenes/regiones/toussaint/enemigos/Vampiro.webp");
+  let caballero = new Enemigo("Caballero", 70, 110, 70, 7, "../recursos/imagenes/regiones/Toussaint/enemigos/Caballero.webp");
+  let golyat = new Enemigo("Golyat", 80, 120, 80, 8, "../recursos/imagenes/regiones/Toussaint/enemigos/Golyat.webp");
+  let vampiro = new Enemigo("Vampiro", 90, 130, 90, 9, "../recursos/imagenes/regiones/Toussaint/enemigos/Vampiro.webp");
   let toussaint = new Region("Toussaint");
   toussaint.addEnemigos(caballero);
   toussaint.addEnemigos(golyat);

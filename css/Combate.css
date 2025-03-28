@@ -5,13 +5,7 @@ body {
     font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
     margin: 0;
     padding: 0;
-    text-shadow: 
-    1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
-    -1px -1px 0px #fff,
-    1px -1px 0px #fff,
-    -1px 1px #fff,
-    1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
-    -1px -1px 0px #fff;
+    
 }
 
 /* Contenedor principal */
@@ -77,6 +71,16 @@ body {
     border-radius: 8px;
 }
 
+#nombreJugador, #nombreEnemigo {
+    text-shadow: 
+    1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
+    -1px -1px 0px #fff,
+    1px -1px 0px #fff,
+    -1px 1px #fff,
+    1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
+    -1px -1px 0px #fff;
+}
+
 /* Estilos generales para las barras de progreso */
 .progress {
     width: 250px; /* Barra de 250px de ancho */
@@ -115,6 +119,13 @@ body {
     font-size: 24px;
     color: black; /* Cambié el color a negro */
     margin-bottom: 20px;
+    text-shadow: 
+    1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
+    -1px -1px 0px #fff,
+    1px -1px 0px #fff,
+    -1px 1px #fff,
+    1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
+    -1px -1px 0px #fff;
 }
 
 /* Botones de acción */
@@ -143,4 +154,77 @@ body {
 
 .botones button:hover {
     background-color: #0056b3;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.progress-bar {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+}
+
+.progress-bar span {
+    color: black; /* Color del texto */
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+/*.fondo-difuminado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.mensaje-final {
+    font-size: 60px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}*/
+.fondo-difuminado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+    backdrop-filter: blur(5px); /* Aplica desenfoque */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Fondo difuminado está detrás */
+}
+
+.mensaje-final {
+    font-size: 60px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    opacity: 1; /* Asegura que el texto sea visible */
+    transition: opacity 2s ease-in-out;
+    z-index: 1001; /* Asegura que el mensaje esté por encima del fondo */
 }

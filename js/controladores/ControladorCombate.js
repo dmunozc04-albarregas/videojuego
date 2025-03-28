@@ -19,28 +19,30 @@ const arma = Arma.fromJSON(datosJugador.arma);
 datosJugador.inventario = inventario;
 datosJugador.arma = arma;
 const jugador = Jugador.fromJSON(datosJugador);
+const vidaMaximaJugador = jugador.vida;
+const vidaMaximaEnemigo = enemigo.vida;
 
 const combate = new Combate(jugador, enemigo, arma, region);
 
-// Código para controlar cuando se cargue la página y realizar diferentes acicones
+// Código para controlar cuando se cargue la página y realizar diferentes acciones
 document.addEventListener("DOMContentLoaded", () => {
-    // Para cambiar el fondo de la región que se esté jugando
+    caraOCruz(iniciarCombate);
     fondoPorHora();
 
     // Para asignar las imágenes y nombres a la interfaz
     document.getElementById("imgJugador").src = jugador.imagen;
     document.getElementById("nombreJugador").textContent = jugador.nombre;
 
-    document.getElementById("imgEnemigo").src = "../recursos/imagenes/regiones/toussaint/enemigos/Vampiro.webp";
+    document.getElementById("imgEnemigo").src = enemigo.imagen;
     document.getElementById("nombreEnemigo").textContent = enemigo.nombre;
 
+    // Para poner las vidas en las barras
+    document.getElementById("textoVidaJugador").textContent = `${vidaMaximaJugador}/${vidaMaximaJugador}`;
+    document.getElementById("textoVidaEnemigo").textContent = `${vidaMaximaEnemigo}/${vidaMaximaEnemigo}`;
+
     // Para obtener los botones y añadirle su funcionalidad
-    document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar", turnoJugador, jugador, enemigo));
-
+    document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar", vidaMaximaEnemigo, vidaMaximaJugador));
 });
-
-// Variables de control
-let turnoJugador = true;
 
 function fondoPorHora() {
     const hora = new Date().getHours();
@@ -59,4 +61,55 @@ function fondoPorHora() {
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
+}
+
+function caraOCruz(callback) {
+    const fondoDifuminado = document.getElementById('fondoDifuminado');
+    const mensajeFinal = fondoDifuminado.querySelector('p');
+    const btnCara = document.getElementById('btnCara');
+    const btnCruz = document.getElementById('btnCruz');
+    let turno = "";
+
+    const elegirAleatorio = () => Math.random() < 0.5 ? "Cara" : "Cruz";
+
+    const ocultarMensaje = (eleccion) => {
+        const resultado = elegirAleatorio();
+
+        // Ocultar los botones
+        btnCara.style.display = 'none';
+        btnCruz.style.display = 'none';
+        
+        if (resultado === eleccion) {
+            mensajeFinal.textContent = `¡Ha salido ${resultado}! Empiezas el turno`;
+            turno = "Jugador";
+        }
+        else {
+            mensajeFinal.textContent = `Ha salido ${resultado}... Empieza el turno ${enemigo.nombre}`;
+            turno = "Enemigo";
+        }
+
+        setTimeout(() => {
+            fondoDifuminado.style.display = 'none';
+            document.getElementById('btnAtacar').disabled = false;
+            document.getElementById('btnCambiar').disabled = false;
+            document.getElementById('btnHuir').disabled = false;
+
+            // Llamar a la función de callback para iniciar el combate
+            callback(turno);
+        }, 2000);
+    };
+
+    btnCara.addEventListener('click', () => ocultarMensaje("Cara"));
+    btnCruz.addEventListener('click', () => ocultarMensaje("Cruz"));
+}
+
+function iniciarCombate (turno) {
+    if (turno === "Jugador") {
+        document.getElementById("estadoCombate").textContent = `Turno de ${jugador.nombre}`;
+        combate.activarBotones();
+    }
+    else if (turno === "Enemigo"){
+        document.getElementById("estadoCombate").textContent = `Turno de ${enemigo.nombre}`;
+        combate.turnoEnemigo("atacar", vidaMaximaJugador);
+    }
 }
