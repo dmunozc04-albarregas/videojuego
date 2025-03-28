@@ -28,5 +28,58 @@ document.addEventListener("DOMContentLoaded", () => {
     barra_vida_personaje.classList.add("barra-verde")
   }
 
+// Hacer que el SVG coincida con la imagen de manera responsiva
+function resizeSVG() {
+  let img = document.getElementById("map-image");
+  let svg = document.getElementById("map-overlay");
+  
+  let imgAspect = img.naturalWidth / img.naturalHeight;
+  let containerWidth = img.parentElement.offsetWidth;
+  let containerHeight = img.parentElement.offsetHeight;
+
+  // Ajustar el tamaño del SVG a las dimensiones del contenedor de la imagen
+  svg.setAttribute("width", containerWidth);
+  svg.setAttribute("height", containerHeight);
+
+  // Calcular el ratio de escalado de la imagen
+  let scaleX = containerWidth / img.naturalWidth;
+  let scaleY = containerHeight / img.naturalHeight;
+
+  // Escalar las posiciones y tamaños de las regiones
+  document.querySelectorAll(".region").forEach(region => {
+      let regionRect = region.getBoundingClientRect();
+      let svgRect = svg.getBoundingClientRect();
+      
+      region.setAttribute("x", regionRect.left / svgRect.width * 100);
+      region.setAttribute("y", regionRect.top / svgRect.height * 100);
+      region.setAttribute("width", regionRect.width / svgRect.width * 100);
+      region.setAttribute("height", regionRect.height / svgRect.height * 100);
+  });
+
+  // Posicionar las etiquetas en el mismo lugar de forma responsiva
+  document.querySelectorAll(".region-label").forEach(label => {
+      let regionId = label.id.replace("label-", "region-");
+      let region = document.getElementById(regionId);
+      let regionBox = region.getBoundingClientRect();
+      
+      let labelLeft = regionBox.left / svg.clientWidth * 100;
+      let labelTop = regionBox.top / svg.clientHeight * 100;
+
+      label.style.left = `${labelLeft}%`;
+      label.style.top = `${labelTop}%`;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", resizeSVG);
+window.addEventListener("resize", resizeSVG);
+
+// Agregar eventos de clic a las regiones
+document.querySelectorAll(".region").forEach(region => {
+  region.addEventListener("click", function() {
+      let regionId = this.id.replace("region-", "label-");
+      let label = document.getElementById(regionId);
+      alert("Has seleccionado " + label.innerText);
+  });
+});
 
 });

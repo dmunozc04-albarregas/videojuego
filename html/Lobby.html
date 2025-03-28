@@ -29,6 +29,23 @@
     </div>
   </div>
 
+  <div class="map-container">
+    <img id="map-image" src="../recursos/imagenes/fondos/FondoLobby.webp" alt="Mapa Interactivo">
+    <svg id="map-overlay" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <!-- Tienda -->
+        <rect class="region" id="region-tienda" x="22.9" y="40.5" width="22.2" height="45.9"></rect>
+
+        <!-- Inventario -->
+        <rect class="region" id="region-inventario" x="81.8" y="28" width="14.1" height="21.3"></rect>
+
+        <!-- Jugar -->
+        <rect class="region" id="region-jugar" x="59.4" y="24.9" width="12.9" height="28.5"></rect>
+    </svg>
+
+    <h3 class="region-label" id="label-tienda" style="position: absolute;">Tienda</h3>
+    <h3 class="region-label" id="label-inventario" style="position: absolute;">Inventario</h3>
+    <h3 class="region-label" id="label-jugar" style="position: absolute;">Jugar</h3>
+</div>
   <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-center">
     <div class="container-fluid fw-bold">
       <!--<a class="navbar-brand" href="#" disabled>
@@ -46,7 +63,7 @@
             <a class="nav-link" href="./Inventario.html">Inventario</a>
           </li>
           <li class="nav-item //btn-jugar//">
-            <a class="nav-link" href="./Region.html">JUGAR</a>
+            <a class="nav-link" href="./pruebas.html">JUGAR</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./Tienda.html">Tienda</a>

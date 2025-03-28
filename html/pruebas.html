@@ -1,135 +1,160 @@
 <!DOCTYPE html>
 <html lang="es">
 
+<!DOCTYPE html>
+<html lang="es">
+
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imagen con Áreas Interactivas</title>
+    <script src="https://kit.fontawesome.com/4ecb311d12.js" crossorigin="anonymous"></script>
+    <title>Mapa Interactivo</title>
     <style>
-        img {
-            max-width: 100%;
-            height: auto;
-            mix-blend-mode: multiply; /* O prueba 'darken' o 'difference'*/
-             
-
-
-        }
-
-        .imagemap {
-            position: relative;
-        }
-
-        .imagemap img {
-            display: block;
-        }
-
-        .imagemap .area {
-            position: absolute;
-            display: block;
+        body {
             text-align: center;
-            color: white; /* Texto en blanco */
-            font-size: 14px; /* Ajusta el tamaño del texto */
-            pointer-events: auto; /* Los enlaces deben ser clicables */
-            z-index: 1; /* Asegurarse de que el texto esté encima de la imagen */
-            white-space: nowrap; /* Evita que el texto se ajuste */
-            transition: box-shadow 0.15s ease-in-out;
+            background: #222;
+            color: white;
+            background-color: black;
         }
 
-        /* Estilo cuando pasas el ratón sobre el enlace */
-        .imagemap .area:hover {
-            box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5);
+        .map-container {
+            position: relative;
+            display: inline-block;
         }
 
-        .imagemap .area h3 {
-            margin: 0;
-            font-size: 16px;
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-            padding: 5px;
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .region {
+            fill: rgba(255, 0, 0, 0);
+            /* Transparente por defecto */
+            stroke: green;
+            stroke-width: 3;
+            cursor: pointer;
+        }
+
+        .region:hover {
+            fill: rgba(0, 255, 0, 0.5);
+            /* Efecto hover */
+        }
+
+        .region-label {
+            position: absolute;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
 
-    <img id="imageMap" src="../recursos/imagenes/fondos/Mapa.jpg"
-        usemap="#image_map" width="1600" height="1600">
+    <div class="map-container">
+        <img id="map-image" src="../recursos/imagenes/fondos/Mapa.jpg" alt="Mapa Interactivo">
 
-    <map name="image_map">
-        <!-- Actualización de las coordenadas de la Región 1 -->
-        <area alt="Región 1" title="Región 1" href="https://example.com/region1"
-            coords="231,386,235,325,319,252,403,222,468,248,552,304,485,386,455,432,357,451,273,451,210,397,214,365,214,365,222,346,222,346,233,332"
-            shape="polygon" data-highlight="highlight-1">
-        <area alt="Región 2" title="Región 2" href="https://example.com/region2" coords="621,260,1013,592" shape="rect"
-            data-highlight="highlight-2">
-        <area alt="Región 3" title="Región 3" href="https://example.com/region3" coords="1062,241,1429,543" shape="rect"
-            data-highlight="highlight-3">
-    </map>
+        <svg id="map-overlay">
+            <polygon class="region" id="region-1"
+                points="183,187 149,1030 204,1057 407,1053 665,1049 632,971 676,944 697,942 699,927 707,883 715,913 768,814 718,789 720,766 730,701 732,655 678,623 667,575 667,539 669,516 690,510 724,499 736,474 774,428 781,386 778,313 667,269 569,233 350,191 227,187 193,183">
+            </polygon>
+
+            <polygon class="region" id="region-2"
+                points="793,311 793,405 835,271 1009,279 1024,342 1110,428 1177,512 1244,587 1311,648 1255,713 1167,797 1102,848 1081,856 1053,879 1106,946 1041,969 1009,965 938,969 875,963 785,961 726,959 718,932 739,873 768,831 776,808 726,783 743,669 732,642 766,468">
+            </polygon>
+
+            <polygon class="region" id="region-3"
+                points="1083,243 1024,315 1238,575 1305,550 1399,464 1391,436 1393,407 1393,329 1416,281 1366,258 1313,245 1162,214 1418,266 1385,237">
+            </polygon>
+        </svg>
+
+        <h3 class="region-label" id="label-1" style="top: 50px; left: 200px;">Región 1</h3>
+        <h3 class="region-label" id="label-2" style="top: 300px; left: 850px;">Región 2</h3>
+        <h3 class="region-label" id="label-3" style="top: 200px; left: 1200px;">Región 3</h3>
+    </div>
+
+    <!-- Íconos de bloqueo -->
+    <div id="icon-tienda" class="lock-icon" style="display: none;">
+        <i class="fa-solid fa-lock"></i> <!-- Icono de candado -->
+    </div>
+
 
     <script>
-        var images = document.querySelectorAll('img[usemap]');
-        images.forEach(function (image) {
-            var mapid = image.getAttribute('usemap').substr(1);
-            var imagewidth = image.getAttribute('width');
-            var imageheight = image.getAttribute('height');
-            var imagemap = document.querySelector('map[name="' + mapid + '"]');
-            var areas = imagemap.querySelectorAll('area');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            redimensionarBody();
+        });
 
-            // Eliminar el usemap y el mapa de la página
-            image.removeAttribute('usemap');
-            imagemap.remove();
+        function redimensionarBody() {
+            document.body.style.transform = 'scale(1.5)'; // Cambia el tamaño del body
+            setTimeout(() => {
+                document.body.style.transform = 'scale(1)'; // Vuelve al estado original
+            }, 1);
+        }
+        // Hacer que el SVG coincida con la imagen
+        function resizeSVG() {
+            let img = document.getElementById("map-image");
+            let svg = document.getElementById("map-overlay");
+            svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
+        }
 
-            // Crear un contenedor wrapper
-            var wrapper = document.createElement('div');
-            wrapper.classList.add('imagemap');
-            image.parentNode.insertBefore(wrapper, image);
-            wrapper.appendChild(image);
+        document.addEventListener("DOMContentLoaded", resizeSVG);
+        window.addEventListener("resize", resizeSVG);
 
-            // Recorrer las áreas
-            areas.forEach(function (area) {
-                var coords = area.getAttribute('coords').split(',');
-                var polygonCoords = [];
-                for (var i = 0; i < coords.length; i += 2) {
-                    polygonCoords.push({
-                        x: parseInt(coords[i]),
-                        y: parseInt(coords[i + 1])
-                    });
-                }
-
-                // Normalizar las coordenadas (convertir a porcentaje)
-                var normalizedCoords = polygonCoords.map(function (point) {
-                    return {
-                        x: (point.x / imagewidth) * 100,
-                        y: (point.y / imageheight) * 100
-                    };
-                });
-
-                // Crear el enlace para la región
-                var areaLink = document.createElement('a');
-                areaLink.setAttribute('href', area.getAttribute('href')); // Hacer el enlace clicable
-                areaLink.setAttribute('title', area.getAttribute('title'));
-                areaLink.classList.add('area');
-                
-                // Crear el <h3> con el nombre de la región
-                var h3 = document.createElement('h3');
-                h3.textContent = area.getAttribute('title'); // Título de la región
-                areaLink.appendChild(h3);
-
-                // Calcular el área de la región para posicionar el texto
-                var minX = Math.min(...normalizedCoords.map(function (point) { return point.x; }));
-                var minY = Math.min(...normalizedCoords.map(function (point) { return point.y; }));
-                var maxX = Math.max(...normalizedCoords.map(function (point) { return point.x; }));
-                var maxY = Math.max(...normalizedCoords.map(function (point) { return point.y; }));
-
-                areaLink.style.left = minX + '%';
-                areaLink.style.top = minY + '%';
-                areaLink.style.width = (maxX - minX) + '%';
-                areaLink.style.height = (maxY - minY) + '%';
-
-                // Añadir el enlace al contenedor
-                wrapper.appendChild(areaLink);
+        // Agregar eventos de clic a las regiones
+        document.querySelectorAll(".region").forEach(region => {
+            region.addEventListener("click", function () {
+                let regionId = this.id.replace("region-", "label-");
+                let label = document.getElementById(regionId);
+                alert("Has seleccionado " + label.innerText);
             });
         });
+
+        // Función para deshabilitar una región
+function disableRegion(regionId) {
+    let region = document.getElementById(regionId);
+    if (region) {
+        // Desactivar clics en la región
+        region.style.pointerEvents = "none";
+        
+        // Cambiar el color para indicar que está deshabilitada (opacidad)
+        region.style.fill = "rgba(255, 0, 0, 0.3)"; // Gris con opacidad
+        region.style.stroke = "red"; // Cambiar el borde a gris
+
+        let icon = document.getElementById("icon-" + regionId.replace("region-", ""));
+        if (icon) {
+            icon.style.display = "block"; // Mostrar el ícono de bloqueo
+        }
+
+        // Opcional: Cambiar las etiquetas si lo deseas
+        let label = document.getElementById("label-" + regionId.replace("region-", ""));
+        if (label) {
+            label.style.color = "gray";  // Cambiar color de la etiqueta a gris
+        }
+    }
+}
+
+// Llamada para deshabilitar la región "tienda"
+disableRegion("region-2");
+disableRegion("region-3");
+
     </script>
+
+
+
 
 </body>
 
