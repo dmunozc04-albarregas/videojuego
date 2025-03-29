@@ -47,7 +47,36 @@ body {
   gap: em;
 }
 
+h3{
+  color: #fff;
+}
+
+#label-tienda {
+  position: absolute;
+  top: 33% !important;
+  /* Ajusta según sea necesario */
+  left: 15% !important;
+  /* Ajusta según sea necesario */
+}
+
+#label-jugar {
+  position: absolute;
+  top: 20% !important;
+  /* Ajusta según sea necesario */
+  left: 32% !important;
+  /* Ajusta según sea necesario */
+}
+
+#label-inventario {
+  position: absolute;
+  top: 22% !important;
+  /* Ajusta según sea necesario */
+  left: 43% !important;
+  /* Ajusta según sea necesario */
+}
+
 .personaje {
+  z-index: 1;
   width: 22em;
   background-color: #000 !important;
   position: absolute;
@@ -67,9 +96,9 @@ body {
   height: 20em;
 }
 
-.barra-verde { 
-  accent-color: #0aff58; 
-}  
+.barra-verde {
+  accent-color: #0aff58;
+}
 
 .btn-jugar {
   font-size: 24px;
@@ -114,7 +143,6 @@ body {
   transform: scale(0.95);
 }
 
-
 .map-container {
   position: relative;
   display: inline-block;
@@ -136,13 +164,12 @@ svg {
 
 .region {
   fill: rgba(255, 0, 0, 0); /* Transparente por defecto */
-  stroke: red;
-  stroke-width: 3;
+  /*stroke: red;*/
   cursor: pointer;
 }
 
 .region:hover {
-  fill: rgba(255, 0, 0, 0.3); /* Resaltado al pasar el mouse */
+  fill: rgba(255, 255, 255, 0.521); /* Resaltado al pasar el mouse */
 }
 
 .region-label {

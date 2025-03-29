@@ -1,0 +1,121 @@
+body {
+    text-align: center;
+    background: #222;
+    color: white;
+    text-align: center;
+    background-color: black;
+    overflow: hidden;
+}
+
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 80em;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.region {
+    fill: rgba(255, 0, 0, 0);
+    /* Transparente por defecto */
+    stroke: rgb(0, 255, 0);
+    stroke-width: 3;
+    cursor: pointer;
+}
+
+.region:hover {
+    fill: rgba(0, 255, 0, 0.5);
+    /* Efecto hover */
+}
+
+#label-1 {
+    position: absolute;
+    top: 15% !important;
+    /* Ajusta según sea necesario */
+    left: 28% !important;
+    /* Ajusta según sea necesario */
+}
+
+#label-2 {
+    position: absolute;
+    top: 20% !important;
+    /* Ajusta según sea necesario */
+    left: 58% !important;
+    /* Ajusta según sea necesario */
+}
+
+#label-3 {
+    position: absolute;
+    top: 18% !important;
+    /* Ajusta según sea necesario */
+    left: 78% !important;
+    /* Ajusta según sea necesario */
+}
+
+#icon-1 {
+    display: none;
+    position: absolute;
+    top: 50%;
+    /* Ajusta según sea necesario */
+    left: 25%;
+}
+
+#icon-2 {
+    display: none;
+    position: absolute;
+    top: 50%;
+    /* Ajusta según sea necesario */
+    left: 60%;
+    /* Ajusta según sea necesario */
+}
+
+#icon-3 {
+    display: none;
+    position: absolute;
+    top: 28%;
+    /* Ajusta según sea necesario */
+    left: 76%;
+    /* Ajusta según sea necesario */
+}
+
+.region-label {
+    position: absolute;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    /* Para centrar bien */
+    white-space: nowrap;
+}
+
+.lock-icon {
+    display: none;
+    /* Inicialmente oculto */
+    position: absolute;
+    font-size: 2rem;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
+}
