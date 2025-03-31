@@ -181,29 +181,6 @@ button:disabled {
     display: none;
 }
 
-/*.fondo-difuminado {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); 
-    backdrop-filter: blur(5px); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.mensaje-final {
-    font-size: 60px;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 2s ease-in-out;
-}*/
 .fondo-difuminado {
     position: fixed;
     top: 0;
@@ -227,4 +204,26 @@ button:disabled {
     opacity: 1; /* Asegura que el texto sea visible */
     transition: opacity 2s ease-in-out;
     z-index: 1001; /* Asegura que el mensaje esté por encima del fondo */
+}
+
+.imagen-letrero {
+    position: fixed; /* Fija la imagen en la pantalla */
+    top: -110px; /* Mueve la imagen 100px arriba del borde superior */
+    left: -130px; /* Mueve la imagen 130px hacia la izquierda del borde izquierdo */
+    max-width: 620px; /* Limita el ancho máximo de la imagen */
+    max-height: 620px; /* Limita la altura máxima de la imagen */
+    width: auto; /* Mantiene la proporción de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: inline-block; /* Asegura que el texto y la imagen estén juntos */
+}
+
+.texto-sobre-imagen {
+    position: absolute; /* Posiciona el texto dentro de la imagen */
+    top: 66px; /* Centra el texto verticalmente */
+    left: 155px; /* Centra el texto horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro al contorno del texto */
+    color: white; /* Cambia el color del texto */
+    font-size: 24px; /* Tamaño de la fuente */
+    font-weight: bold; /* Fuente en negrita */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra al texto para mejor visibilidad */
 }

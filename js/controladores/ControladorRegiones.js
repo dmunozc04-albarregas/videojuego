@@ -2,9 +2,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     redimensionarBody();
 });
 
-
-
-
 function redimensionarBody() {
     document.body.style.transform = 'scale(1.5)'; // Cambia el tamaño del body
     setTimeout(() => {

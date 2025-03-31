@@ -32,10 +32,6 @@ export class Personaje {
         this.imagen = imagen;
     }
 
-    /**
-     * 
-     * @returns 
-     */
     toJSON() {
         return {
             nombre: this.nombre,
@@ -185,15 +181,18 @@ export class Personaje {
         }
     }
 
+    // Métodos
+
     /**
      * Método que sirve para atacar.
      * 
      * @param {*} objetivo Objetivo al que se ataca.
+     * @param {*} jugador Personaje que realiza el ataque.
+     * @returns Mensaje a mostrar del resultado del ataque.
      */
     atacar(objetivo, jugador) {
         let danioRecibido;
         let danioFinal;
-        let mensaje;
 
         if (jugador instanceof Jugador) {
             danioRecibido = this.fuerza + jugador.arma.danio; 
@@ -212,11 +211,10 @@ export class Personaje {
      * Método que sirve para recibir daño.
      * 
      * @param {*} ataque Daño del ataque.
-     * @returns 
+     * @returns Devuelve el daño final del ataque.
      */
     recibirDanio(ataque) {
         let danioRecibido = this.defender(ataque)
-        //this.vida -= danioRecibido;
 
         if(this.vida - danioRecibido < 0) {
             console.log(`${this.nombre} ha muerto.`);
@@ -238,7 +236,7 @@ export class Personaje {
         let defensa = Math.floor(Math.random() * (danioRecibido + 1));
         let danioFinal = danioRecibido - defensa;
         console.log(`${this.nombre} se defiende.`);
-        //recibirDanio(danioFinal);
+
         return danioFinal;
     }
 }

@@ -61,6 +61,12 @@ document.querySelectorAll(".botones").forEach((boton) => {
   });
 });
 
+/**
+ * Método que sirve para mostrar una alerta.
+ * 
+ * @param {*} tipo Tipo de alerta.
+ * @param {*} mensaje Mensaje a mostrar.
+ */
 function alerta(tipo, mensaje) {
   const Toast = Swal.mixin({
     toast: true,

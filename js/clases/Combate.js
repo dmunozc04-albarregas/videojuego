@@ -243,7 +243,7 @@ export class Combate {
     /**
      * Método que sirve para mostrar progresivamente el mensaje final del combate.
      * 
-     * @param {*} texto Determinar si el mensaje a mostrar es victoria o derrota.
+     * @param {*} texto Determinar si el mensaje a mostrar es victoria, derrota o abandono.
      */
     static mostrarMensajeFinal(texto) {
         const mensaje = document.getElementById("mensajeFinal");

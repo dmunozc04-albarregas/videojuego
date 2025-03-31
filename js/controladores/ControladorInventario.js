@@ -30,32 +30,32 @@ armasConVacios.forEach((arma, index) => {
         img.src = arma.imagen && arma.imagen.trim() !== "" ? arma.imagen : "../recursos/imagenes/armas/EspadaBasica.webp";
         img.alt = `Imagen de ${arma.nombre || "Desconocida"}`;
         img.style.width = "50px";
-        
+
         const textoNombre = document.createElement("div");
         textoNombre.textContent = arma.nombre || "";
 
-         // Crear un contenedor para las estadísticas
-         const statsDiv = document.createElement("div");
-         statsDiv.classList.add("stats-tooltip");
-         statsDiv.style.display = "none"; // Inicialmente oculto
-         statsDiv.style.position = "absolute";
-         statsDiv.style.left = "130em";
-         statsDiv.style.backgroundColor = "#000";
-         statsDiv.style.color = "#fff";
-         statsDiv.style.padding = "10px";
-         statsDiv.style.borderRadius = "5px";
-         statsDiv.style.maxWidth = "200px";
-         statsDiv.style.textAlign = "center";
-         statsDiv.style.zIndex = "1000";
- 
-         // Añadir estadísticas al contenedor
-         statsDiv.innerHTML = `
+        // Crear un contenedor para las estadísticas
+        const statsDiv = document.createElement("div");
+        statsDiv.classList.add("stats-tooltip");
+        statsDiv.style.display = "none"; // Inicialmente oculto
+        statsDiv.style.position = "absolute";
+        statsDiv.style.left = "130em";
+        statsDiv.style.backgroundColor = "#000";
+        statsDiv.style.color = "#fff";
+        statsDiv.style.padding = "10px";
+        statsDiv.style.borderRadius = "5px";
+        statsDiv.style.maxWidth = "200px";
+        statsDiv.style.textAlign = "center";
+        statsDiv.style.zIndex = "1000";
+
+        // Añadir estadísticas al contenedor
+        statsDiv.innerHTML = `
              <strong>${arma.nombre}</strong><br>
              Daño: ${arma.danio}<br>
              Precio: ${arma.precio}<br>
              Rango: Básica<br>
          `;
-          // Función para actualizar la posición del tooltip al mover el cursor
+        // Función para actualizar la posición del tooltip al mover el cursor
         function actualizarPosicion(e) {
             // Obtener las coordenadas del mouse
             const mouseX = e.clientX;
@@ -84,7 +84,7 @@ armasConVacios.forEach((arma, index) => {
             document.removeEventListener('mousemove', actualizarPosicion);
         });
 
-        
+
         celda.appendChild(img);
         celda.appendChild(textoNombre);
     } else {
@@ -127,19 +127,19 @@ while (fila.children.length < columnasPorFila) {
 
 function alerta(tipo, mensaje) {
     const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      iconColor: "white",
-      customClass: {
-        popup: "colored-toast",
-      },
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
+        toast: true,
+        position: "top-end",
+        iconColor: "white",
+        customClass: {
+            popup: "colored-toast",
+        },
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
     });
-  
+
     Toast.fire({
-      icon: tipo,
-      title: mensaje,
+        icon: tipo,
+        title: mensaje,
     });
-  }
+}

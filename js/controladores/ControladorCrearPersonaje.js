@@ -10,7 +10,7 @@ import { Region } from "../clases/Region.js";
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Creador.mp3");
 
-// Código para cargar las imagenes de los personajes asegurándose que antes se carga todo la página
+// Código para cargar las imagenes de los personajes asegurándose que antes se carga toda la página
 document.addEventListener("DOMContentLoaded", () => {
   cargarAvatares();
 });
@@ -27,7 +27,7 @@ document.getElementById("formulario").addEventListener("submit", function (event
 
   crearPartida(array);
 
-  localStorage.setItem("guardado", JSON.stringify(array)); // Guardar el jugador en el localStorage
+  localStorage.setItem("guardado", JSON.stringify(array)); // Guardar el jugador y la partida en el localStorage
 
   setTimeout(() => {
     musica.desvanecer(() => {
@@ -38,6 +38,7 @@ document.getElementById("formulario").addEventListener("submit", function (event
   alerta("success", "Personaje creado correctamente");
 });
 
+// Código para controlar los inputs de fuerza y magia
 const fuerzaInput = document.getElementById("fuerza");
 const magiaInput = document.getElementById("magia");
 const fuerzaValue = document.getElementById("valorFuerza");
@@ -46,6 +47,14 @@ const magiaValue = document.getElementById("valorMagia");
 const MAX_PUNTOS = 80;
 const MIN_PUNTOS = 20;
 
+/**
+ * Método que sirve para controlar que no se introduzcan valores para la fuerza y magia
+ * por encima del máximo y mínimo permitido.
+ * 
+ * @param {*} input 
+ * @param {*} otroInput 
+ * @param {*} valueDisplay 
+ */
 function actualizarValores(input, otroInput, valueDisplay) {
   let valorActual = parseInt(input.value);
   let otroValor = parseInt(otroInput.value);
@@ -70,22 +79,7 @@ fuerzaInput.addEventListener("input", function () {
 magiaInput.addEventListener("input", function () {
   actualizarValores(magiaInput, fuerzaInput, magiaValue);
 });
-/*
-// Código para mostrar los valores de los input de fuerza y magia
-const rangeInput = document.getElementById("fuerza");
-const rangeValue = document.getElementById("valorFuerza");
 
-rangeInput.addEventListener("input", function () {
-  rangeValue.textContent = rangeInput.value;
-});
-
-const rangeInputMagic = document.getElementById("magia");
-const rangeValueMagic = document.getElementById("valorMagia");
-
-rangeInputMagic.addEventListener("input", function () {
-  rangeValueMagic.textContent = rangeInputMagic.value;
-});
-*/
 // Código para añadir el sonido de los botones
 const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 const btnEnviar = document.querySelector(".btn-enviar");
@@ -122,6 +116,7 @@ function cargarAvatares() {
   });
 }
 
+// Código para las alertas
 /**
  * Método para mostrar las alertas.
  * 
@@ -147,6 +142,7 @@ function alerta(tipo, mensaje) {
   });
 }
 
+// Código para crear la partida
 /**
  * Método para crear todo lo relacionado con la partida.
  * 
@@ -156,7 +152,7 @@ function crearPartida(array) {
   crearPersonaje(array);
   crearTienda(array);
   crearRegiones(array);
-  array[3] = { region: 1, enemigo: 1 };
+  array[3] = { region: 1, enemigo: 1 }; // Con esto se sabrá la región y enemigo por la que va el jugador
 }
 
 /**
@@ -169,10 +165,10 @@ function crearPersonaje(array) {
   const magia = parseInt(document.getElementById("magia").value);
   const fuerza = parseInt(document.getElementById("fuerza").value);
   let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
-  let arma2 = new Arma("Espada intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
+  //let arma2 = new Arma("Espada intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
   let inventario = new Inventario();
   inventario.addArma(arma);
-  inventario.addArma(arma2);
+  //inventario.addArma(arma2);
   let jugador = new Jugador(nombre, fuerza, 100, magia, 1, idImg, arma, 0, 250, inventario);
   array.push(jugador);
 }
@@ -198,6 +194,11 @@ function crearTienda(array) {
   array.push(tienda);
 }
 
+/**
+ * Método para crear las regiones y enemigos de cada una del juego.
+ * 
+ * @param {*} array Array donde se guardarán los datos para el localStorage.
+ */
 function crearRegiones(array) {
   let regiones = [];
 

@@ -28,35 +28,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const barra_nivel_personaje = document.getElementById("progress-bar-nivel");
 
   function cambiarColorBarraProgreso(barra, valor) {
-  // Limpiar clases anteriores
-  barra.classList.remove("barra-roja", "barra-amarilla", "barra-verde");
+    // Limpiar clases anteriores
+    barra.classList.remove("barra-roja", "barra-amarilla", "barra-verde");
 
-  // Cambiar el color según el valor de la barra
-  if (valor <= 35) {
-    barra.classList.add("barra-roja"); // Si es 0-30% => Rojo
-  } else if (valor <= 70) {
-    barra.classList.add("barra-amarilla"); // Si es 31-70% => Amarillo
-  } else {
-    barra.classList.add("barra-verde"); // Si es 71-100% => Verde
+    // Cambiar el color según el valor de la barra
+    if (valor <= 35) {
+      barra.classList.add("barra-roja"); // Si es 0-30% => Rojo
+    } else if (valor <= 70) {
+      barra.classList.add("barra-amarilla"); // Si es 31-70% => Amarillo
+    } else {
+      barra.classList.add("barra-verde"); // Si es 71-100% => Verde
+    }
   }
-}
 
-setTimeout(() => {
-  barra_vida_personaje.style.width = personaje.vida + "%";
-  barra_vida_personaje.setAttribute("aria-valuenow", personaje.vida);
-  cambiarColorBarraProgreso(barra_vida_personaje, personaje.vida);
+  setTimeout(() => {
+    barra_vida_personaje.style.width = personaje.vida + "%";
+    barra_vida_personaje.setAttribute("aria-valuenow", personaje.vida);
+    cambiarColorBarraProgreso(barra_vida_personaje, personaje.vida);
 
-  barra_fuerza_personaje.style.width = personaje.fuerza + "%";
-  barra_fuerza_personaje.setAttribute("aria-valuenow", personaje.fuerza);
-  cambiarColorBarraProgreso(barra_fuerza_personaje, personaje.fuerza);
+    barra_fuerza_personaje.style.width = personaje.fuerza + "%";
+    barra_fuerza_personaje.setAttribute("aria-valuenow", personaje.fuerza);
+    cambiarColorBarraProgreso(barra_fuerza_personaje, personaje.fuerza);
 
-  barra_magia_personaje.style.width = personaje.magia + "%";
-  barra_magia_personaje.setAttribute("aria-valuenow", personaje.magia);
-  cambiarColorBarraProgreso(barra_magia_personaje, personaje.magia);
+    barra_magia_personaje.style.width = personaje.magia + "%";
+    barra_magia_personaje.setAttribute("aria-valuenow", personaje.magia);
+    cambiarColorBarraProgreso(barra_magia_personaje, personaje.magia);
 
-  barra_nivel_personaje.style.width = 100 + "%";
-  barra_nivel_personaje.setAttribute("aria-valuenow", 100);
-}, 100);
+    barra_nivel_personaje.style.width = 100 + "%";
+    barra_nivel_personaje.setAttribute("aria-valuenow", 100);
+  }, 100);
 
   document.getElementById("economia").innerText = personaje.dinero;
 
@@ -109,7 +109,6 @@ setTimeout(() => {
       } else {
         console.error(`No se encontró URL para la región: ${regionId}`);
       }
-
     });
   });
 });

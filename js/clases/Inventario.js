@@ -10,7 +10,7 @@ export class Inventario {
     #armasCompradas;
 
     /**
-     * Constructor de la clase inventario. Por defecto se inicializa el array de armas vacío y el tamaño a 5.
+     * Constructor de la clase inventario. Por defecto se inicializa el array de armas vacío y el tamaño a 9.
      */
     constructor() {
         this.tamanioInventario = 9;
