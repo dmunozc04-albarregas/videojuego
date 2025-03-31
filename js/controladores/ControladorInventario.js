@@ -30,7 +30,6 @@ armasConVacios.forEach((arma, index) => {
         img.src = arma.imagen && arma.imagen.trim() !== "" ? arma.imagen : "../recursos/imagenes/armas/EspadaBasica.webp";
         img.alt = `Imagen de ${arma.nombre || "Desconocida"}`;
         img.style.width = "50px";
-        img.style.marginRight = "10px";
         
         const textoNombre = document.createElement("div");
         textoNombre.textContent = arma.nombre || "";
@@ -93,22 +92,21 @@ armasConVacios.forEach((arma, index) => {
         img.src = "../recursos/imagenes/armas/sword-altar.svg"; // Imagen por defecto
         img.alt = "Slot vacío";
         img.style.width = "50px";
-        img.style.marginRight = "10px";
 
         const textoSlotVacio = document.createElement("div");
         textoSlotVacio.textContent = "Slot vacío";
 
         celda.appendChild(img);
-        celda.appendChild(textoSlotVacio);
+        celda.appendChild(textoSlotVacio);  // Añadir clase para el slot vacío
     }
 
     fila.appendChild(celda);
 
     celda.addEventListener('click', () => {
         if (arma) {
-            alerta("success", `${arma.nombre} equipada para el combate`);
+            alerta("success", `${arma.nombre} equipada`);
         } else {
-            alerta("error", "No tienes un arma equipada en este slot");
+            alerta("error", "No hay niguna arma en este slot");
         }
     });
 

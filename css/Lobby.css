@@ -6,7 +6,6 @@
 
 body {
   font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
-  background-image: url("../recursos/imagenes/fondos/FondoLobbywebp");
   overflow: hidden;
   /*cursor: crosshair !important;*/
 }
@@ -77,10 +76,10 @@ h3{
 
 .personaje {
   z-index: 1;
-  width: 22em;
+  width: 24em;
   background-color: #000 !important;
   position: absolute;
-  top: 8em !important;
+  top: 12em !important;
   right: 0em !important;
   border: 2px solid #fff;
   border-top-left-radius: 1em;
@@ -89,18 +88,38 @@ h3{
   border-bottom-right-radius: 0;
 }
 
+progress{
+  width: 4em;
+}
+
 .personaje img {
   object-fit: contain;
   object-position: top;
   width: 10em;
-  height: 20em;
+  height: 15em;
+}
+
+/*.progress-bar{
+  background-color: #4CAF50 !important;
+}*/
+
+/*.barra-verde {
+  accent-color: #0aff58;
+}*/
+
+.barra-roja {
+  background-color: red !important;
+}
+
+.barra-amarilla {
+  background-color: yellow !important;
 }
 
 .barra-verde {
-  accent-color: #0aff58;
+  background-color: #0aff58 !important;
 }
 
-.btn-jugar {
+/*.btn-jugar {
   font-size: 24px;
   color: #d6d6d6;
   background: transparent;
@@ -141,8 +160,13 @@ h3{
 
 .btn-jugar:active {
   transform: scale(0.95);
-}
+}*/
 
+.economia img{
+    width: 30px !important; /* Ajusta el tamaño según sea necesario */
+    height: 30px; /* Ajusta el tamaño según sea necesario */
+    margin-right: 5px; 
+}
 .map-container {
   position: relative;
   display: inline-block;

@@ -42,7 +42,8 @@ td:hover{
 }
 
 #avatar-personaje{
-    width: 16em;
+    max-width: 20em;
+    max-height: 32em !important;
     transform-origin: center bottom;
     animation: idleAnimation 3s infinite ease-in-out;
 }
