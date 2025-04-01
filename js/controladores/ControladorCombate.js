@@ -42,8 +42,6 @@ if (comprobarFinJuego()) {
     datosJugador.inventario = inventario;
     datosJugador.arma = arma;
     jugador = Jugador.fromJSON(datosJugador);
-    vidaMaximaJugador = jugador.vida;
-    vidaMaximaEnemigo = enemigo.vida;
 
     combate = new Combate(jugador, enemigo, arma, region);
 
@@ -61,18 +59,10 @@ if (comprobarFinJuego()) {
         document.getElementById("nombreEnemigo").textContent = enemigo.nombre;
 
         // Para poner las vidas en las barras
-        document.getElementById("textoVidaJugador").textContent = `${vidaMaximaJugador}/${vidaMaximaJugador}`;
-        document.getElementById("textoVidaEnemigo").textContent = `${vidaMaximaEnemigo}/${vidaMaximaEnemigo}`;
+        document.getElementById("textoVidaJugador").textContent = `${jugador.vidaMax}/${jugador.vidaMax}`;
+        document.getElementById("textoVidaEnemigo").textContent = `${enemigo.vidaMax}/${enemigo.vidaMax}`;
 
-        // Para obtener los botones y añadirle su funcionalidad
-        document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar", vidaMaximaEnemigo, vidaMaximaJugador));
-        document.getElementById("btnHuir").addEventListener("click", () => {
-            Combate.mostrarMensajeFinal("Has abandonado...");
-
-            setTimeout(() => {
-                window.location.href = "Lobby.html";
-            }, 2000);
-        });
+        funcionalidadBotones();
     });
 }
 
@@ -84,7 +74,7 @@ if (comprobarFinJuego()) {
 function comprobarFinJuego() {
     // Si no hay más regiones para jugar, mostramos el mensaje y redirigimos al lobby
     if (guardado[2].length < guardado[3].region) {
-        Combate.mostrarMensajeFinal("¡Has completado el juego!");
+        combate.mostrarMensajeFinal("¡Has completado el juego!");
         return true;  // El juego ha terminado
     }
     return false;  // El juego no ha terminado
@@ -145,7 +135,7 @@ function caraOCruz(callback) {
         setTimeout(() => {
             fondoDifuminado.style.display = 'none';
             document.getElementById('btnAtacar').disabled = false;
-            document.getElementById('btnCambiar').disabled = false;
+            document.getElementById('btnSenales').disabled = false;
             document.getElementById('btnHuir').disabled = false;
 
             // Llamar a la función de callback para iniciar el combate
@@ -168,7 +158,35 @@ function iniciarCombate(turno) {
         combate.activarBotones();
     }
     else if (turno === "Enemigo") {
+        combate.desactivarBotones();
         document.getElementById("estadoCombate").textContent = `Turno de ${enemigo.nombre}`;
         combate.turnoEnemigo("atacar", vidaMaximaJugador);
     }
+}
+
+/**
+ * Método que sirve para inicializar las funcionalidades de todos los botones del combate.
+ */
+function funcionalidadBotones() {
+    // Botones Principales
+    document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar", vidaMaximaEnemigo, vidaMaximaJugador));
+
+    document.getElementById("btnSenales").addEventListener("click", () => {
+        document.getElementById("botonesPrincipales").classList.add("oculto");
+        document.getElementById("botonesSenales").classList.remove("oculto");
+    });
+
+    document.getElementById("btnHuir").addEventListener("click", () => {
+        combate.mostrarMensajeFinal("Has abandonado...");
+
+        setTimeout(() => {
+            window.location.href = "Lobby.html";
+        }, 2000);
+    });
+
+    // Botones Señales
+    document.getElementById("btnVolver").addEventListener("click", () => {
+        document.getElementById("botonesPrincipales").classList.remove("oculto");
+        document.getElementById("botonesSenales").classList.add("oculto");
+    });
 }

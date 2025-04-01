@@ -12,6 +12,14 @@
 </head>
 
 <body>
+    <div id="fondoDifuminado" class="fondo-difuminado">
+        <div class="mensaje-final">
+            <p>¡Elige Cara o Cruz!</p>
+            <button id="btnCara">Cara</button>
+            <button id="btnCruz">Cruz</button>
+        </div>
+    </div>
+
     <div class="letrero">
         <img src="../recursos/imagenes/Marco.png" alt="Letrero" class="imagen-letrero">
         <span class="texto-sobre-imagen" id="textoLetrero"></span>
@@ -67,23 +75,24 @@
 
         <!-- Controles (Botones de acción) -->
         <div class="acciones">
-            <div class="botones">
-                <button id="btnAtacar" disabled="true">⚔️ Atacar</button>
-                <button id="btnCambiar" disabled="true">🔄 Magia</button>
-                <button id="btnHuir" disabled="true">🏃 Huir</button>
+            <div class="botones" id="botonesPrincipales">
+                <button id="btnAtacar">⚔️ Atacar</button>
+                <button id="btnSenales">✷ Señales</button>
+                <button id="btnHuir">🏃 Huir</button>
+            </div>
+
+            <div class="botones oculto" id="botonesSenales">
+                <button id="btnAard">🌪️ Aard</button>
+                <button id="btnIgni">🔥 Igni</button>
+                <button id="btnYrden">🔮 Yrden</button>
+                <button id="btnQuen">🛡️ Quen</button>
+                <button id="btnAxii">🌀 Axii</button>
+                <button id="btnVolver">↩️ Volver</button>
             </div>
         </div>
     </div>
 
-    <div id="fondoDifuminado" class="fondo-difuminado">
-        <div class="mensaje-final">
-            <p>¡Elige Cara o Cruz!</p>
-            <button id="btnCara">Cara</button>
-            <button id="btnCruz">Cruz</button>
-        </div>
-    </div>
-
-    <div id="mensajeFinal" class="mensaje-final oculto"></div>
+    <div id="mensajeFinal" class="mensaje-final"></div>
 
     <script type="module" src="../js/controladores/ControladorCombate.js"></script>
 </body>

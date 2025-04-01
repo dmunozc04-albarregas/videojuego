@@ -220,10 +220,42 @@ button:disabled {
 .texto-sobre-imagen {
     position: absolute; /* Posiciona el texto dentro de la imagen */
     top: 66px; /* Centra el texto verticalmente */
-    left: 155px; /* Centra el texto horizontalmente */
+    left: 165px; /* Centra el texto horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta el centro al contorno del texto */
     color: white; /* Cambia el color del texto */
     font-size: 24px; /* Tamaño de la fuente */
     font-weight: bold; /* Fuente en negrita */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra al texto para mejor visibilidad */
+}
+
+.mensaje-principal {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block; /* Asegura que esté en su propia línea */
+}
+
+.mensaje-exp {
+    font-size: 0.5em; /* Reduce el tamaño del texto */
+    color: #ccc; /* Color más claro */
+    display: block; /* Asegura que esté en su propia línea */
+    margin-top: 10px; /* Espacio para separar los mensajes */
+}
+
+.mensaje-oro {
+    font-size: 0.5em; /* Reduce el tamaño del texto */
+    color: #ccc; /* Color más claro */
+    display: block; /* Asegura que esté en su propia línea */
+    margin-top: 10px; /* Espacio para separar los mensajes */
+}
+
+#mensajeFinal {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen */
+    align-items: center; /* Centra los mensajes */
+    justify-content: center; /* Asegura que estén alineados */
+    text-align: center;
+}
+
+.botones-finales {
+    margin-top: 10px;
 }

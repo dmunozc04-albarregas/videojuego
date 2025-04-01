@@ -8,7 +8,8 @@ import { Jugador } from "./Jugador.js";
 export class Personaje {
     #nombre;
     #fuerza;
-    #vida;
+    #vidaActual;
+    #vidaMax;
     #magia;
     #nivel;
     #imagen;
@@ -18,15 +19,17 @@ export class Personaje {
      * 
      * @param {*} nombre Nombre del personaje.
      * @param {*} fuerza Fuerza del persoanje.
-     * @param {*} vida Vida del personaje.
+     * @param {*} vidaActual Vida actual del personaje.
+     * @param {*} vidaMax Vida máxima del personaje.
      * @param {*} magia Magia del personaje.
      * @param {*} nivel Nivel del personaje.
      * @param {*} imagen Imagen del personaje.
      */
-    constructor(nombre, fuerza, vida, magia, nivel, imagen) {
+    constructor(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen) {
         this.nombre = nombre;
         this.fuerza = fuerza;
-        this.vida = vida;
+        this.vidaActual = vidaActual;
+        this.vidaMax = vidaMax;
         this.magia = magia;
         this.nivel = nivel;
         this.imagen = imagen;
@@ -36,7 +39,8 @@ export class Personaje {
         return {
             nombre: this.nombre,
             fuerza: this.fuerza,
-            vida: this.vida,
+            vidaActual: this.vidaActual,
+            vidaMax: this.vidaMax,
             magia: this.magia,
             nivel: this.nivel,
             imagen: this.imagen,
@@ -90,25 +94,48 @@ export class Personaje {
     }
 
     /**
-    * Método getter para obtener la vida del personaje.
+    * Método getter para obtener la vida actual del personaje.
     * 
-    * @returns {number} La vida del personaje.
+    * @returns {number} La vida actual del personaje.
     */
-    get vida() {
-        return this.#vida;
+    get vidaActual() {
+        return this.#vidaActual;
     }
 
     /**
-     * Método setter para establecer la vida del personaje.
+     * Método setter para establecer la vida actual del personaje.
      * 
-     * @param {number} nuevaVida La nueva vida del personaje.
+     * @param {number} nuevaVida La nueva vida actual del personaje.
      * @throws {Error} Si la vida es número entero vacío o no es un número entero.
      */
-    set vida(nuevaVida) {
+    set vidaActual(nuevaVida) {
         if(Number.isInteger(nuevaVida)) {
-            this.#vida = nuevaVida;
+            this.#vidaActual = nuevaVida;
         } else {
-            console.error("La vida debe ser un número entero positivo o 0.");
+            console.error("La vida actual debe ser un número entero positivo o 0.");
+        }
+    }
+
+    /**
+    * Método getter para obtener la vida máxima del personaje.
+    * 
+    * @returns {number} La vida máxima del personaje.
+    */
+    get vidaMax() {
+        return this.#vidaMax;
+    }
+
+    /**
+     * Método setter para establecer la vida máxima del personaje.
+     * 
+     * @param {number} nuevaVida La nueva vida máxima del personaje.
+     * @throws {Error} Si la vida es número entero vacío o no es un número entero.
+     */
+    set vidaMax(nuevaVida) {
+        if(Number.isInteger(nuevaVida)) {
+            this.#vidaMax = nuevaVida;
+        } else {
+            console.error("La vida máxima debe ser un número entero positivo o 0.");
         }
     }
 
@@ -216,12 +243,12 @@ export class Personaje {
     recibirDanio(ataque) {
         let danioRecibido = this.defender(ataque)
 
-        if(this.vida - danioRecibido < 0) {
+        if(this.vidaActual - danioRecibido <= 0) {
             console.log(`${this.nombre} ha muerto.`);
-            this.vida = 0;
+            this.vidaActual = 0;
         } else {
-            console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vida}`); 
-            this.vida -= danioRecibido;
+            this.vidaActual -= danioRecibido;
+            console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vidaActual}`); 
         }
 
         return danioRecibido;

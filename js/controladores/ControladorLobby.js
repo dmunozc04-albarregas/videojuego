@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Código para cargar el nombre del personaje
   document.getElementById("nombre-personaje").innerText = personaje.nombre;
 
-  document.getElementById("vida-personaje").innerText = personaje.vida;
+  document.getElementById("vida-personaje").innerText = personaje.vidaMax;
 
   document.getElementById("fuerza-personaje").innerText = personaje.fuerza;
 
@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   setTimeout(() => {
-    barra_vida_personaje.style.width = personaje.vida + "%";
-    barra_vida_personaje.setAttribute("aria-valuenow", personaje.vida);
-    cambiarColorBarraProgreso(barra_vida_personaje, personaje.vida);
+    barra_vida_personaje.style.width = personaje.vidaMax + "%";
+    barra_vida_personaje.setAttribute("aria-valuenow", personaje.vidaMax);
+    cambiarColorBarraProgreso(barra_vida_personaje, personaje.vidaMax);
 
     barra_fuerza_personaje.style.width = personaje.fuerza + "%";
     barra_fuerza_personaje.setAttribute("aria-valuenow", personaje.fuerza);
