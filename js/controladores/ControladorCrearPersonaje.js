@@ -164,8 +164,8 @@ function crearPersonaje(array) {
   const nombre = document.getElementById("nombre").value;
   const magia = parseInt(document.getElementById("magia").value);
   const fuerza = parseInt(document.getElementById("fuerza").value);
-  let arma = new Arma("Espada básica", 20, 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
-  let arma2 = new Arma("Espada intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
+  let arma = new Arma("Espada básica", 20, "Básica",0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
+  let arma2 = new Arma("Espada intermedia", "Intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
   let inventario = new Inventario();
   inventario.addArma(arma);
   inventario.addArma(arma2);
@@ -179,11 +179,11 @@ function crearPersonaje(array) {
  * @param {*} array Array donde se guardarán los datos para el localStorage.
  */
 function crearTienda(array) {
-  let arma1 = new Arma("Longclaw", 40, 100, "../recursos/imagenes/armas/Arma1.webp", false);
-  let arma2 = new Arma("Aerondight", 60, 200, "../recursos/imagenes/armas/Arma2.webp", false);
-  let arma3 = new Arma("Ofieri kilij", 80, 300, "../recursos/imagenes/armas/Arma3.webp", false);
-  let arma4 = new Arma("Toussaint steel sword", 100, 400, "../recursos/imagenes/armas/Arma4.webp", false);
-  let arma5 = new Arma("Gwestog", 120, 500, "../recursos/imagenes/armas/Arma5.webp", false);
+  let arma1 = new Arma("Longclaw", 40, "Básica", 100, "../recursos/imagenes/armas/Arma1.webp", false);
+  let arma2 = new Arma("Aerondight", 60, "Intermedia", 200, "../recursos/imagenes/armas/Arma2.webp", false);
+  let arma3 = new Arma("Ofieri kilij", 80, "Intermedia", 300, "../recursos/imagenes/armas/Arma3.webp", false);
+  let arma4 = new Arma("Toussaint steel sword", 100, "Épica",400, "../recursos/imagenes/armas/Arma4.webp", false);
+  let arma5 = new Arma("Gwestog", 120, "Legendaria", 500, "../recursos/imagenes/armas/Arma5.webp", false);
   let tienda = new Tienda();
 
   tienda.addArma(arma1);

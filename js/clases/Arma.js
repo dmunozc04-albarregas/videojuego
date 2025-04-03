@@ -6,6 +6,7 @@
 export class Arma {
     #nombre;
     #danio;
+    #rango;
     #precio;
     #imagen;
     #estaComprado;
@@ -15,13 +16,15 @@ export class Arma {
      * 
      * @param {*} nombre Nombre del arma.
      * @param {*} danio Daño del arma.
+     * @param {*} rango Rango de arma.
      * @param {*} precio Precio de arma.
      * @param {*} imagen Imagen del arma.
      * @param {*} estaComprado Valor para comprobar si el arma está comprada o no.
      */
-    constructor(nombre, danio, precio, imagen, estaComprado) {
+    constructor(nombre, danio, rango, precio, imagen, estaComprado) {
         this.nombre = nombre;
         this.danio = danio;
+        this.rango = rango;
         this.precio = precio;
         this.imagen = imagen;
         this.estaComprado = estaComprado;
@@ -31,6 +34,7 @@ export class Arma {
         return {
             nombre: this.nombre,
             danio: this.danio,
+            rango: this.rango,
             precio: this.precio,
             imagen: this.imagen,
             estaComprado: this.estaComprado
@@ -41,6 +45,7 @@ export class Arma {
         return new Arma(
             datos.nombre,
             datos.danio,
+            datos.rango,
             datos.precio,
             datos.imagen,
             datos.estaComprado
@@ -90,6 +95,29 @@ export class Arma {
             this.#danio = nuevoDanio;
         } else {
             console.error("El daño debe ser un número entero positivo");
+        }
+    }
+
+      /**
+     * Método getter para obtener el rango del arma.
+     * 
+     * @returns {string} El rango del arma.
+     */
+      get rango() {
+        return this.#rango;
+    }
+
+    /**
+     * Método setter para establecer el precio del arma.
+     * 
+     * @param {string} nuevoRango El nuevo rango del arma.
+     * @throws {Error} Si la cadena es vacía o no es una cadena.
+     */
+    set rango(nuevoRango) {
+        if (typeof nuevoRango === "string" && nuevoRango) {
+            this.#rango = nuevoRango;
+        } else {
+            console.error("El rango debe ser un string no vacío ni undefined ni nulo");
         }
     }
 
