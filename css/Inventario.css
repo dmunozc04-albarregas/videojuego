@@ -9,55 +9,97 @@ body{
     font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
 }
 
-.container{
-    gap: 17em !important;
-    padding-top: 5em !important;
+body{
+  background-image: url("https://wallpaperaccess.com/full/1867226.jpg") !important;
+}
+.container {
+  gap: 17em !important;
+  padding-top: 5em !important;
 }
 
-.tabla-inventario{
-    padding-top: 5.5em !important;
+.tabla-inventario {
+  padding-top: 5.5em !important;
 }
 
-table{
-    background-color: #1B1716 !important;
-    width: 25em !important;
-    border-spacing: 50px !important;
-    border-collapse: collapse !important;
+table {
+  background-color: #1B1716 !important;
+  width: 25em !important;
+  border-spacing: 50px !important;
+  border-collapse: collapse !important;
 }
 
-td{
-    border: 2px solid grey !important;
-    width: 8em !important;   
+td {
+  border: 2px solid grey !important;
+  width: 8em !important;
 }
 
-td img{
-    height: 6em;
+td img {
+  height: 6em;
 }
 
-td:hover{
-    /*background-color: #ddd !important;*/
-    border: 2px solid #ddd !important;
-    filter: drop-shadow(0 0 0.75rem #ddd) !important;
-    cursor: crosshair !important;
+td:hover {
+  border: 2px solid #ddd !important;
+  filter: drop-shadow(0 0 0.75rem #ddd) !important;
+  cursor: crosshair !important;
 }
 
-#avatar-personaje{
-    max-width: 20em;
-    max-height: 32em !important;
-    transform-origin: center bottom;
-    animation: idleAnimation 3s infinite ease-in-out;
+#avatar-personaje {
+  max-width: 20em;
+  max-height: 32em !important;
+  transform-origin: center bottom;
+  animation: idleAnimation 3s infinite ease-in-out;
 }
 
 @keyframes idleAnimation {
-    0% {
-        transform: rotateX(5deg) rotateY(0deg) translateY(0px);
-    }
-    50% {
-        transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
-    }
-    100% {
-        transform: rotateX(5deg) rotateY(0deg) translateY(0px);
-    }
+  0% {
+      transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+  }
+  50% {
+      transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
+  }
+  100% {
+      transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+  }
+}
+
+.colored-toast .swal2-icon {
+  color: white;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast.swal2-icon-success {
+background-color: #a5dc86 !important;
+}
+
+.colored-toast.swal2-icon-error {
+background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+color: white;
+}
+
+.colored-toast .swal2-close {
+color: white;
+}
+
+.colored-toast .swal2-html-container {
+color: white;
 }
 
 .colored-toast.swal2-icon-success {

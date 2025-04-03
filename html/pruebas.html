@@ -4,228 +4,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/4ecb311d12.js" crossorigin="anonymous"></script>
-    <title>Mapa Interactivo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
-            text-align: center;
-            background: #222;
-            color: white;
-            text-align: center;
-            background-color: black;
-            overflow: hidden;
+            background-image: url("https://wallpaperaccess.com/full/1867226.jpg") !important;
         }
 
-        .map-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            max-width: 80em;
+        .container {
+            gap: 17em !important;
+            padding-top: 5em !important;
         }
 
-        img {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto;
+        .tabla-inventario {
+            padding-top: 5.5em !important;
         }
 
-        svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        table {
+            background-color: #1B1716 !important;
+            width: 25em !important;
+            border-spacing: 50px !important;
+            border-collapse: collapse !important;
         }
 
-        .region {
-            fill: rgba(255, 0, 0, 0);
-            /* Transparente por defecto */
-            stroke: rgb(0, 255, 0);
-            stroke-width: 3;
-            cursor: pointer;
+        td {
+            border: 2px solid grey !important;
+            width: 8em !important;
         }
 
-        .region:hover {
-            fill: rgba(0, 255, 0, 0.5);
-            /* Efecto hover */
+        td img {
+            height: 6em;
         }
 
-        #label-1 {
-            position: absolute;
-            top: 15% !important;
-            /* Ajusta según sea necesario */
-            left: 28% !important;
-            /* Ajusta según sea necesario */
+        td:hover {
+            border: 2px solid #ddd !important;
+            filter: drop-shadow(0 0 0.75rem #ddd) !important;
+            cursor: crosshair !important;
         }
 
-        #label-2 {
-            position: absolute;
-            top: 20% !important;
-            /* Ajusta según sea necesario */
-            left: 58% !important;
-            /* Ajusta según sea necesario */
+        #avatar-personaje {
+            max-width: 20em;
+            max-height: 32em !important;
+            transform-origin: center bottom;
+            animation: idleAnimation 3s infinite ease-in-out;
         }
 
-        #label-3 {
-            position: absolute;
-            top: 18% !important;
-            /* Ajusta según sea necesario */
-            left: 78% !important;
-            /* Ajusta según sea necesario */
-        }
+        @keyframes idleAnimation {
+            0% {
+                transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+            }
 
-        #icon-1 {
-            display: none;
-            position: absolute;
-            top: 50%;
-            /* Ajusta según sea necesario */
-            left: 25%;
-        }
+            50% {
+                transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
+            }
 
-        #icon-2 {
-            display: none;
-            position: absolute;
-            top: 50%;
-            /* Ajusta según sea necesario */
-            left: 60%;
-            /* Ajusta según sea necesario */
-        }
-
-        #icon-3 {
-            display: none;
-            position: absolute;
-            top: 28%;
-            /* Ajusta según sea necesario */
-            left: 76%;
-            /* Ajusta según sea necesario */
-        }
-
-        .region-label {
-            position: absolute;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-align: center;
-            transform: translate(-50%, -50%);
-            /* Para centrar bien */
-            white-space: nowrap;
-        }
-
-        .lock-icon {
-            display: none;
-            /* Inicialmente oculto */
-            position: absolute;
-            font-size: 2rem;
-            color: white;
-            padding: 5px;
-            border-radius: 50%;
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="map-container">
-        <img id="map-image" src="../recursos/imagenes/fondos/Mapa.jpg" alt="Mapa Interactivo">
-
-        <svg id="map-overlay">
-            <polygon class="region" id="region-1"
-                points="183,187 149,1030 204,1057 407,1053 665,1049 632,971 676,944 697,942 699,927 707,883 715,913 768,814 718,789 720,766 730,701 732,655 678,623 667,575 667,539 669,516 690,510 724,499 736,474 774,428 781,386 778,313 667,269 569,233 350,191 227,187 193,183">
-            </polygon>
-
-            <polygon class="region" id="region-2"
-                points="793,311 793,405 835,271 1009,279 1024,342 1110,428 1177,512 1244,587 1311,648 1255,713 1167,797 1102,848 1081,856 1053,879 1106,946 1041,969 1009,965 938,969 875,963 785,961 726,959 718,932 739,873 768,831 776,808 726,783 743,669 732,642 766,468">
-            </polygon>
-
-            <polygon class="region" id="region-3"
-                points="1083,243 1024,315 1238,575 1305,550 1399,464 1391,436 1393,407 1393,329 1416,281 1366,258 1313,245 1162,214 1418,266 1385,237">
-            </polygon>
-        </svg>
-
-        <h3 class="region-label" id="label-1" style="top: 50px; left: 200px;">Región 1</h3>
-        <h3 class="region-label" id="label-2" style="top: 300px; left: 850px;">Región 2</h3>
-        <h3 class="region-label" id="label-3" style="top: 200px; left: 1200px;">Región 3</h3>
-    </div>
-
-    <!-- Íconos de bloqueo -->
-    <div id="icon-1" class="lock-icon"><i class="fa-solid fa-lock"></i></div>
-    <div id="icon-2" class="lock-icon"><i class="fa-solid fa-lock"></i></div>
-    <div id="icon-3" class="lock-icon"><i class="fa-solid fa-lock"></i></div>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            redimensionarBody();
-        });
-
-
-
-
-        function redimensionarBody() {
-            document.body.style.transform = 'scale(1.5)'; // Cambia el tamaño del body
-            setTimeout(() => {
-                document.body.style.transform = 'scale(1)'; // Vuelve al estado original
-            }, 1);
-        }
-        // Hacer que el SVG coincida con la imagen
-        function resizeSVG() {
-            let img = document.getElementById("map-image");
-            let svg = document.getElementById("map-overlay");
-            svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
-        }
-
-        document.addEventListener("DOMContentLoaded", resizeSVG);
-        window.addEventListener("resize", resizeSVG);
-
-        // Agregar eventos de clic a las regiones
-        document.querySelectorAll(".region").forEach(region => {
-            region.addEventListener("click", function () {
-                let regionId = this.id.replace("region-", "label-");
-                let label = document.getElementById(regionId);
-                window.location.href = "www.google.com"; // Cambia esto a la URL deseada
-            });
-        });
-
-        function disableRegion(regionId) {
-            let region = document.getElementById(regionId);
-            if (region) {
-
-                // Cambiar el color para indicar que está deshabilitada
-                region.style.fill = "rgba(255, 0, 0, 0.3)";
-                region.style.stroke = "red";
-                region.style.pointerEvents = "none"; // Deshabilitar eventos de puntero
-
-                // Cambiar el color de la etiqueta si existe
-                let label = document.getElementById("label-" + regionId.replace("region-", ""));
-                if (label) {
-                    label.style.color = "gray";
-                }
-
-                let lock_icon = document.getElementById("icon-" + regionId.replace("region-", ""));
-                if (lock_icon) {
-                    lock_icon.style.display = "block"; // Mostrar el ícono de bloqueo
-                }
+            100% {
+                transform: rotateX(5deg) rotateY(0deg) translateY(0px);
             }
         }
 
-        // Llamar a la función para deshabilitar regiones
-        disableRegion("region-2");
-        disableRegion("region-3");
+        .colored-toast .swal2-icon {
+            color: white;
+        }
 
+        .colored-toast .swal2-title {
+            color: white;
+        }
 
+        .colored-toast.swal2-icon-success {
+            background-color: #a5dc86 !important;
+        }
+
+        .colored-toast.swal2-icon-error {
+            background-color: #f27474 !important;
+        }
+
+        .colored-toast.swal2-icon-warning {
+            background-color: #f8bb86 !important;
+        }
+
+        .colored-toast.swal2-icon-info {
+            background-color: #3fc3ee !important;
+        }
+
+        .colored-toast.swal2-icon-question {
+            background-color: #87adbd !important;
+        }
+
+        .colored-toast .swal2-title {
+            color: white;
+        }
+
+        .colored-toast .swal2-close {
+            color: white;
+        }
+
+        .colored-toast .swal2-html-container {
+            color: white;
+        }
+    </style>
+    <title>Inventario</title>
+</head>
+
+<body>
+    <h1 class="text-white text-center pt-4">Inventario</h1>
+    <div class="container d-flex flex-row justify-content-center">
+        <div class="tabla-inventario">
+            <table border="1">
+                <tbody id="tabla-datos" class="text-white text-center table-responsive-sm"></tbody>
+            </table>
+        </div>
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1 class="text-white">Personaje</h1>
+            <img id="avatar-personaje" src="" alt="Avatar elegido por el personaje">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar los datos del personaje desde localStorage
+            const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
+
+            const tablaDatos = document.getElementById("tabla-datos");
+            const avatarPersonaje = document.getElementById("avatar-personaje");
+
+            // Cargar la imagen del personaje
+            avatarPersonaje.src = personaje.imagen;
+
+            // Asegurarse de que siempre haya 10 celdas
+            const numeroDeCeldas = 9;
+            const columnasPorFila = 3;
+
+            for (let index = 0; index < numeroDeCeldas; index++) {
+                const filaIndex = Math.floor(index / columnasPorFila);
+                let fila = tablaDatos.children[filaIndex];
+
+                if (!fila) {
+                    fila = document.createElement("tr");
+                    tablaDatos.appendChild(fila);
+                }
+
+                const celda = document.createElement("td");
+                celda.style.textAlign = "center";
+
+                const arma = personaje.inventario.armasCompradas[index];
+
+                if (arma) {
+                    const img = document.createElement("img");
+                    img.src = arma.imagen || "../recursos/imagenes/armas/EspadaBasica.webp";
+                    img.alt = `Imagen de ${arma.nombre || "Desconocida"}`;
+                    img.style.width = "50px";
+
+                    const textoNombre = document.createElement("div");
+                    textoNombre.textContent = arma.nombre || "";
+
+                    celda.appendChild(img);
+                    celda.appendChild(textoNombre);
+
+                    // Mostrar un mensaje toast con SweetAlert al hacer clic en la celda
+                    celda.addEventListener('click', () => {
+                        alerta("success", `${arma.nombre} equipada`);
+                    });
+                } else {
+                    const img = document.createElement("img");
+                    img.src = "../recursos/imagenes/armas/sword-altar.svg"; // Imagen por defecto
+                    img.alt = "Slot vacío";
+                    img.style.width = "50px";
+
+                    const textoSlotVacio = document.createElement("div");
+                    textoSlotVacio.textContent = "Slot vacío";
+
+                    celda.appendChild(img);
+                    celda.appendChild(textoSlotVacio);
+
+                    // Mostrar un mensaje de error al hacer clic en una celda vacía
+                    celda.addEventListener('click', () => {
+                        alerta("error", "Este slot está vacío");
+                    });
+                }
+
+                fila.appendChild(celda);
+            }
+
+            // Función para mostrar toasts con SweetAlert
+            function alerta(tipo, mensaje) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    iconColor: "white",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    customClass: {
+                        popup: 'colored-toast'
+                    },
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+
+                Toast.fire({
+                    icon: tipo,
+                    title: mensaje,
+                });
+            }
+        });
     </script>
-
-
-
-
 </body>
 
 </html>

@@ -54,8 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     barra_magia_personaje.setAttribute("aria-valuenow", personaje.magia);
     cambiarColorBarraProgreso(barra_magia_personaje, personaje.magia);
 
-    barra_nivel_personaje.style.width = 100 + "%";
-    barra_nivel_personaje.setAttribute("aria-valuenow", 100);
+    barra_nivel_personaje.style.width = personaje.experiencia + "%";
+    barra_nivel_personaje.setAttribute("aria-valuenow", personaje.experiencia);
+    console.log(personaje.experencia);
   }, 100);
 
   document.getElementById("economia").innerText = personaje.dinero;
