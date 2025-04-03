@@ -5,7 +5,7 @@ console.log("Objeto personaje:", personaje);
 
 // Código para controlar la música
 const musica = new Musica();
-musica.reproducir("../recursos/sonidos/.mp3");
+musica.reproducir("../recursos/sonidos/hover-sound.mp3");
 
 // Código para cargar la imagen del personaje
 const avatar_personaje = document.getElementById("avatar-personaje");
@@ -14,6 +14,7 @@ avatar_personaje.src = personaje.imagen;
 //document.getElementById("nombre-personaje").innerText = personaje.nombre;
 
   // Asegurarse de que siempre haya 10 celdas
+  const tablaDatos = document.getElementById("tabla-datos");
   const numeroDeCeldas = 9;
   const columnasPorFila = 3;
 
@@ -90,5 +91,4 @@ avatar_personaje.src = personaje.imagen;
       icon: tipo,
       title: mensaje,
     });
-  }
-});
+}
