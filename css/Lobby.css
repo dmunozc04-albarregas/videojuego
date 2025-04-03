@@ -204,3 +204,27 @@ svg {
   padding: 5px 10px;
   border-radius: 5px;
 }
+
+.imagen-letrero {
+  position: fixed; /* Fija la imagen en la pantalla */
+  top: -110px; 
+  left: -130px; 
+  max-width: 620px; 
+  max-height: 620px; 
+  width: auto; 
+  height: auto;
+  display: inline-block; 
+  z-index: 1050;
+}
+
+.texto-sobre-imagen {
+  position: absolute; /* Posiciona el texto dentro de la imagen */
+  top: 66px; 
+  left: 165px; 
+  transform: translate(-50%, -50%); 
+  color: white; 
+  font-size: 24px; 
+  font-weight: bold; 
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  z-index: 1050;
+}

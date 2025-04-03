@@ -1,3 +1,9 @@
+import { Musica } from "../clases/Musica.js";
+
+// Código para controlar la música
+const musica = new Musica();
+musica.reproducir("../recursos/sonidos/Regiones.mp3");
+
 document.addEventListener('DOMContentLoaded', (event) => {
     redimensionarBody();
 });
@@ -23,7 +29,10 @@ document.querySelectorAll(".region").forEach(region => {
     region.addEventListener("click", function () {
         let regionId = this.id.replace("region-", "label-");
         let label = document.getElementById(regionId);
-        window.location.href = "../html/Combate.html"; // Cambia esto a la URL deseada
+        //window.location.href = "../html/Combate.html"; 
+        musica.desvanecer(() => {
+            window.location.href = "Combate.html";
+        });
     });
 });
 

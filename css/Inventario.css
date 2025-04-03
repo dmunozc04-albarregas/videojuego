@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
-*{
-    box-sizing: border-box !important;
+* {
+  box-sizing: border-box !important;
 }
 
-body{
+body {
   background-image: url("../recursos/imagenes/fondos/FondoInventario.webp") !important;
   font-family: "IM Fell English SC", serif !important;
 }
+
 .container {
   gap: 17em !important;
-  padding-top: 5em !important;
+  padding-top: 8em !important;
 }
 
 .tabla-inventario {
@@ -48,13 +49,15 @@ td:hover {
 
 @keyframes idleAnimation {
   0% {
-      transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+    transform: rotateX(5deg) rotateY(0deg) translateY(0px);
   }
+
   50% {
-      transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
+    transform: rotateX(5deg) rotateY(3deg) translateY(-8px);
   }
+
   100% {
-      transform: rotateX(5deg) rotateY(0deg) translateY(0px);
+    transform: rotateX(5deg) rotateY(0deg) translateY(0px);
   }
 }
 
@@ -67,65 +70,117 @@ td:hover {
 }
 
 .colored-toast.swal2-icon-success {
-background-color: #a5dc86 !important;
+  background-color: #a5dc86 !important;
 }
 
 .colored-toast.swal2-icon-error {
-background-color: #f27474 !important;
+  background-color: #f27474 !important;
 }
 
 .colored-toast.swal2-icon-warning {
-background-color: #f8bb86 !important;
+  background-color: #f8bb86 !important;
 }
 
 .colored-toast.swal2-icon-info {
-background-color: #3fc3ee !important;
+  background-color: #3fc3ee !important;
 }
 
 .colored-toast.swal2-icon-question {
-background-color: #87adbd !important;
+  background-color: #87adbd !important;
 }
 
 .colored-toast .swal2-title {
-color: white;
+  color: white;
 }
 
 .colored-toast .swal2-close {
-color: white;
+  color: white;
 }
 
 .colored-toast .swal2-html-container {
-color: white;
+  color: white;
 }
 
 .colored-toast.swal2-icon-success {
-    background-color: #a5dc86 !important;
-  }
-  
-  .colored-toast.swal2-icon-error {
-    background-color: #f27474 !important;
-  }
-  
-  .colored-toast.swal2-icon-warning {
-    background-color: #f8bb86 !important;
-  }
-  
-  .colored-toast.swal2-icon-info {
-    background-color: #3fc3ee !important;
-  }
-  
-  .colored-toast.swal2-icon-question {
-    background-color: #87adbd !important;
-  }
-  
-  .colored-toast .swal2-title {
-    color: white;
-  }
-  
-  .colored-toast .swal2-close {
-    color: white;
-  }
-  
-  .colored-toast .swal2-html-container {
-    color: white;
-  }
+  background-color: #a5dc86 !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+}
+
+.colored-toast .swal2-html-container {
+  color: white;
+}
+
+.imagen-letrero {
+  position: fixed;
+  top: -110px;
+  left: -130px;
+  max-width: 620px;
+  max-height: 620px;
+  width: auto;
+  height: auto;
+  display: inline-block;
+}
+
+.texto-sobre-imagen {
+  position: absolute;
+  top: 66px;
+  left: 175px;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.btn-volver {
+  position: fixed; /* Fija la posición en la pantalla */
+  bottom: 20px; /* Lo mantiene siempre 20px desde la parte inferior */
+  left: 50%; /* Lo alinea al 50% del ancho de la página */
+  transform: translateX(-50%); /* Lo centra horizontalmente */
+  font-family: "IM Fell English SC", serif;
+  font-size: 24px;
+  color: #d6d6d6;
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 0.3s ease-in-out;
+  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+}
+
+.btn-volver:hover {
+  color: #ffffff;
+  text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
+}
+
+.btn-volver:hover::before {
+  opacity: 1;
+}

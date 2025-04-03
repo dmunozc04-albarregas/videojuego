@@ -5,13 +5,21 @@ console.log("Objeto personaje:", personaje);
 
 // Código para controlar la música
 const musica = new Musica();
-musica.reproducir("../recursos/sonidos/hover-sound.mp3");
+musica.reproducir("../recursos/sonidos/Inventario.mp3");
 
 // Código para cargar la imagen del personaje
 const avatar_personaje = document.getElementById("avatar-personaje");
 avatar_personaje.src = personaje.imagen;
+
 // Código para cargar el nombre del personaje
-//document.getElementById("nombre-personaje").innerText = personaje.nombre;
+document.getElementById("nombre-personaje").innerText = personaje.nombre;
+
+// Código para la funcionalidad del botón volver
+document.querySelector(".btn-volver").addEventListener("click", () => {
+  musica.desvanecer(() => {
+    window.location.href = "Lobby.html";
+  });
+});
 
 // Asegurarse de que siempre haya 10 celdas
 const tablaDatos = document.getElementById("tabla-datos");

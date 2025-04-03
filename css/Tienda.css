@@ -15,8 +15,11 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     position: fixed;
-    top: 12%;
+    top: 50%; 
     left: 50px; 
+    transform: translateY(-50%); 
+    justify-content: center;
+    z-index: 1000; 
 }
 
 .weapon-preview {
@@ -35,11 +38,12 @@ body {
 
 .weapon-list {
     width: 580px;
-    height: 550px;
+    height: 400px;
     overflow-y: auto;
     background: #e0a96d;
     border-radius: 5px;
     padding: 10px;
+    justify-content: center;
 }
 
 .weapon-item {
@@ -53,3 +57,55 @@ body {
 .weapon-item:hover {
     background: #c38154;
 }
+
+.imagen-letrero {
+    position: fixed; /* Fija la imagen en la pantalla */
+    top: -110px; 
+    left: -130px; 
+    max-width: 620px; 
+    max-height: 620px; 
+    width: auto; 
+    height: auto;
+    display: inline-block; 
+}
+
+.texto-sobre-imagen {
+    position: absolute; /* Posiciona el texto dentro de la imagen */
+    top: 63px; 
+    left: 165px; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    font-size: 24px; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+}
+
+.btn-volver {
+    position: fixed; /* Fija la posición en la pantalla */
+    bottom: 20px; /* Lo mantiene siempre 20px desde la parte inferior */
+    left: 50%; /* Lo alinea al 50% del ancho de la página */
+    transform: translateX(-50%); /* Lo centra horizontalmente */
+    font-family: "IM Fell English SC", serif;
+    font-size: 24px;
+    color: #d6d6d6;
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+  }
+  
+  .btn-volver:hover {
+    color: #ffffff;
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
+  }
+  
+  .btn-volver:hover::before {
+    opacity: 1;
+  }

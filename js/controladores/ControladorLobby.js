@@ -106,7 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const url = regionRedirects[regionId];
 
       if (url) {
-        window.location.href = url;
+        //window.location.href = url;
+        musica.desvanecer(() => {
+          window.location.href = url;
+        });
       } else {
         console.error(`No se encontró URL para la región: ${regionId}`);
       }

@@ -5,7 +5,14 @@ const armas = tienda.armas;
 
 // Código para controlar la música
 const musica = new Musica();
-musica.reproducir("../recursos/sonidos/.mp3");
+musica.reproducir("../recursos/sonidos/Tienda.mp3");
+
+// Código para la funcionalidad del botón volver
+document.querySelector(".btn-volver").addEventListener("click", () => {
+    musica.desvanecer(() => {
+        window.location.href = "Lobby.html";
+    });
+});
 
 /**
  * Función para generar la lista de armas al cargar la tienda.
