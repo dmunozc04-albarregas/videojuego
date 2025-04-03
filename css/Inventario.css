@@ -5,12 +5,8 @@
 }
 
 body{
-    background-image: url("https://wallpaperaccess.com/full/1867226.jpg") !important;
-    font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
-}
-
-body{
-  background-image: url("https://wallpaperaccess.com/full/1867226.jpg") !important;
+  background-image: url("../recursos/imagenes/fondos/FondoInventario.webp") !important;
+  font-family: "IM Fell English SC", serif !important;
 }
 .container {
   gap: 17em !important;
