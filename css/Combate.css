@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
 
-/* Estilos generales */
+/**
+* @file Estilos de la pantalla de combate para el videojuego.
+* @description Este archivo contiene los estilos CSS para la pantalla 
+* de combate del videojuego, incluyendo el diseño de los personajes, 
+* las barras de vida, los botones de acción y los mensajes de combate.
+*/
+
+/**
+* @section Estilos generales del cuerpo.
+* @description Se establece la fuente, el margen y el padding del cuerpo.
+*/
 body {
     font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
     margin: 0;
@@ -8,7 +18,10 @@ body {
     
 }
 
-/* Contenedor principal */
+/**
+* @class .contenedor-combate
+* @description Contenedor principal para la pantalla de combate.
+*/
 .contenedor-combate {
     display: flex;
     flex-direction: column;
@@ -17,7 +30,10 @@ body {
     height: 100vh;
 }
 
-/* Área de combate */
+/**
+* @class .area-combate
+* @description Área donde se desarrollla el combate.
+*/
 .area-combate {
     width: 100%;
     max-width: 800px;
@@ -27,7 +43,10 @@ body {
     text-align: center;
 }
 
-/* Estado del combate (parte superior) */
+/**
+* @class .pantalla-combate
+* @desccription Contenedor de los personajes en combate.
+*/
 .estado-combate {
     font-size: 24px;
     font-weight: bold;
@@ -42,7 +61,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Pantalla de combate */
+/**
+* @class .personaje
+* @description Representaión visual de un personaje en combate.
+*/
 .pantalla-combate {
     display: flex;
     justify-content: space-evenly;
@@ -52,7 +74,10 @@ body {
     height: auto; /* Permitir que el contenedor se expanda según sea necesario */
 }
 
-/* Personajes */
+/**
+* @class .personaje
+* @description Representación visual de un personaje en combate.
+*/
 .personaje {
     display: flex;
     flex-direction: column;
@@ -63,7 +88,11 @@ body {
     font-size: 24px;
 }
 
-/* Imagen del personaje */
+/**
+* @class .personaje img
+* @description Estilo de la imagen del personaje.
+*
+*/
 .personaje img {
     width: 250px; /* Aumenta aún más el tamaño de la imagen */
     height: 250px; /* Aumenta aún más el tamaño de la imagen */
@@ -71,6 +100,10 @@ body {
     border-radius: 8px;
 }
 
+/**
+* @class #nombreJugador, #nombreEnemigo
+* @description Estilo de los nombres de los personajes.
+*/
 #nombreJugador, #nombreEnemigo {
     text-shadow: 
     1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
@@ -81,7 +114,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Estilos generales para las barras de progreso */
+/**
+ * @class .progress
+ * @description Contenedor de la barra de vida.
+ */
 .progress {
     width: 250px; /* Barra de 250px de ancho */
     height: 20px; /* Altura de la barra */
@@ -91,7 +127,10 @@ body {
     margin: 10px auto; /* Centra la barra en la página */
 }
 
-/* Barra de vida dentro de la barra de progreso */
+/**
+ * @class .progress-bar
+ * @description Barra de vida dentro del contenedor de progreso.
+ */
 .progress-bar {
     height: 100%; /* Altura completa de la barra de vida */
     background-color: #4CAF50; /* Color verde para la barra de vida */
@@ -100,7 +139,9 @@ body {
     border-radius: 8px; /* Bordes redondeados en la barra de vida */
 }
 
-/* "VS" entre personajes */
+/**
+* 
+*/
 .vs {
     font-size: 30px;
     font-weight: bold;
@@ -114,7 +155,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Caja de mensaje de combate */
+/**
+ * @class .mensaje-combate
+ * @description Mensaje que informa sobre el estado del combate.
+ */
 .mensaje-combate {
     font-size: 24px;
     color: black; /* Cambié el color a negro */
@@ -128,7 +172,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Botones de acción */
+/**
+ * @class .acciones
+ * @description Contenedor de los botones de acción.
+ */
 .acciones {
     margin-top: 20px;
     width: 100%;
@@ -136,11 +183,19 @@ body {
     justify-content: center;
 }
 
+/**
+ * @class .botones
+ * @description Contenedor de los botones de acción, con un espacio uniforme entre ellos.
+ */
 .botones {
     display: flex;
     gap: 20px;
 }
 
+/**
+ * @class .botones button
+ * @description Estilos de los botones de acción.
+ */
 .botones button {
     background-color: #007BFF;
     color: white;
@@ -156,6 +211,10 @@ body {
     background-color: #0056b3;
 }
 
+/**
+ * @class button:disabled
+ * @description Estilo de los botones deshabilitados.
+ */
 button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -167,6 +226,10 @@ button:disabled {
     font-weight: bold;
 }
 
+/**
+ * @class .progress-bar span
+ * @description Texto dentro de la barra de vida.
+ */
 .progress-bar span {
     color: black; /* Color del texto */
     position: absolute;
