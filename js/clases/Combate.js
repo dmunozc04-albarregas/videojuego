@@ -2,6 +2,7 @@ import { Jugador } from "./Jugador.js"
 import { Enemigo } from "./Enemigo.js"
 import { Arma } from "./Arma.js"
 import { Region } from "./Region.js"
+import { Musica } from "./Musica.js"
 
 /**
  * Clase específica para manejar el combate del videojuego.
@@ -199,7 +200,7 @@ export class Combate {
             if (this.estaVivo(this.jugador) && this.estaVivo(this.enemigo)) {
                 this.activarBotones();
                 document.getElementById("estadoCombate").textContent = `Turno de ${this.jugador.nombre}`;
-            } else if(!this.estaVivo(this.enemigo)){
+            } else if (!this.estaVivo(this.enemigo)) {
                 this.mostrarMensajeFinal("¡Has ganado!");
             }
             else {
@@ -346,9 +347,10 @@ export class Combate {
     /**
      * Método que sirve para mostrar los botones finales del combate. Ir al siguiente combate o volver a la taberna.
      * 
-     * @param {*} textoBotonCombate Dependiendo si el boton que hay que mostrar en Reintentar Combate en caso de perder o Siguiente combate si gana.
+     * @param {*} textoBotonCombate Dependiendo si el boton que hay que mostrar es Reintentar Combate en caso de perder o Siguiente combate si gana.
      */
     mostrarBotonesFinales(textoBotonCombate) {
+        const musica = new Musica();
         const mensaje = document.getElementById("mensajeFinal");
         const botones = document.createElement("div");
         botones.classList.add("botones-finales");
@@ -356,13 +358,21 @@ export class Combate {
         // Botón de combate (puede ser "Siguiente combate" o "Reintentar combate")
         const btnCombate = document.createElement("button");
         btnCombate.textContent = textoBotonCombate;
-        btnCombate.onclick = () => location.reload();
+        btnCombate.onclick = () => {
+            musica.desvanecer(() => {
+                location.reload();
+            });
+        };
         botones.appendChild(btnCombate);
 
         // Botón Volver a la taberna
         const btnTaberna = document.createElement("button");
         btnTaberna.textContent = "Volver a la taberna";
-        btnTaberna.onclick = () => window.location.href = "Lobby.html";
+        btnTaberna.onclick = () => {
+            musica.desvanecer(() => {
+                window.location.href = "Lobby.html";
+            });
+        };
         botones.appendChild(btnTaberna);
 
         mensaje.appendChild(botones);

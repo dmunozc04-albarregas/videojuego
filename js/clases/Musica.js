@@ -17,7 +17,7 @@ export class Musica {
     reproducir(musica) {
         this.audio.src = musica;
         this.audio.play();
-        this.audio.volume = 0.15;
+        this.audio.volume = 0.10;
     }
 
     /**
@@ -28,7 +28,7 @@ export class Musica {
     desvanecer(callback) {
         const fadeOutDuration = 2000;  // Duración del desvanecimiento en milisegundos
         const fadeInterval = 50;       // Frecuencia de actualización del volumen (ms)
-        const fadeStep = 0.02;         // Ajustamos el paso de volumen para que no sea tan pequeño
+        const fadeStep = 0.01;         // Ajustamos el paso de volumen para que no sea tan pequeño
 
         let currentVolume = this.audio.volume;
 

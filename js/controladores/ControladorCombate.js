@@ -4,8 +4,10 @@ import { Enemigo } from "../clases/Enemigo.js";
 import { Inventario } from "../clases/Inventario.js";
 import { Region } from "../clases/Region.js";
 import { Arma } from "../clases/Arma.js";
+import { Musica } from "../clases/Musica.js";
 
 // Traemos los datos guardados necesarios para el combate
+const musica = new Musica();
 const guardado = JSON.parse(localStorage.getItem("guardado"));
 let datosJugador;
 let datosRegiones;
@@ -44,6 +46,14 @@ if (comprobarFinJuego()) {
 
     // Código para controlar cuando se cargue la página y realizar diferentes acciones
     document.addEventListener("DOMContentLoaded", () => {
+        // Código para controlar la música
+        if(guardado[3].enemigo === 1) {
+            musica.reproducir("../recursos/sonidos/Humanos.mp3");
+        }
+        else {
+            musica.reproducir("../recursos/sonidos/Monstruos.mp3");
+        }
+
         caraOCruz(iniciarCombate);
         fondoPorHora();
 
@@ -174,7 +184,9 @@ function funcionalidadBotones() {
         combate.mostrarMensajeFinal("Has abandonado...");
 
         setTimeout(() => {
-            window.location.href = "Lobby.html";
+            musica.desvanecer(() => {
+                window.location.href = "Lobby.html";
+              });
         }, 2000);
     });
 
