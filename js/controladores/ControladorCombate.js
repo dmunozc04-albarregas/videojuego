@@ -22,8 +22,7 @@ let combate;
 
 // Verificamos al principio si el juego ha terminado
 if (comprobarFinJuego()) {
-    // Si el juego ha terminado, redirigimos al lobby inmediatamente
-    setTimeout(() => {
+    setTimeout(() => {  // Si el juego ha terminado, redirigimos al lobby inmediatamente
         window.location.href = "Lobby.html";
     }, 2000);
 } else {
@@ -83,19 +82,18 @@ function comprobarFinJuego() {
  * Método que sirve para cambiar el fondo del combate en función de la hora.
  */
 function fondoPorHora() {
-    const hora = new Date().getHours();
+    const ahora = new Date();
+    const minutos = ahora.getMinutes();
     let urlImagen = "";
 
-    if (hora >= 6 && hora < 18) {
-        // De 6 AM a 6 PM -> Día
+    // Si los minutos están entre 0-9, 20-29, 40-49 -> Día
+    if (minutos % 20 < 10) {
         urlImagen = `../recursos/imagenes/regiones/${region.imgRegion}/${region.imgRegion}_Dia.webp`;
-        document.body.style.backgroundImage = `url('${urlImagen}')`;
-    } else {
-        // De 6 PM a 6 AM -> Noche
+    } else { // Si están en los minutos restantes -> Noche
         urlImagen = `../recursos/imagenes/regiones/${region.imgRegion}/${region.imgRegion}_Noche.webp`;
-        document.body.style.backgroundImage = `url('${urlImagen}')`;
     }
 
+    document.body.style.backgroundImage = `url('${urlImagen}')`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
@@ -228,51 +226,15 @@ function funcionalidadTootltipBotonesSeniales() {
  */
 function mostrarMensajeFinJuego() {
     const mensaje = document.getElementById("mensajeFinal");
-
-    // Se muestra el mensaje del resultado del combate.
     const mensajePrincipal = document.createElement("div");
-    mensajePrincipal.textContent = texto;
+
+    mensajePrincipal.textContent = "¡Has finalizado el juego!";
     mensajePrincipal.classList.add("mensaje-principal");
     mensaje.appendChild(mensajePrincipal);
-
-    // Si gana el jugador se muestran otros mensajes
-    if (texto === "¡Has ganado!") {
-        // Mensaje de la experiencia
-        const mensajeExp = document.createElement("div");
-        mensajeExp.classList.add("mensaje-exp");
-        mensajeExp.textContent = "Has recibido 50 de experiencia";
-        mensaje.appendChild(mensajeExp);
-
-        // Mensaje del oro
-        const mensajeOro = document.createElement("div");
-        mensajeOro.classList.add("mensaje-oro");
-        mensajeOro.textContent = "Has recibido 100 de oro";
-        mensaje.appendChild(mensajeOro);
-
-        // En caso de subir de nivel
-        if (this.subirNivel()) {
-            // Mensaje de subida de nivel y muestra de botones para aumentar estadísticas
-            const mensajeNivel = document.createElement("div");
-            mensajeNivel.classList.add("mensaje-nivel");
-            mensajeNivel.textContent = `¡Has subido al nivel ${this.jugador.nivel}!`;
-            mensaje.appendChild(mensajeNivel);
-
-            this.mostrarBotonesSubidaNivel(() => {
-                this.actualizarEstadoPartida();
-            });
-        } else {
-            this.actualizarEstadoPartida();
-            this.mostrarBotonesFinales("Siguiente Combate");
-        }
-    }
-    else if (texto === "Has perdido...") {
-        this.mostrarBotonesFinales("Reintentar Combate");
-    }
-
     mensaje.classList.remove("oculto");
     mensaje.classList.add("fondo-difuminado");
 
     setTimeout(() => {
         mensaje.style.opacity = "1";
-    }, 100);
+    }, 1000);
 }
