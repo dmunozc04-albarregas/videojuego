@@ -1,6 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
 
-/* Estilos generales */
+/**
+* @file Estilos de la pantalla de combate para el videojuego.
+* @description Este archivo contiene los estilos CSS para la pantalla 
+* de combate del videojuego, incluyendo el diseño de los personajes, 
+* las barras de vida, los botones de acción y los mensajes de combate.
+*/
+
+/**
+* @section Estilos generales del cuerpo.
+* @description Se establece la fuente, el margen y el padding del cuerpo.
+*/
 body {
     font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
     margin: 0;
@@ -8,7 +18,10 @@ body {
     
 }
 
-/* Contenedor principal */
+/**
+* @class .contenedor-combate
+* @description Contenedor principal para la pantalla de combate.
+*/
 .contenedor-combate {
     display: flex;
     flex-direction: column;
@@ -17,60 +30,80 @@ body {
     height: 100vh;
 }
 
-/* Área de combate */
+/**
+* @class .area-combate
+* @description Área donde se desarrollla el combate.
+*/
 .area-combate {
     width: 100%;
     max-width: 800px;
     padding: 20px;
     box-sizing: border-box;
-    color: black; /* Cambié el color a negro, pero puedes ajustarlo como prefieras */
+    color: black;
     text-align: center;
 }
 
-/* Estado del combate (parte superior) */
+/**
+* @class .pantalla-combate
+* @desccription Contenedor de los personajes en combate.
+*/
 .estado-combate {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #000; /* Color del texto */
+    color: #000; 
     text-shadow: 
-    1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
+    1px 1px 0px #fff,   
     -1px -1px 0px #fff,
     1px -1px 0px #fff,
     -1px 1px #fff,
-    1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
+    1px 1px 0px #fff,    
     -1px -1px 0px #fff;
 }
 
-/* Pantalla de combate */
+/**
+* @class .personaje
+* @description Representaión visual de un personaje en combate.
+*/
 .pantalla-combate {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-bottom: 20px;
     width: 100%;
-    height: auto; /* Permitir que el contenedor se expanda según sea necesario */
+    height: auto;
 }
 
-/* Personajes */
+/**
+* @class .personaje
+* @description Representación visual de un personaje en combate.
+*/
 .personaje {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 300px;
-    height: auto; /* Ajustamos para que la altura del personaje se adapte */
+    height: auto; 
     text-align: center;
     font-size: 24px;
 }
 
-/* Imagen del personaje */
+/**
+* @class .personaje img
+* @description Estilo de la imagen del personaje.
+*
+*/
 .personaje img {
-    width: 250px; /* Aumenta aún más el tamaño de la imagen */
-    height: 250px; /* Aumenta aún más el tamaño de la imagen */
+    width: 250px; 
+    height: 250px; 
     object-fit: contain;
     border-radius: 8px;
 }
 
+/**
+* @class #nombreJugador, #nombreEnemigo
+* @description Estilo de los nombres de los personajes.
+*/
 #nombreJugador, #nombreEnemigo {
     text-shadow: 
     1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
@@ -81,7 +114,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Estilos generales para las barras de progreso */
+/**
+ * @class .progress
+ * @description Contenedor de la barra de vida.
+ */
 .progress {
     width: 250px; /* Barra de 250px de ancho */
     height: 20px; /* Altura de la barra */
@@ -91,7 +127,10 @@ body {
     margin: 10px auto; /* Centra la barra en la página */
 }
 
-/* Barra de vida dentro de la barra de progreso */
+/**
+ * @class .progress-bar
+ * @description Barra de vida dentro del contenedor de progreso.
+ */
 .progress-bar {
     height: 100%; /* Altura completa de la barra de vida */
     background-color: #4CAF50; /* Color verde para la barra de vida */
@@ -100,11 +139,13 @@ body {
     border-radius: 8px; /* Bordes redondeados en la barra de vida */
 }
 
-/* "VS" entre personajes */
+/**
+* 
+*/
 .vs {
     font-size: 30px;
     font-weight: bold;
-    color: #000; /* Cambié el color a negro, ajusta si lo prefieres diferente */
+    color: #000; 
     text-shadow: 
     1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
     -1px -1px 0px #fff,
@@ -114,10 +155,13 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Caja de mensaje de combate */
+/**
+ * @class .mensaje-combate
+ * @description Mensaje que informa sobre el estado del combate.
+ */
 .mensaje-combate {
     font-size: 24px;
-    color: black; /* Cambié el color a negro */
+    color: black; 
     margin-bottom: 20px;
     text-shadow: 
     1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
@@ -128,7 +172,10 @@ body {
     -1px -1px 0px #fff;
 }
 
-/* Botones de acción */
+/**
+ * @class .acciones
+ * @description Contenedor de los botones de acción.
+ */
 .acciones {
     margin-top: 20px;
     width: 100%;
@@ -136,11 +183,19 @@ body {
     justify-content: center;
 }
 
+/**
+ * @class .botones
+ * @description Contenedor de los botones de acción, con un espacio uniforme entre ellos.
+ */
 .botones {
     display: flex;
     gap: 20px;
 }
 
+/**
+ * @class .botones button
+ * @description Estilos de los botones de acción.
+ */
 .botones button {
     background-color: #007BFF;
     color: white;
@@ -156,6 +211,10 @@ body {
     background-color: #0056b3;
 }
 
+/**
+ * @class button:disabled
+ * @description Estilo de los botones deshabilitados.
+ */
 button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -167,8 +226,12 @@ button:disabled {
     font-weight: bold;
 }
 
+/**
+ * @class .progress-bar span
+ * @description Texto dentro de la barra de vida.
+ */
 .progress-bar span {
-    color: black; /* Color del texto */
+    color: black; 
     position: absolute;
     width: 100%;
     top: 50%;
@@ -192,7 +255,7 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999; /* Fondo difuminado está detrás */
+    z-index: 999; 
 }
 
 .mensaje-final {
@@ -208,51 +271,51 @@ button:disabled {
 
 .imagen-letrero {
     position: fixed; /* Fija la imagen en la pantalla */
-    top: -110px; /* Mueve la imagen 100px arriba del borde superior */
-    left: -130px; /* Mueve la imagen 130px hacia la izquierda del borde izquierdo */
-    max-width: 620px; /* Limita el ancho máximo de la imagen */
-    max-height: 620px; /* Limita la altura máxima de la imagen */
-    width: auto; /* Mantiene la proporción de la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: inline-block; /* Asegura que el texto y la imagen estén juntos */
+    top: -110px; 
+    left: -130px; 
+    max-width: 620px; 
+    max-height: 620px; 
+    width: auto; 
+    height: auto;
+    display: inline-block; 
 }
 
 .texto-sobre-imagen {
     position: absolute; /* Posiciona el texto dentro de la imagen */
-    top: 66px; /* Centra el texto verticalmente */
-    left: 165px; /* Centra el texto horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta el centro al contorno del texto */
-    color: white; /* Cambia el color del texto */
-    font-size: 24px; /* Tamaño de la fuente */
-    font-weight: bold; /* Fuente en negrita */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra al texto para mejor visibilidad */
+    top: 66px; 
+    left: 165px; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    font-size: 24px; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
 }
 
 .mensaje-principal {
     font-size: 1.2em;
     font-weight: bold;
-    display: block; /* Asegura que esté en su propia línea */
+    display: block; 
 }
 
 .mensaje-exp {
-    font-size: 0.5em; /* Reduce el tamaño del texto */
-    color: #ccc; /* Color más claro */
-    display: block; /* Asegura que esté en su propia línea */
-    margin-top: 10px; /* Espacio para separar los mensajes */
+    font-size: 0.5em;
+    color: #ccc;
+    display: block;
+    margin-top: 10px; 
 }
 
 .mensaje-oro {
-    font-size: 0.5em; /* Reduce el tamaño del texto */
-    color: #ccc; /* Color más claro */
-    display: block; /* Asegura que esté en su propia línea */
-    margin-top: 10px; /* Espacio para separar los mensajes */
+    font-size: 0.5em; 
+    color: #ccc; 
+    display: block; 
+    margin-top: 10px; 
 }
 
 #mensajeFinal {
     display: flex;
-    flex-direction: column; /* Asegura que los elementos se apilen */
-    align-items: center; /* Centra los mensajes */
-    justify-content: center; /* Asegura que estén alineados */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
     text-align: center;
 }
 
