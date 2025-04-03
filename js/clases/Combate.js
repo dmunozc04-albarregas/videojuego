@@ -147,23 +147,18 @@ export class Combate {
                 break;
             case "aard":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("aard", this.enemigo);
-                //this.mostrarEstadoSiExiste();
                 break;
             case "igni":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("igni", this.enemigo);
-                //this.mostrarEstadoSiExiste();
                 break;
             case "yrden":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("yrden", this.enemigo);
-                //this.mostrarEstadoSiExiste();
                 break;
             case "quen":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("quen", this.enemigo);
-                //this.mostrarEstadoSiExiste();
                 break;
             case "axii":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("axii", this.enemigo);
-                //this.mostrarEstadoSiExiste();
                 break;
             default:
                 break;
@@ -172,7 +167,6 @@ export class Combate {
         this.mostrarEstadoSiExiste();
 
         setTimeout(() => {
-            //this.actualizarBarraVida("Enemigo");
             this.actualizarBarrasVida();
 
             if (this.estaVivo(this.enemigo)) {
@@ -200,13 +194,15 @@ export class Combate {
         }
 
         setTimeout(() => {
-            //this.actualizarBarraVida("Jugador");
             this.actualizarBarrasVida();
 
-            if (this.estaVivo(this.jugador)) {
+            if (this.estaVivo(this.jugador) && this.estaVivo(this.enemigo)) {
                 this.activarBotones();
                 document.getElementById("estadoCombate").textContent = `Turno de ${this.jugador.nombre}`;
-            } else {
+            } else if(!this.estaVivo(this.enemigo)){
+                this.mostrarMensajeFinal("¡Has ganado!");
+            }
+            else {
                 this.mostrarMensajeFinal("Has perdido...");
             }
         }, 3000);
@@ -235,8 +231,6 @@ export class Combate {
 
     /**
      * Método que sirve para actualizar la barra de vida correspondiente tras cada turno.
-     * 
-     * @param {*} personaje Personaje del que hay actualizar su barra.
      */
     actualizarBarrasVida() {
         const personajes = ["Jugador", "Enemigo"];
@@ -351,6 +345,8 @@ export class Combate {
 
     /**
      * Método que sirve para mostrar los botones finales del combate. Ir al siguiente combate o volver a la taberna.
+     * 
+     * @param {*} textoBotonCombate Dependiendo si el boton que hay que mostrar en Reintentar Combate en caso de perder o Siguiente combate si gana.
      */
     mostrarBotonesFinales(textoBotonCombate) {
         const mensaje = document.getElementById("mensajeFinal");
@@ -374,6 +370,8 @@ export class Combate {
 
     /**
      * Método que sirve para mostrar los botones en caso de que el jugador suba de nivel tras un combate.
+     * 
+     * @param {*} callback Llama al método actualizar estado partida al seleccionar el atributo a mejorar.
      */
     mostrarBotonesSubidaNivel(callback) {
         const mensaje = document.getElementById("mensajeFinal");
