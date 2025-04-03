@@ -169,7 +169,7 @@ function crearPersonaje(array) {
   let inventario = new Inventario();
   inventario.addArma(arma);
   inventario.addArma(arma2);
-  let jugador = new Jugador(nombre, fuerza, 100, 100, magia, 1, idImg, arma, 50, 250, inventario);
+  let jugador = new Jugador(nombre, fuerza, 100, 100, magia, 1, idImg, arma, 0, 250, inventario);
   array.push(jugador);
 }
 
