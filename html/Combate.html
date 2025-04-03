@@ -20,23 +20,23 @@
         </div>
     </div>
 
-    <div class="letrero">
+    <section class="letrero">
         <img src="../recursos/imagenes/Marco.png" alt="Letrero" class="imagen-letrero">
         <span class="texto-sobre-imagen" id="textoLetrero"></span>
-    </div>
+    </section>
 
-    <div class="contenedor-combate">
+    <section class="contenedor-combate">
         <!-- Área de combate -->
         <div class="area-combate">
             <!-- Parte superior (estado de combate) -->
-            <div class="estado-combate">
+            <header class="estado-combate">
                 <p id="estadoCombate"></p>
-            </div>
+            </header>
 
             <!-- Imagenes y barras de vida -->
             <div class="pantalla-combate">
                 <!-- Personaje Jugador -->
-                <div class="personaje jugador">
+                <article class="personaje jugador">
                     <!-- Imagen -->
                     <img id="imgJugador" src="" alt="Jugador">
                     <!-- Barra de vida -->
@@ -49,12 +49,12 @@
                     </div>
                     <!-- Nombre -->
                     <p id="nombreJugador"></p>
-                </div>
+                </article>
 
                 <div class="vs">VS</div>
 
                 <!-- Personaje Enemigo -->
-                <div class="personaje enemigo">
+                <article class="personaje enemigo">
                     <img id="imgEnemigo" src="" alt="Enemigo">
                     <div class="progress" style="background-color: transparent;">
                         <div id="barraVidaEnemigo" class="progress-bar" role="progressbar"
@@ -64,13 +64,13 @@
                         </div>
                     </div>
                     <p id="nombreEnemigo"></p>
-                </div>
+                </article>
             </div>
 
             <!-- Mensaje de texto -->
-            <div class="mensaje-combate">
+            <section class="mensaje-combate">
                 <p id="mensajeDeCombate"></p>
-            </div>
+            </section>
         </div>
 
         <!-- Controles (Botones de acción) -->
@@ -82,15 +82,37 @@
             </div>
 
             <div class="botones oculto" id="botonesSenales">
-                <button id="btnAard">🌪️ Aard</button>
-                <button id="btnIgni">🔥 Igni</button>
-                <button id="btnYrden">🔮 Yrden</button>
-                <button id="btnQuen">🛡️ Quen</button>
-                <button id="btnAxii">🌀 Axii</button>
+                <button id="btnAard" class="btn-senal" data-descripcion="Aturde al enemigo y reduce su daño base a la mitad. Dura 2 turnos del enemigo.">
+                    <img src="../recursos/imagenes/seniales/aard.webp" alt="Aard"> Aard
+                </button>
+                <button id="btnIgni" class="btn-senal"
+                    data-descripcion="Quema al enemigo y causa daño adicional igual al 5% de la vida del enemigo. Dura 2 turnos del enemigo.">
+                    <img src="../recursos/imagenes/seniales/igni.webp" alt="Igni"> Igni
+                </button>
+                <button id="btnYrden" class="btn-senal"
+                    data-descripcion="Paraliza al enemigo y no puede atacar. Dura 2 turnos del enemigo.">
+                    <img src="../recursos/imagenes/seniales/yrden.webp" alt="Yrden"> Yrden
+                </button>
+                <button id="btnQuen" class="btn-senal"
+                    data-descripcion="Quen: Crea un escudo que bloquea el próximo ataque.">
+                    <img src="../recursos/imagenes/seniales/quen.webp" alt="Quen"> Quen
+                </button>
+                <button id="btnAxii" class="btn-senal"
+                    data-descripcion="Confunde al enemigo y hace que se haga daño a sí mismo. Dura 1 turno del enemigo.">
+                    <img src="../recursos/imagenes/seniales/axii.webp" alt="Axii"> Axii
+                </button>
                 <button id="btnVolver">↩️ Volver</button>
             </div>
+
+            <!-- Tooltip -->
+            <div id="tooltip" class="tooltip"></div>
         </div>
-    </div>
+    </section>
+
+    <section id="estadoContenedor" class="oculto">
+        <p id="estadoTexto"></p>
+        <img id="estadoImagen" src="" alt="Estado">
+    </section>
 
     <div id="mensajeFinal" class="mensaje-final"></div>
 

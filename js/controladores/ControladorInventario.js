@@ -1,12 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Cargar los datos del personaje desde localStorage
-  const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
+import { Musica } from "../clases/Musica.js";
 
-  const tablaDatos = document.getElementById("tabla-datos");
-  const avatarPersonaje = document.getElementById("avatar-personaje");
+const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
+console.log("Objeto personaje:", personaje);
 
-  // Cargar la imagen del personaje
-  avatarPersonaje.src = personaje.imagen;
+// Código para controlar la música
+const musica = new Musica();
+musica.reproducir("../recursos/sonidos/.mp3");
+
+// Código para cargar la imagen del personaje
+const avatar_personaje = document.getElementById("avatar-personaje");
+avatar_personaje.src = personaje.imagen;
+// Código para cargar el nombre del personaje
+//document.getElementById("nombre-personaje").innerText = personaje.nombre;
 
   // Asegurarse de que siempre haya 10 celdas
   const numeroDeCeldas = 9;

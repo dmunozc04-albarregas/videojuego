@@ -137,8 +137,6 @@ export class Combate {
      * Método que sirve para realizar la acción seleccionada por el jugador.
      * 
      * @param {*} accion Acción seleccionada.
-     * @param {*} vidaMaxEnemigo Vida máxima del enemigo.
-     * @param {*} vidaMaxJugador Vida máxima del jugador.
      */
     turnoJugadorAccion(accion) {
         this.desactivarBotones();
@@ -147,18 +145,40 @@ export class Combate {
             case "atacar":
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.atacar(this.enemigo, this.jugador);
                 break;
+            case "aard":
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("aard", this.enemigo);
+                //this.mostrarEstadoSiExiste();
+                break;
+            case "igni":
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("igni", this.enemigo);
+                //this.mostrarEstadoSiExiste();
+                break;
+            case "yrden":
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("yrden", this.enemigo);
+                //this.mostrarEstadoSiExiste();
+                break;
+            case "quen":
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("quen", this.enemigo);
+                //this.mostrarEstadoSiExiste();
+                break;
+            case "axii":
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("axii", this.enemigo);
+                //this.mostrarEstadoSiExiste();
+                break;
             default:
                 break;
         }
 
+        this.mostrarEstadoSiExiste();
+
         setTimeout(() => {
-            this.actualizarBarraVida("Enemigo");
+            //this.actualizarBarraVida("Enemigo");
+            this.actualizarBarrasVida();
 
             if (this.estaVivo(this.enemigo)) {
                 setTimeout(this.turnoEnemigo("atacar"), 3000);
             } else {
                 this.mostrarMensajeFinal("¡Has ganado!");
-                //this.actualizarEstadoPartida();
             }
         }, 3000);
     }
@@ -166,8 +186,7 @@ export class Combate {
     /**
      * Método que sirve para controlar la IA del enemigo y qué hace en su turno.
      * 
-     * @param {*} accion 
-     * @param {*} vidaMaxJugador Vida máxima del jugador.   
+     * @param {*} accion   
      */
     turnoEnemigo(accion) {
         document.getElementById("estadoCombate").textContent = `Turno de ${this.enemigo.nombre}`;
@@ -181,7 +200,8 @@ export class Combate {
         }
 
         setTimeout(() => {
-            this.actualizarBarraVida("Jugador");
+            //this.actualizarBarraVida("Jugador");
+            this.actualizarBarrasVida();
 
             if (this.estaVivo(this.jugador)) {
                 this.activarBotones();
@@ -190,34 +210,49 @@ export class Combate {
                 this.mostrarMensajeFinal("Has perdido...");
             }
         }, 3000);
+
+        this.mostrarEstadoSiExiste();
+    }
+
+    /**
+     * Método que sirve para mostrar si el enemigo tiene algún estado y su duración.
+     */
+    mostrarEstadoSiExiste() {
+        const contenedor = document.getElementById("estadoContenedor");
+        const textoElemento = document.getElementById("estadoTexto");
+        const imagenElemento = document.getElementById("estadoImagen");
+
+        if (this.enemigo.estado.duracion === 0) {
+            contenedor.classList.add("oculto");
+        }
+        else {
+            textoElemento.textContent = this.enemigo.estado.duracion;
+            imagenElemento.src = `../recursos/imagenes/seniales/${this.enemigo.estado.nombre}.webp`;
+
+            contenedor.classList.remove("oculto");
+        }
     }
 
     /**
      * Método que sirve para actualizar la barra de vida correspondiente tras cada turno.
      * 
      * @param {*} personaje Personaje del que hay actualizar su barra.
-     * @param {*} vidaMax Vida máxima del personaje.
-     * @param {*} vidaActual Vida actual del personaje.
      */
-    actualizarBarraVida(personaje) {
-        let barraVida = document.getElementById(`barraVida${personaje}`);
-        let textoVida = document.getElementById(`textoVida${personaje}`);
-        let vidaActual = 0;
-        let vidaMax = 0;
+    actualizarBarrasVida() {
+        const personajes = ["Jugador", "Enemigo"];
 
-        if (personaje === "Enemigo") {
-            vidaActual = this.enemigo.vidaActual;
-            vidaMax = this.enemigo.vidaMax;
-        }
-        else {
-            vidaActual = this.jugador.vidaActual;
-            vidaMax = this.jugador.vidaMax;
-        }
+        personajes.forEach(personaje => {
+            let barraVida = document.getElementById(`barraVida${personaje}`);
+            let textoVida = document.getElementById(`textoVida${personaje}`);
 
-        let porcentajeVida = (vidaActual / vidaMax) * 100;
+            let vidaActual = this[personaje.toLowerCase()].vidaActual;
+            let vidaMax = this[personaje.toLowerCase()].vidaMax;
 
-        barraVida.style.width = `${porcentajeVida}%`;
-        textoVida.textContent = `${vidaActual}/${vidaMax}`;
+            let porcentajeVida = (vidaActual / vidaMax) * 100;
+
+            barraVida.style.width = `${porcentajeVida}%`;
+            textoVida.textContent = `${vidaActual}/${vidaMax}`;
+        });
     }
 
     /**
@@ -277,7 +312,7 @@ export class Combate {
             // Mensaje de la experiencia
             const mensajeExp = document.createElement("div");
             mensajeExp.classList.add("mensaje-exp");
-            mensajeExp.textContent = "Has recibido 500 de experiencia";
+            mensajeExp.textContent = "Has recibido 50 de experiencia";
             mensaje.appendChild(mensajeExp);
 
             // Mensaje del oro
@@ -316,7 +351,6 @@ export class Combate {
 
     /**
      * Método que sirve para mostrar los botones finales del combate. Ir al siguiente combate o volver a la taberna.
-     * También sirve para actualizar el estado de la partida en el localStorage, ya que es la última función a la que se llama.
      */
     mostrarBotonesFinales(textoBotonCombate) {
         const mensaje = document.getElementById("mensajeFinal");
@@ -381,13 +415,13 @@ export class Combate {
     subirNivel() {
         let subir = false;
 
-        if (this.jugador.experiencia + 500 >= 1000) {
+        if (this.jugador.experiencia + 50 >= 100) {
             this.jugador.nivel++;
             this.jugador.experiencia = 0;
             subir = true;
         }
         else {
-            this.jugador.experiencia += 500;
+            this.jugador.experiencia += 50;
             subir = false;
         }
 

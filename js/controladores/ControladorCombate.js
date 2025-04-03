@@ -17,8 +17,6 @@ let region;
 let inventario;
 let arma;
 let jugador;
-let vidaMaximaJugador;
-let vidaMaximaEnemigo;
 
 let combate;
 
@@ -63,6 +61,7 @@ if (comprobarFinJuego()) {
         document.getElementById("textoVidaEnemigo").textContent = `${enemigo.vidaMax}/${enemigo.vidaMax}`;
 
         funcionalidadBotones();
+        funcionalidadTootltipBotonesSeniales();
     });
 }
 
@@ -74,7 +73,7 @@ if (comprobarFinJuego()) {
 function comprobarFinJuego() {
     // Si no hay más regiones para jugar, mostramos el mensaje y redirigimos al lobby
     if (guardado[2].length < guardado[3].region) {
-        combate.mostrarMensajeFinal("¡Has completado el juego!");
+        mostrarMensajeFinJuego();
         return true;  // El juego ha terminado
     }
     return false;  // El juego no ha terminado
@@ -134,9 +133,6 @@ function caraOCruz(callback) {
 
         setTimeout(() => {
             fondoDifuminado.style.display = 'none';
-            document.getElementById('btnAtacar').disabled = false;
-            document.getElementById('btnSenales').disabled = false;
-            document.getElementById('btnHuir').disabled = false;
 
             // Llamar a la función de callback para iniciar el combate
             callback(turno);
@@ -160,7 +156,7 @@ function iniciarCombate(turno) {
     else if (turno === "Enemigo") {
         combate.desactivarBotones();
         document.getElementById("estadoCombate").textContent = `Turno de ${enemigo.nombre}`;
-        combate.turnoEnemigo("atacar", vidaMaximaJugador);
+        combate.turnoEnemigo("atacar");
     }
 }
 
@@ -169,7 +165,7 @@ function iniciarCombate(turno) {
  */
 function funcionalidadBotones() {
     // Botones Principales
-    document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar", vidaMaximaEnemigo, vidaMaximaJugador));
+    document.getElementById("btnAtacar").addEventListener("click", () => combate.turnoJugadorAccion("atacar"));
 
     document.getElementById("btnSenales").addEventListener("click", () => {
         document.getElementById("botonesPrincipales").classList.add("oculto");
@@ -185,8 +181,98 @@ function funcionalidadBotones() {
     });
 
     // Botones Señales
+    document.getElementById("btnAard").addEventListener("click", () => combate.turnoJugadorAccion("aard"));
+
+    document.getElementById("btnIgni").addEventListener("click", () => combate.turnoJugadorAccion("igni"));
+
+    document.getElementById("btnYrden").addEventListener("click", () => combate.turnoJugadorAccion("yrden"));
+
+    document.getElementById("btnQuen").addEventListener("click", () => combate.turnoJugadorAccion("quen"));
+
+    document.getElementById("btnAxii").addEventListener("click", () => combate.turnoJugadorAccion("axii"));
+
     document.getElementById("btnVolver").addEventListener("click", () => {
         document.getElementById("botonesPrincipales").classList.remove("oculto");
         document.getElementById("botonesSenales").classList.add("oculto");
     });
+}
+
+/**
+ * Método que sirve para añadir los eventos para que se muestre el tooltip con la descripción de cada señal.
+ */
+function funcionalidadTootltipBotonesSeniales() {
+    const tooltip = document.getElementById("tooltip");
+    const botones = document.querySelectorAll(".btn-senal");
+
+    botones.forEach(boton => {
+        boton.addEventListener("mouseenter", (event) => {
+            tooltip.textContent = boton.getAttribute("data-descripcion");
+            tooltip.style.opacity = "1";
+            tooltip.style.visibility = "visible";
+        });
+
+        boton.addEventListener("mousemove", (event) => {
+            tooltip.style.left = `${event.pageX + 10}px`;
+            tooltip.style.top = `${event.pageY + 10}px`;
+        });
+
+        boton.addEventListener("mouseleave", () => {
+            tooltip.style.opacity = "0";
+            tooltip.style.visibility = "hidden";
+        });
+    });
+}
+
+/**
+ * Método para mostrar un mensaje indicando que el juego ha sido finalizado en caso de volver a intentar combatir al terminarlo.
+ */
+function mostrarMensajeFinJuego() {
+    const mensaje = document.getElementById("mensajeFinal");
+
+    // Se muestra el mensaje del resultado del combate.
+    const mensajePrincipal = document.createElement("div");
+    mensajePrincipal.textContent = texto;
+    mensajePrincipal.classList.add("mensaje-principal");
+    mensaje.appendChild(mensajePrincipal);
+
+    // Si gana el jugador se muestran otros mensajes
+    if (texto === "¡Has ganado!") {
+        // Mensaje de la experiencia
+        const mensajeExp = document.createElement("div");
+        mensajeExp.classList.add("mensaje-exp");
+        mensajeExp.textContent = "Has recibido 50 de experiencia";
+        mensaje.appendChild(mensajeExp);
+
+        // Mensaje del oro
+        const mensajeOro = document.createElement("div");
+        mensajeOro.classList.add("mensaje-oro");
+        mensajeOro.textContent = "Has recibido 100 de oro";
+        mensaje.appendChild(mensajeOro);
+
+        // En caso de subir de nivel
+        if (this.subirNivel()) {
+            // Mensaje de subida de nivel y muestra de botones para aumentar estadísticas
+            const mensajeNivel = document.createElement("div");
+            mensajeNivel.classList.add("mensaje-nivel");
+            mensajeNivel.textContent = `¡Has subido al nivel ${this.jugador.nivel}!`;
+            mensaje.appendChild(mensajeNivel);
+
+            this.mostrarBotonesSubidaNivel(() => {
+                this.actualizarEstadoPartida();
+            });
+        } else {
+            this.actualizarEstadoPartida();
+            this.mostrarBotonesFinales("Siguiente Combate");
+        }
+    }
+    else if (texto === "Has perdido...") {
+        this.mostrarBotonesFinales("Reintentar Combate");
+    }
+
+    mensaje.classList.remove("oculto");
+    mensaje.classList.add("fondo-difuminado");
+
+    setTimeout(() => {
+        mensaje.style.opacity = "1";
+    }, 100);
 }

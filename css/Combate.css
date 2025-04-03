@@ -259,3 +259,29 @@ button:disabled {
 .botones-finales {
     margin-top: 10px;
 }
+
+#estadoContenedor {
+    text-align: center;
+    position: fixed;
+    top: 32%;
+    left: 73%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0; /* Inicialmente invisible */
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+    z-index: 1000;
+}
