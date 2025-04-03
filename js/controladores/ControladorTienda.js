@@ -1,5 +1,11 @@
+import { Musica } from "../clases/Musica.js";
+
 const tienda = JSON.parse(localStorage.getItem("guardado"))[1];
 const armas = tienda.armas;
+
+// Código para controlar la música
+const musica = new Musica();
+musica.reproducir("../recursos/sonidos/.mp3");
 
 /**
  * Función para generar la lista de armas al cargar la tienda.

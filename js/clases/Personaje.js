@@ -13,7 +13,7 @@ export class Personaje {
     #magia;
     #nivel;
     #imagen;
-    
+
     /**
      * Constructor de la clase personaje.
      * 
@@ -63,7 +63,7 @@ export class Personaje {
      * @throws {Error} Si el nombre es una cadena vacía o no es una cadena.
      */
     set nombre(nuevoNombre) {
-        if(typeof nuevoNombre === "string" && nuevoNombre.trim() !== "") {
+        if (typeof nuevoNombre === "string" && nuevoNombre.trim() !== "") {
             this.#nombre = nuevoNombre;
         } else {
             console.error("El nombre debe ser un string no vacío ni nulo.");
@@ -86,7 +86,7 @@ export class Personaje {
      * @throws {Error} Si la fuerza es número entero vacío o no es un número entero.
      */
     set fuerza(nuevaFuerza) {
-        if(Number.isInteger(nuevaFuerza) && nuevaFuerza >= 0) {
+        if (Number.isInteger(nuevaFuerza) && nuevaFuerza >= 0) {
             this.#fuerza = nuevaFuerza;
         } else {
             console.error("La fuerza debe ser un número entero positivo o 0.");
@@ -109,7 +109,7 @@ export class Personaje {
      * @throws {Error} Si la vida es número entero vacío o no es un número entero.
      */
     set vidaActual(nuevaVida) {
-        if(Number.isInteger(nuevaVida)) {
+        if (Number.isInteger(nuevaVida)) {
             this.#vidaActual = nuevaVida;
         } else {
             console.error("La vida actual debe ser un número entero positivo o 0.");
@@ -132,7 +132,7 @@ export class Personaje {
      * @throws {Error} Si la vida es número entero vacío o no es un número entero.
      */
     set vidaMax(nuevaVida) {
-        if(Number.isInteger(nuevaVida)) {
+        if (Number.isInteger(nuevaVida)) {
             this.#vidaMax = nuevaVida;
         } else {
             console.error("La vida máxima debe ser un número entero positivo o 0.");
@@ -155,7 +155,7 @@ export class Personaje {
      * @throws {Error} Si la magia es número entero vacío o no es un número entero.
      */
     set magia(nuevaMagia) {
-        if(Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
+        if (Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
             this.#magia = nuevaMagia;
         } else {
             console.error("La magia debe ser un número entero positivo o 0.");
@@ -170,7 +170,7 @@ export class Personaje {
     get nivel() {
         return this.#nivel;
     }
-    
+
     /**
      * Método setter para establecer el nivel del personaje.
      * 
@@ -178,7 +178,7 @@ export class Personaje {
      * @throws {Error} Si el nivel es número entero vacío o no es un número entero.
      */
     set nivel(nuevaNivel) {
-        if(Number.isInteger(nuevaNivel) && nuevaNivel >= 0) {
+        if (Number.isInteger(nuevaNivel) && nuevaNivel >= 0) {
             this.#nivel = nuevaNivel;
         } else {
             console.error("El nivel debe ser un número no vacío ni nulo.");
@@ -201,7 +201,7 @@ export class Personaje {
      * @throws {Error} Si la imagen es una cadena vacía o no es una cadena.
      */
     set imagen(nuevaImagen) {
-        if(typeof nuevaImagen === "string" && nuevaImagen.trim() !== "") {
+        if (typeof nuevaImagen === "string" && nuevaImagen.trim() !== "") {
             this.#imagen = nuevaImagen;
         } else {
             console.error("La imagen debe ser un string no vacío ni nulo.");
@@ -214,11 +214,11 @@ export class Personaje {
      * Método que sirve para atacar.
      * 
      * @param {*} objetivo Objetivo al que se ataca.
-     * @param {*} jugador Personaje que realiza el ataque.
+     * @param {*} atacante Personaje que realiza el ataque.
      * @returns Mensaje a mostrar del resultado del ataque.
      */
-    atacar(objetivo, jugador) {
-        let danioRecibido;
+    atacar(objetivo, atacante) {
+        /*let danioRecibido;
         let danioFinal;
 
         if (jugador instanceof Jugador) {
@@ -231,9 +231,52 @@ export class Personaje {
         console.log(`${this.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} daño.`);
         danioFinal = objetivo.recibirDanio(danioRecibido);
 
-        return `${jugador.nombre} ataca a ${objetivo.nombre} pero este se defiende y recibe ${danioFinal} de daño final`;
+        return `${jugador.nombre} ataca a ${objetivo.nombre} pero este se defiende y recibe ${danioFinal} de daño final`;*/
+
+        let danioRecibido;
+        let danioFinal;
+
+        if (atacante instanceof Jugador) {
+            danioRecibido = atacante.fuerza + atacante.arma.danio;
+        } else {
+            switch (atacante.estado.tipo) {
+                case "aturdido":
+                    danioRecibido = Math.floor(atacante.fuerza / 2);
+                    console.log(`${atacante.nombre} está aturdido y hace menos daño.`);
+                    console.log(`${atacante.nombre} tiene ${atacante.fuerza} pero hace ${danioRecibido} por estar aturdido`);
+                    break;
+                case "quemado":
+                    danioRecibido = atacante.fuerza;
+                    atacante.vidaActual -= atacante.vidaMax * 0.05;
+                    break;
+                case "paralizado":
+                    atacante.reducirDuracionEstado();
+                    return `${atacante.nombre} está paralizado y no puede atacar`;
+                case "protegido":
+                    
+                    break;
+                case "confundido":
+                    danioRecibido = atacante.fuerza;
+                    danioFinal = atacante.recibirDanio(danioRecibido);
+                    atacante.reducirDuracionEstado();
+                    return `${atacante.nombre} se ataca a sí mismo con ${danioFinal} de daño`;
+                default:
+                    danioRecibido = atacante.fuerza;
+                    break;
+            }
+        }
+
+        console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} de daño.`);
+        danioFinal = objetivo.recibirDanio(danioRecibido);
+
+        // Reducir duración del estado SOLO si el atacante es un enemigo
+        if (!(atacante instanceof Jugador)) {
+            atacante.reducirDuracionEstado();
+        }
+
+        return `${atacante.nombre} ataca a ${objetivo.nombre} pero este se defiende y recibe ${danioFinal} de daño final`;
     }
-    
+
     /**
      * Método que sirve para recibir daño.
      * 
@@ -241,14 +284,16 @@ export class Personaje {
      * @returns Devuelve el daño final del ataque.
      */
     recibirDanio(ataque) {
+        console.log(ataque);
         let danioRecibido = this.defender(ataque)
+        console.log(danioRecibido);
 
-        if(this.vidaActual - danioRecibido <= 0) {
+        if (this.vidaActual - danioRecibido <= 0) {
             console.log(`${this.nombre} ha muerto.`);
             this.vidaActual = 0;
         } else {
             this.vidaActual -= danioRecibido;
-            console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vidaActual}`); 
+            console.log(`${this.nombre} recibe ${danioRecibido} de daño. Vida actual: ${this.vidaActual}`);
         }
 
         return danioRecibido;
@@ -265,5 +310,50 @@ export class Personaje {
         console.log(`${this.nombre} se defiende.`);
 
         return danioFinal;
+    }
+
+    seniales(senial, objetivo) {
+        let mensaje;
+
+        if (objetivo.estado.tipo) {
+            //console.log(`${objetivo.nombre} ya tiene el estado ${objetivo.estado.tipo}, no se puede aplicar otra señal.`);
+            return `${objetivo.nombre} ya tiene el estado ${objetivo.estado.tipo}, no se puede aplicar otra señal.`;
+        }
+
+        switch (senial) {
+            case "aard":
+                objetivo.estado = { tipo: "aturdido", duracion: 2, nombre: "aard" };
+                mensaje = `${objetivo.nombre} ha sido aturdido por Aard.`;
+                break;
+            case "igni":
+                objetivo.estado = { tipo: "quemado", duracion: 2, nombre: "igni" };
+                mensaje = `${objetivo.nombre} ha sido quemado por Igni.`;
+                break;
+            case "yrden":
+                objetivo.estado = { tipo: "paralizado", duracion: 2, nombre: "yrden" };
+                mensaje = `${objetivo.nombre} ha sido paralizado por Yrden.`;
+                break;
+            case "quen":
+                this.quen();
+                break;
+            case "axii":
+                objetivo.estado = { tipo: "confundido", duracion: 1, nombre: "axii" };
+                mensaje = `${objetivo.nombre} ha sido confundido por Axii.`;
+                break;
+            default:
+                console.log("Señal no reconocida.");
+        }
+
+        return mensaje;
+    }
+
+    reducirDuracionEstado() {
+        if (this.estado.duracion > 0) {
+            this.estado.duracion--;
+            if (this.estado.duracion === 0) {
+                console.log(`${this.nombre} ya no está ${this.estado.tipo}.`);
+                this.estado.tipo = null;
+            }
+        }
     }
 }

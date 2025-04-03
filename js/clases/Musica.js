@@ -6,7 +6,7 @@
 export class Musica {
     constructor() {
         this.audio = new Audio();
-        this.audio.loop = true;  // Para que la música se repita
+        this.audio.loop = true; 
     }
 
     /**

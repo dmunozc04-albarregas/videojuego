@@ -1,5 +1,11 @@
+import { Musica } from "../clases/Musica.js";
+
 const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
 console.log("Objeto personaje:", personaje);
+
+// Código para controlar la música
+const musica = new Musica();
+musica.reproducir("../recursos/sonidos/.mp3");
 
 // Código para cargar la imagen del personaje
 const avatar_personaje = document.getElementById("avatar-personaje");
