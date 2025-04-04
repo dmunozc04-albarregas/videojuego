@@ -58,6 +58,8 @@ function disableRegion(regionId) {
     }
 }
 
+
+
 // Llamar a la función para deshabilitar regiones
 disableRegion("region-2");
 disableRegion("region-3");
