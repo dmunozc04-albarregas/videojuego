@@ -1,5 +1,4 @@
 import { Musica } from "../clases/Musica.js";
-import { Arma } from "../clases/Arma.js";
 
 const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
 console.log("Objeto personaje:", personaje);
@@ -153,11 +152,3 @@ function alerta(tipo, mensaje) {
   });
 }
 
-function anhadirArmaInventario(jugador, arma) {
-  if(arma instanceof Arma) {
-    jugador.inventario.addArma(arma);
-    console.log('El arma ${arma.nombre} ha sido añadida al inventario de ${jugador.nombre}.');
-  } else {
-    console.log('El objeto no es un arma válida.');
-  }
-}
