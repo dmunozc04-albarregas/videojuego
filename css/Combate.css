@@ -140,7 +140,7 @@ body {
 }
 
 /**
-* 
+* Estilos para el texto vs en la pantalla de combate 
 */
 .vs {
     font-size: 30px;
@@ -207,6 +207,10 @@ body {
     transition: background-color 0.3s;
 }
 
+/**
+* @class .botones button:hover
+* @description Efecto hover para los botones de acción.
+*/
 .botones button:hover {
     background-color: #0056b3;
 }
@@ -220,6 +224,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/**
+ * @class .progress-bar
+ * @description Barra de vida dentro del contenedor de progreso.
+ */
 .progress-bar {
     position: relative;
     text-align: center;
@@ -240,10 +248,18 @@ button:disabled {
     font-size: 20px;
 }
 
+/**
+* @class .oculto
+* @description Clase para ocultar elementos.
+*/
 .oculto {
     display: none;
 }
 
+/**
+* @class .fondo-difuminado
+* @description Clase para el fondo difuminado que cubre toda la pantalla.
+*/
 .fondo-difuminado {
     position: fixed;
     top: 0;
@@ -258,6 +274,10 @@ button:disabled {
     z-index: 999; 
 }
 
+/**
+* @class .mensaje-final
+* @description Clase para el mensaje final que aparece al finalizar el combate.
+*/
 .mensaje-final {
     font-size: 60px;
     color: white;
@@ -269,6 +289,10 @@ button:disabled {
     z-index: 1001; /* Asegura que el mensaje esté por encima del fondo */
 }
 
+/**
+* @class .imagen-letrero
+* @description Clase para la imagen del letrero que aparece en la pantalla.
+*/
 .imagen-letrero {
     position: fixed; /* Fija la imagen en la pantalla */
     top: -110px; 
@@ -280,6 +304,10 @@ button:disabled {
     display: inline-block; 
 }
 
+/**
+* @class .texto-sobre-imagen
+* @description Clase para el texto que aparece sobre la imagen del letrero.
+*/
 .texto-sobre-imagen {
     position: absolute; /* Posiciona el texto dentro de la imagen */
     top: 66px; 
@@ -291,12 +319,20 @@ button:disabled {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
 }
 
+/**
+* @class .mensaje-principal
+* @description Clase para el mensaje principal que aparece en la pantalla.
+*/
 .mensaje-principal {
     font-size: 1.2em;
     font-weight: bold;
     display: block; 
 }
 
+/**
+* @class .mensaje-exp
+* @description Clase para el mensaje de experiencia que aparece en la pantalla.
+*/
 .mensaje-exp {
     font-size: 0.5em;
     color: #ccc;
@@ -304,6 +340,10 @@ button:disabled {
     margin-top: 10px; 
 }
 
+/**
+* @class .mensaje-oro
+* @description Clase para el mensaje de oro que aparece en la pantalla.
+*/
 .mensaje-oro {
     font-size: 0.5em; 
     color: #ccc; 
@@ -311,6 +351,9 @@ button:disabled {
     margin-top: 10px; 
 }
 
+/**
+* Estilos para el contenedor del mensaje final en la pantalla de combate.
+*/
 #mensajeFinal {
     display: flex;
     flex-direction: column; 
@@ -318,11 +361,17 @@ button:disabled {
     justify-content: center; 
     text-align: center;
 }
-
+/**
+* @class .botones-finales
+* @description Clase para los botones finales que aparecen al finalizar el combate.
+*/
 .botones-finales {
     margin-top: 10px;
 }
 
+/**
+* Estilos para el contenedor del estado del combate.
+*/
 #estadoContenedor {
     text-align: center;
     position: fixed;
@@ -334,6 +383,10 @@ button:disabled {
     border-radius: 8px;
 }
 
+/**
+* @class .tooltip
+* @description Clase para el tooltip que aparece al pasar el mouse sobre los elementos.
+*/
 .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
