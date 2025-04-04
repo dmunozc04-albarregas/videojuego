@@ -65,9 +65,10 @@ if (comprobarFinJuego()) {
         document.getElementById("imgEnemigo").src = enemigo.imagen;
         document.getElementById("nombreEnemigo").textContent = enemigo.nombre;
 
-        // Para poner las vidas en las barras
+        // Para poner las vidas y el maná en las barras 
         document.getElementById("textoVidaJugador").textContent = `${jugador.vidaMax}/${jugador.vidaMax}`;
         document.getElementById("textoVidaEnemigo").textContent = `${enemigo.vidaMax}/${enemigo.vidaMax}`;
+        document.getElementById("textoManaJugador").textContent = `${jugador.magiaMax}/${jugador.magiaMax}`;
 
         funcionalidadBotones();
         funcionalidadTootltipBotonesSeniales();

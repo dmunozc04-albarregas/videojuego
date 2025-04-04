@@ -20,7 +20,8 @@ export class Jugador extends Personaje {
      * @param {*} fuerza Fuerza del jugador.
      * @param {*} vidaActual Vida actual del jugador.
      * @param {*} vidaMax Vida máxima del jugador.
-     * @param {*} magia Magia del jugador.
+     * @param {*} magiaActual Magia actual del jugador.
+     * @param {*} magiaMax Magia máxima del jugador.
      * @param {*} nivel Nivel del jugador.
      * @param {*} imagen Imagen del jugador.
      * @param {*} arma Arma del jugador.
@@ -28,8 +29,8 @@ export class Jugador extends Personaje {
      * @param {*} dinero Dinero del jugador.
      * @param {*} inventario Inventario del jugador.
      */
-    constructor(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen, arma, experiencia, dinero, inventario) {
-        super(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen);
+    constructor(nombre, fuerza, vidaActual, vidaMax, magiaActual, magiaMax, nivel, imagen, arma, experiencia, dinero, inventario) {
+        super(nombre, fuerza, vidaActual, vidaMax, magiaActual, magiaMax, nivel, imagen);
         this.arma = arma;
         this.experiencia = experiencia;
         this.dinero = dinero;
@@ -42,7 +43,8 @@ export class Jugador extends Personaje {
             fuerza: this.fuerza,
             vidaActual: this.vidaActual,
             vidaMax: this.vidaMax,
-            magia: this.magia,
+            magiaActual: this.magiaActual,
+            magiaMax: this.magiaMax,
             nivel: this.nivel,
             imagen: this.imagen,
             arma: this.arma,
@@ -58,7 +60,8 @@ export class Jugador extends Personaje {
             datos.fuerza,
             datos.vidaActual,
             datos.vidaMax,
-            datos.magia,
+            datos.magiaActual,
+            datos.magiaMax,
             datos.nivel,
             datos.imagen,
             datos.arma,

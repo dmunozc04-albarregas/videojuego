@@ -10,7 +10,8 @@ export class Personaje {
     #fuerza;
     #vidaActual;
     #vidaMax;
-    #magia;
+    #magiaActual;
+    #magiaMax;
     #nivel;
     #imagen;
 
@@ -21,16 +22,18 @@ export class Personaje {
      * @param {*} fuerza Fuerza del persoanje.
      * @param {*} vidaActual Vida actual del personaje.
      * @param {*} vidaMax Vida máxima del personaje.
-     * @param {*} magia Magia del personaje.
+     * @param {*} magiaActual Magia actual del personaje.
+     * @param {*} magiaMax Magia máxima del personaje.
      * @param {*} nivel Nivel del personaje.
      * @param {*} imagen Imagen del personaje.
      */
-    constructor(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen) {
+    constructor(nombre, fuerza, vidaActual, vidaMax, magiaActual, magiaMax, nivel, imagen) {
         this.nombre = nombre;
         this.fuerza = fuerza;
         this.vidaActual = vidaActual;
         this.vidaMax = vidaMax;
-        this.magia = magia;
+        this.magiaActual = magiaActual;
+        this.magiaMax = magiaMax;
         this.nivel = nivel;
         this.imagen = imagen;
     }
@@ -41,7 +44,8 @@ export class Personaje {
             fuerza: this.fuerza,
             vidaActual: this.vidaActual,
             vidaMax: this.vidaMax,
-            magia: this.magia,
+            magiaActual: this.magiaActual,
+            magiaMax: this.magiaMax,
             nivel: this.nivel,
             imagen: this.imagen,
         };
@@ -140,25 +144,48 @@ export class Personaje {
     }
 
     /**
-    * Método getter para obtener la magia del personaje.
+    * Método getter para obtener la magia actual del personaje.
     * 
-    * @returns {number} La magia del personaje
+    * @returns {number} La magia actual del personaje
     */
-    get magia() {
-        return this.#magia;
+    get magiaActual() {
+        return this.#magiaActual;
     }
 
     /**
-     * Método setter para establecer la magia del personaje.
+     * Método setter para establecer la magia actual del personaje.
      * 
-     * @param {number} nuevaMagia La nueva magia del personaje.
+     * @param {number} nuevaMagia La nueva magia actual del personaje.
      * @throws {Error} Si la magia es número entero vacío o no es un número entero.
      */
-    set magia(nuevaMagia) {
+    set magiaActual(nuevaMagia) {
         if (Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
-            this.#magia = nuevaMagia;
+            this.#magiaActual = nuevaMagia;
         } else {
-            console.error("La magia debe ser un número entero positivo o 0.");
+            console.error("La magia actual debe ser un número entero positivo o 0.");
+        }
+    }
+
+    /**
+    * Método getter para obtener la magia máxima del personaje.
+    * 
+    * @returns {number} La magia máxima del personaje
+    */
+    get magiaMax() {
+        return this.#magiaMax;
+    }
+
+    /**
+     * Método setter para establecer la magia máxima del personaje.
+     * 
+     * @param {number} nuevaMagia La nueva magia máxima del personaje.
+     * @throws {Error} Si la magia es número entero vacío o no es un número entero.
+     */
+    set magiaMax(nuevaMagia) {
+        if (Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
+            this.#magiaMax = nuevaMagia;
+        } else {
+            console.error("La magia máxima debe ser un número entero positivo o 0.");
         }
     }
 
@@ -211,28 +238,13 @@ export class Personaje {
     // Métodos
 
     /**
-     * Método que sirve para atacar.
+     * Método que sirve para atacar. También tiene en cuenta si el enemigo tiene algún estado negativo.
      * 
      * @param {*} objetivo Objetivo al que se ataca.
      * @param {*} atacante Personaje que realiza el ataque.
      * @returns Mensaje a mostrar del resultado del ataque.
      */
     atacar(objetivo, atacante) {
-        /*let danioRecibido;
-        let danioFinal;
-
-        if (jugador instanceof Jugador) {
-            danioRecibido = this.fuerza + jugador.arma.danio; 
-        }
-        else {
-            danioRecibido = this.fuerza; 
-        }
-
-        console.log(`${this.nombre} ataca a ${objetivo.nombre} con ${danioRecibido} daño.`);
-        danioFinal = objetivo.recibirDanio(danioRecibido);
-
-        return `${jugador.nombre} ataca a ${objetivo.nombre} pero este se defiende y recibe ${danioFinal} de daño final`;*/
-
         let danioRecibido;
         let danioFinal;
 
@@ -247,7 +259,7 @@ export class Personaje {
                     break;
                 case "quemado":
                     danioRecibido = atacante.fuerza;
-                    atacante.vidaActual -= atacante.vidaMax * 0.05;
+                    atacante.vidaActual -= Math.round(atacante.vidaMax * 0.05);
                     break;
                 case "paralizado":
                     atacante.reducirDuracionEstado();
@@ -312,11 +324,17 @@ export class Personaje {
         return danioFinal;
     }
 
+    /**
+     * Método que sirve para atacar con una señal al oponente. Se comprueba si ya tiene algún estado y no le deja atacar.
+     * 
+     * @param {*} senial Señal a lanzar.
+     * @param {*} objetivo Objetivo a lanzar la señal.
+     * @returns Devuelve el mensaje a mostrar en el combate.
+     */
     seniales(senial, objetivo) {
         let mensaje;
 
         if (objetivo.estado.tipo) {
-            //console.log(`${objetivo.nombre} ya tiene el estado ${objetivo.estado.tipo}, no se puede aplicar otra señal.`);
             return `${objetivo.nombre} ya tiene el estado ${objetivo.estado.tipo}, no se puede aplicar otra señal.`;
         }
 
@@ -347,6 +365,9 @@ export class Personaje {
         return mensaje;
     }
 
+    /**
+     * Método que sirve para reducir la duración del estado de una señal.
+     */
     reducirDuracionEstado() {
         if (this.estado.duracion > 0) {
             this.estado.duracion--;

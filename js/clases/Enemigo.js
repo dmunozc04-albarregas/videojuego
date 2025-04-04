@@ -15,12 +15,13 @@ export class Enemigo extends Personaje {
      * @param {*} fuerza Fuerza del enemigo.
      * @param {*} vidaActual Vida actual del enemigo.
      * @param {*} vidaMax Vida máxima del enemigo.
-     * @param {*} magia Magia del enemigo.
+     * @param {*} magiaActual Magia actual del enemigo.
+     * @param {*} magiaMax Magia máxima del enemigo.
      * @param {*} nivel Nivel del enemigo.
      * @param {*} imagen Nombre de la imagen del enemigo.
      */
-    constructor(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen) {
-        super(nombre, fuerza, vidaActual, vidaMax, magia, nivel, imagen);
+    constructor(nombre, fuerza, vidaActual, vidaMax, magiaActual, magiaMax, nivel, imagen) {
+        super(nombre, fuerza, vidaActual, vidaMax, magiaActual, magiaMax, nivel, imagen);
         this.estado = { tipo: null, duracion: 0, nombre: ""};
     }
 
@@ -30,7 +31,8 @@ export class Enemigo extends Personaje {
             fuerza: this.fuerza,
             vidaActual: this.vidaActual,
             vidaMax: this.vidaMax,
-            magia: this.magia,
+            magiaActual: this.magiaActual,
+            magiaMax: this.magiaMax,
             nivel: this.nivel,
             imagen: this.imagen,
             estado: this.estado
@@ -43,7 +45,8 @@ export class Enemigo extends Personaje {
             datos.fuerza,
             datos.vidaActual,
             datos.vidaMax,
-            datos.magia,
+            datos.magiaActual,
+            datos.magiaMax,
             datos.nivel,
             datos.imagen,
             datos.estado

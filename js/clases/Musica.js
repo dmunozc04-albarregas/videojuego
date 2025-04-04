@@ -6,7 +6,7 @@
 export class Musica {
     constructor() {
         this.audio = new Audio();
-        this.audio.loop = true; 
+        this.audio.loop = true;
     }
 
     /**
@@ -26,23 +26,20 @@ export class Musica {
      * @param {*} callback 
      */
     desvanecer(callback) {
-        const fadeOutDuration = 2000;  // Duración del desvanecimiento en milisegundos
-        const fadeInterval = 50;       // Frecuencia de actualización del volumen (ms)
-        const fadeStep = 0.01;         // Ajustamos el paso de volumen para que no sea tan pequeño
+        const fadeOutDuration = 750; // Duración total del desvanecimiento en ms
+        const fadeInterval = 50; // Frecuencia de actualización en ms
+        const steps = fadeOutDuration / fadeInterval; // Cantidad de pasos de reducción
+        const fadeStep = this.audio.volume / steps; // Ajuste dinámico para un desvanecimiento uniforme
 
-        let currentVolume = this.audio.volume;
-
-        const fadeOut = () => {
-            if (this.audio.volume > 0) {
-                this.audio.volume = Math.max(0, this.audio.volume - fadeStep);  // Asegurarnos de que no sea negativo
+        const fadeOut = setInterval(() => {
+            if (this.audio.volume > fadeStep) {
+                this.audio.volume = Math.max(0, this.audio.volume - fadeStep);
             } else {
+                clearInterval(fadeOut);
                 this.audio.pause();
-                this.audio.currentTime = 0; // Reiniciar al inicio de la canción
-                callback();  // Llamamos al callback cuando el desvanecimiento termine
-                clearInterval(fadeOutInterval);  // Detener el intervalo de desvanecimiento
+                this.audio.currentTime = 0;
+                callback();
             }
-        };
-
-        const fadeOutInterval = setInterval(fadeOut, fadeInterval);
+        }, fadeInterval);
     }
 }

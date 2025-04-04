@@ -360,7 +360,7 @@ export class Combate {
         btnCombate.textContent = textoBotonCombate;
         btnCombate.onclick = () => {
             musica.desvanecer(() => {
-                location.reload();
+                window.location.reload();
             });
         };
         botones.appendChild(btnCombate);

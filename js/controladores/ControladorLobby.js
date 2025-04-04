@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     barra_fuerza_personaje.setAttribute("aria-valuenow", personaje.fuerza);
     cambiarColorBarraProgreso(barra_fuerza_personaje, personaje.fuerza);
 
-    barra_magia_personaje.style.width = personaje.magia + "%";
-    barra_magia_personaje.setAttribute("aria-valuenow", personaje.magia);
-    cambiarColorBarraProgreso(barra_magia_personaje, personaje.magia);
+    barra_magia_personaje.style.width = personaje.magiaMax + "%";
+    barra_magia_personaje.setAttribute("aria-valuenow", personaje.magiaMax);
+    cambiarColorBarraProgreso(barra_magia_personaje, personaje.magiaMax);
 
     barra_nivel_personaje.style.width = personaje.experiencia + "%";
     barra_nivel_personaje.setAttribute("aria-valuenow", personaje.experiencia);
@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const url = regionRedirects[regionId];
 
       if (url) {
-        //window.location.href = url;
         musica.desvanecer(() => {
           window.location.href = url;
         });
