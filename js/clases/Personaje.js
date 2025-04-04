@@ -159,7 +159,7 @@ export class Personaje {
      * @throws {Error} Si la magia es número entero vacío o no es un número entero.
      */
     set magiaActual(nuevaMagia) {
-        if (Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
+        if (Number.isInteger(nuevaMagia)) {
             this.#magiaActual = nuevaMagia;
         } else {
             console.error("La magia actual debe ser un número entero positivo o 0.");
@@ -182,7 +182,7 @@ export class Personaje {
      * @throws {Error} Si la magia es número entero vacío o no es un número entero.
      */
     set magiaMax(nuevaMagia) {
-        if (Number.isInteger(nuevaMagia) && nuevaMagia >= 0) {
+        if (Number.isInteger(nuevaMagia)) {
             this.#magiaMax = nuevaMagia;
         } else {
             console.error("La magia máxima debe ser un número entero positivo o 0.");
