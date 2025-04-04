@@ -58,6 +58,30 @@ function disableRegion(regionId) {
     }
 }
 
+function enableRegion(regionId) {
+    let region = document.getElementById(regionId);
+    if (region) {
+
+        region.removeAttribute("style"); // Eliminar el estilo para volver a la normalidad
+        region.style.pointerEvents = "auto"; // Habilitar eventos de puntero
+
+        let label = document.getElementById("label-" + regionId.replace("region-", ""));
+        if (label) {
+            label.style.color = "#fff";
+        }
+
+        let lock_icon = document.getElementById("icon-" + regionId.replace("region-", ""));
+        if (lock_icon) {
+            lock_icon.style.display = "none"; // Ocultar el ícono de bloqueo
+        }
+    }
+}
+
+
+
+
 // Llamar a la función para deshabilitar regiones
+
 disableRegion("region-2");
 disableRegion("region-3");
+enableRegion("region-2");
