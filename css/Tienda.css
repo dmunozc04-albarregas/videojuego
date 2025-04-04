@@ -1,16 +1,17 @@
 body {
     background-image: url("../recursos/imagenes/fondos/FondoTienda.jpg") !important;
+    font-family: "IM Fell English SC", serif serif !important;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Arial', sans-serif;
+    /*font-family: 'Arial', sans-serif;*/
 }
 
 .store-container {
     display: flex;
-    background: #d4a373;
+    background:  #1B1716 !important;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -26,9 +27,10 @@ body {
     width: 150px;
     text-align: center;
     padding: 10px;
-    background: #f5c16c;
+    background: #3a2e2b !important;
     border-radius: 5px;
     margin-right: 20px;
+    border: 2px solid grey !important;
 }
 
 .weapon-preview img {
@@ -40,22 +42,26 @@ body {
     width: 580px;
     height: 400px;
     overflow-y: auto;
-    background: #e0a96d;
+    background: #2c2421 !important;
     border-radius: 5px;
     padding: 10px;
     justify-content: center;
+    border: 2px solid grey !important;
 }
 
 .weapon-item {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #8b5e34;
+    border-bottom: 2px solid grey !important;
     cursor: pointer;
+    color: white !important;
 }
 
 .weapon-item:hover {
-    background: #c38154;
+    background: #54463e !important;
+    filter: drop-shadow(0 0 0.75rem #ddd) !important;
+    cursor: crosshair !important;
 }
 
 .imagen-letrero {
@@ -78,6 +84,23 @@ body {
     font-size: 24px; 
     font-weight: bold; 
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
+}
+
+.btn-comprar {
+    position: absolute;
+    top: 70%;
+    left: 52%;
+    color: #ffffff;
+    background: #8b5e34;
+    border: 2px solid #654321;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .btn-volver {
