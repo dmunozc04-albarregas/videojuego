@@ -140,6 +140,7 @@ export class Combate {
      * @param {*} accion Acción seleccionada.
      */
     turnoJugadorAccion(accion) {
+        let mensaje;
         this.desactivarBotones();
 
         switch (accion) {
@@ -147,19 +148,19 @@ export class Combate {
                 document.getElementById("mensajeDeCombate").textContent = this.jugador.atacar(this.enemigo, this.jugador);
                 break;
             case "aard":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("aard", this.enemigo);
+                if(!this.comprobarMagia("aard", 20)) {return}
                 break;
             case "igni":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("igni", this.enemigo);
+                if(!this.comprobarMagia("igni", 30)) {return}
                 break;
             case "yrden":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("yrden", this.enemigo);
+                if(!this.comprobarMagia("yrden", 40)) {return}
                 break;
             case "quen":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("quen", this.enemigo);
+                
                 break;
             case "axii":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales("axii", this.enemigo);
+                if(!this.comprobarMagia("axii", 40)) {return}
                 break;
             default:
                 break;
@@ -231,7 +232,7 @@ export class Combate {
     }
 
     /**
-     * Método que sirve para actualizar la barra de vida correspondiente tras cada turno.
+     * Método que sirve para actualizar la barra de vida correspondiente tras cada turno. También la barra de maná del jugador.
      */
     actualizarBarrasVida() {
         const personajes = ["Jugador", "Enemigo"];
@@ -248,6 +249,14 @@ export class Combate {
             barraVida.style.width = `${porcentajeVida}%`;
             textoVida.textContent = `${vidaActual}/${vidaMax}`;
         });
+
+        let barraManaJugador = document.getElementById("barraManaJugador");
+        let manaActual = this.jugador.magiaActual;
+        let manaMax = this.jugador.magiaMax;
+        let porcentajeMana = (manaActual / manaMax) * 100;
+        barraManaJugador.style.width = `${porcentajeMana}%`;
+        textoManaJugador.textContent = `${manaActual}/${manaMax}`;
+
     }
 
     /**
@@ -267,6 +276,7 @@ export class Combate {
         }
 
         this.jugador.vidaActual = this.jugador.vidaMax;
+        this.jugador.magiaActual = this.jugador.magiaMax;
         this.jugador.dinero += 100;
         guardado[0] = this.jugador;
 
@@ -447,7 +457,7 @@ export class Combate {
         } else if (atributo === "fuerza") {
             this.jugador.fuerza += 10;
         } else if (atributo === "magia") {
-            this.jugador.magia += 10;
+            this.jugador.magiaMax += 10;
         }
         console.log(`${atributo} aumentado en 10`);
 
@@ -456,5 +466,27 @@ export class Combate {
 
         // Mostrar los botones finales después de mejorar la estadística
         this.mostrarBotonesFinales("Siguiente Combate");
+    }
+
+    comprobarMagia(senial, mana) {
+        let siAtacaConMagia = false;
+
+        if (!this.enemigo.estado.tipo) {
+            if (this.jugador.magiaActual - mana >= 0) {
+                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales(senial, this.enemigo);
+                this.jugador.magiaActual -= mana;
+                siAtacaConMagia = true;
+            }
+            else {
+                document.getElementById("mensajeDeCombate").textContent = "No tienes suficiente maná";
+                this.activarBotones();
+            }
+        }
+        else {
+            document.getElementById("mensajeDeCombate").textContent = `${this.enemigo.nombre} ya tiene el estado ${this.enemigo.estado.tipo}, no se puede aplicar otra señal.`;
+            this.activarBotones();
+        }
+
+        return siAtacaConMagia;
     }
 }

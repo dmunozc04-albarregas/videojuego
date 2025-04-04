@@ -344,7 +344,7 @@ export class Personaje {
                 mensaje = `${objetivo.nombre} ha sido aturdido por Aard.`;
                 break;
             case "igni":
-                objetivo.estado = { tipo: "quemado", duracion: 2, nombre: "igni" };
+                objetivo.estado = { tipo: "quemado", duracion: 3, nombre: "igni" };
                 mensaje = `${objetivo.nombre} ha sido quemado por Igni.`;
                 break;
             case "yrden":
@@ -352,7 +352,6 @@ export class Personaje {
                 mensaje = `${objetivo.nombre} ha sido paralizado por Yrden.`;
                 break;
             case "quen":
-                this.quen();
                 break;
             case "axii":
                 objetivo.estado = { tipo: "confundido", duracion: 1, nombre: "axii" };
