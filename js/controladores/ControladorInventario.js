@@ -151,3 +151,4 @@ function alerta(tipo, mensaje) {
     title: mensaje,
   });
 }
+

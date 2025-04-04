@@ -1,8 +1,19 @@
 import { Musica } from "../clases/Musica.js";
+const personaje = JSON.parse(localStorage.getItem("guardado"))[3];
 
 // Código para controlar la música
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Regiones.mp3");
+
+if (personaje.region === 2) {
+    enableRegion("region-2");
+}
+else if (personaje.region === 3) {
+    enableRegion("region-3");
+}
+else{
+    enableRegion("region-1");
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     redimensionarBody();
@@ -58,6 +69,25 @@ function disableRegion(regionId) {
     }
 }
 
-// Llamar a la función para deshabilitar regiones
-disableRegion("region-2");
+function enableRegion(regionId) {
+    let region = document.getElementById(regionId);
+    if (region) {
+
+        region.removeAttribute("style"); // Eliminar el estilo para volver a la normalidad
+        region.style.pointerEvents = "auto"; // Habilitar eventos de puntero
+
+        let label = document.getElementById("label-" + regionId.replace("region-", ""));
+        if (label) {
+            label.style.color = "#fff";
+        }
+
+        let lock_icon = document.getElementById("icon-" + regionId.replace("region-", ""));
+        if (lock_icon) {
+            lock_icon.style.display = "none"; // Ocultar el ícono de bloqueo
+        }
+    }
+}
+
+// Llamada a la función para deshabilitar regiones
+disableRegion("region-1");
 disableRegion("region-3");
