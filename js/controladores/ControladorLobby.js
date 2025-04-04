@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("fuerza-personaje").innerText = personaje.fuerza;
 
-  document.getElementById("magia-personaje").innerText = personaje.magia;
+  document.getElementById("magia-personaje").innerText = personaje.magiaMax;
 
   document.getElementById("nivel-personaje").innerText = personaje.nivel;
 
@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     barra_nivel_personaje.style.width = personaje.experiencia + "%";
     barra_nivel_personaje.setAttribute("aria-valuenow", personaje.experiencia);
-    console.log(personaje.experencia);
   }, 100);
 
   document.getElementById("economia").innerText = personaje.dinero;
