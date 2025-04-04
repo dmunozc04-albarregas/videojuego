@@ -1,4 +1,5 @@
 import { Musica } from "../clases/Musica.js";
+import { Arma } from "../clases/Arma.js";
 
 const tienda = JSON.parse(localStorage.getItem("guardado"))[1];
 const armas = tienda.armas;
@@ -51,3 +52,11 @@ function selectWeapon(weapon) {
 
 // Llamar a la función para generar la lista al cargar la página
 window.onload = generateWeaponList;
+
+function anhadirArmaInventario(jugador, arma) {
+    if(arma instanceof Arma) {
+      jugador.inventario.addArma(arma);
+    } else {
+      console.log('El objeto no es un arma válida.');
+    }
+}
