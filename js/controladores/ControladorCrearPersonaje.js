@@ -205,7 +205,7 @@ function crearRegiones(array) {
   // Primera región
   let soldado = new Enemigo("Soldado", 10, 50, 50, 10, 10, 1, "../recursos/imagenes/regiones/Velen/enemigos/Soldado.webp");
   let grifo = new Enemigo("Grifo", 20, 60, 60, 20, 20, 2, "../recursos/imagenes/regiones/Velen/enemigos/Grifo.webp");
-  let leshen = new Enemigo("Leshen", 30, 70, 70, 30, 3, "../recursos/imagenes/regiones/Velen/enemigos/Leshen.webp");
+  let leshen = new Enemigo("Leshen", 30, 70, 70, 30, 30, 3, "../recursos/imagenes/regiones/Velen/enemigos/Leshen.webp");
   let velen = new Region("Velen");
   velen.addEnemigos(soldado);
   velen.addEnemigos(grifo);
