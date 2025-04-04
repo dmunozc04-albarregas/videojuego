@@ -1,8 +1,19 @@
 import { Musica } from "../clases/Musica.js";
+const personaje = JSON.parse(localStorage.getItem("guardado"))[3];
 
 // Código para controlar la música
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Regiones.mp3");
+
+if (personaje.region === 2) {
+    enableRegion("region-2");
+}
+else if (personaje.region === 3) {
+    enableRegion("region-3");
+}
+else{
+    enableRegion("region-1");
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     redimensionarBody();
@@ -77,11 +88,6 @@ function enableRegion(regionId) {
     }
 }
 
-
-
-
-// Llamar a la función para deshabilitar regiones
-
-disableRegion("region-2");
+// Llamada a la función para deshabilitar regiones
+disableRegion("region-1");
 disableRegion("region-3");
-enableRegion("region-2");

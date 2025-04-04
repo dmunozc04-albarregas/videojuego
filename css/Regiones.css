@@ -11,9 +11,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     width: 100%;
-    max-width: 80em;
+    position: relative;
+    top: -1.5em;
+    margin: 0 auto;
+}
+
+.map-container img {
+    max-width: 80%;
+    height: auto;
+    position: relative;
+    cursor: crosshair !important;
 }
 
 img {
@@ -46,17 +54,17 @@ svg {
 
 #label-1 {
     position: absolute;
-    top: 15% !important;
+    top: 17% !important;
     /* Ajusta según sea necesario */
-    left: 28% !important;
+    left: 35% !important;
     /* Ajusta según sea necesario */
 }
 
 #label-2 {
     position: absolute;
-    top: 20% !important;
+    top: 21% !important;
     /* Ajusta según sea necesario */
-    left: 58% !important;
+    left: 56% !important;
     /* Ajusta según sea necesario */
 }
 
@@ -64,33 +72,33 @@ svg {
     position: absolute;
     top: 18% !important;
     /* Ajusta según sea necesario */
-    left: 78% !important;
+    left: 72% !important;
     /* Ajusta según sea necesario */
 }
 
 #icon-1 {
     display: none;
     position: absolute;
-    top: 50%;
+    top: 42% !important;
     /* Ajusta según sea necesario */
-    left: 25%;
+    left: 32%;
 }
 
 #icon-2 {
     display: none;
     position: absolute;
-    top: 50%;
+    top: 42% !important;
     /* Ajusta según sea necesario */
-    left: 60%;
+    left: 58%;
     /* Ajusta según sea necesario */
 }
 
 #icon-3 {
     display: none;
     position: absolute;
-    top: 28%;
+    top: 24%;
     /* Ajusta según sea necesario */
-    left: 76%;
+    left: 71%;
     /* Ajusta según sea necesario */
 }
 
