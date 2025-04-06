@@ -1,6 +1,7 @@
 import { Musica } from "../clases/Musica.js";
 
-const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
+const guardado = JSON.parse(localStorage.getItem("guardado"));
+const personaje = guardado[0];
 console.log("Objeto personaje:", personaje);
 
 // Código para controlar la música
@@ -55,7 +56,8 @@ for (let index = 0; index < numeroDeCeldas; index++) {
     // Mostrar un mensaje toast con SweetAlert al hacer clic en la celda
     celda.addEventListener("click", () => {
       personaje.arma = arma;
-      localStorage.setItem("guardado", JSON.stringify([personaje]));
+      guardado[0] = personaje;
+      localStorage.setItem("guardado", JSON.stringify(guardado));
       alerta("success", `${arma.nombre} equipada`);
 
     });
@@ -154,4 +156,3 @@ function alerta(tipo, mensaje) {
     title: mensaje,
   });
 }
-

@@ -164,8 +164,8 @@ function crearPersonaje(array) {
   const nombre = document.getElementById("nombre").value;
   const magia = parseInt(document.getElementById("magia").value);
   const fuerza = parseInt(document.getElementById("fuerza").value);
-  let arma = new Arma("Espada básica", 20, "Básica",0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
-  let arma2 = new Arma("Espada intermedia", "Intermedia", 30, 0, "../recursos/imagenes/armas/Arma1.webp", true);
+  let arma = new Arma("Espada básica", 20, "Básica", 0, "../recursos/imagenes/armas/EspadaBasica.webp", true);
+  let arma2 = new Arma("Espada intermedia", 30, "Intermedia", 0, "../recursos/imagenes/armas/Arma1.webp", true);
   let inventario = new Inventario();
   inventario.addArma(arma);
   inventario.addArma(arma2);
