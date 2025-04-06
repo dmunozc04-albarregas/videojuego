@@ -71,20 +71,6 @@ form label, h1 {
   transform: scale(0.9);
 }
 
-/*
-.btn-enviar{
-  background-image: url("https://witcher3map.com/files/images/homenav.png");
-  background-position-x: center;
-  background-position-y: bottom;
-  background-size: initial;
-  background-repeat: no-repeat;
-  background-attachment: initial;
-  bavkgroud-origin: initial;
-  background-clip: initial;
-  background-color: initial;
-}
-*/
-
 .btn-enviar {
   font-family: "IM Fell English SC", serif; 
   font-size: 24px;
