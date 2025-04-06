@@ -7,6 +7,7 @@
 body {
   background-image: url("../recursos/imagenes/fondos/FondoInventario.webp") !important;
   font-family: "IM Fell English SC", serif !important;
+  overflow: hidden !important;
 }
 
 .container {

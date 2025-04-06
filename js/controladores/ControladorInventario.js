@@ -54,7 +54,10 @@ for (let index = 0; index < numeroDeCeldas; index++) {
 
     // Mostrar un mensaje toast con SweetAlert al hacer clic en la celda
     celda.addEventListener("click", () => {
+      personaje.arma = arma;
+      localStorage.setItem("guardado", JSON.stringify([personaje]));
       alerta("success", `${arma.nombre} equipada`);
+
     });
   } else {
     const img = document.createElement("img");

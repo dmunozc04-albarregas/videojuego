@@ -1,93 +1,85 @@
 import { Musica } from "../clases/Musica.js";
-const personaje = JSON.parse(localStorage.getItem("guardado"))[3];
+
+const personaje = JSON.parse(localStorage.getItem("guardado"))?.[3];
 
 // Código para controlar la música
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Regiones.mp3");
 
-if (personaje.region === 2) {
-    enableRegion("region-2");
-}
-else if (personaje.region === 3) {
-    enableRegion("region-3");
-}
-else{
-    enableRegion("region-1");
-}
+document.addEventListener("DOMContentLoaded", () => {
+  redimensionarBody();
+  resizeSVG();
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    redimensionarBody();
+  // Deshabilitar todas las regiones primero
+  ["region-1", "region-2", "region-3"].forEach(disableRegion);
+
+  // Habilitar la región del personaje si existe
+  if (personaje && personaje.region) {
+    const id = `region-${personaje.region}`;
+    id.push("region-" + personaje.region);
+    ["region-1"].forEach(enableRegion);
+  }
+
+  // Agregar eventos de clic a las regiones
+  document.querySelectorAll(".region").forEach((region) => {
+    region.addEventListener("click", function () {
+      musica.desvanecer(() => {
+        window.location.href = "Combate.html";
+      });
+    });
+  });
 });
 
-function redimensionarBody() {
-    document.body.style.transform = 'scale(1.5)'; // Cambia el tamaño del body
-    setTimeout(() => {
-        document.body.style.transform = 'scale(1)'; // Vuelve al estado original
-    }, 1);
-}
-// Hacer que el SVG coincida con la imagen
-function resizeSVG() {
-    let img = document.getElementById("map-image");
-    let svg = document.getElementById("map-overlay");
-    svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
-}
-
-document.addEventListener("DOMContentLoaded", resizeSVG);
 window.addEventListener("resize", resizeSVG);
 
-// Agregar eventos de clic a las regiones
-document.querySelectorAll(".region").forEach(region => {
-    region.addEventListener("click", function () {
-        let regionId = this.id.replace("region-", "label-");
-        let label = document.getElementById(regionId);
-        //window.location.href = "../html/Combate.html"; 
-        musica.desvanecer(() => {
-            window.location.href = "Combate.html";
-        });
-    });
-});
+function redimensionarBody() {
+  document.body.style.transform = "scale(1.5)";
+  setTimeout(() => {
+    document.body.style.transform = "scale(1)";
+  }, 1);
+}
+
+function resizeSVG() {
+  const img = document.getElementById("map-image");
+  const svg = document.getElementById("map-overlay");
+  if (img && svg) {
+    svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
+  }
+}
 
 function disableRegion(regionId) {
-    let region = document.getElementById(regionId);
-    if (region) {
+  const region = document.getElementById(regionId);
+  if (region) {
+    region.style.fill = "rgba(255, 0, 0, 0.3)";
+    region.style.stroke = "red";
+    region.style.pointerEvents = "none";
 
-        // Cambiar el color para indicar que está deshabilitada
-        region.style.fill = "rgba(255, 0, 0, 0.3)";
-        region.style.stroke = "red";
-        region.style.pointerEvents = "none"; // Deshabilitar eventos de puntero
-
-        // Cambiar el color de la etiqueta si existe
-        let label = document.getElementById("label-" + regionId.replace("region-", ""));
-        if (label) {
-            label.style.color = "gray";
-        }
-
-        let lock_icon = document.getElementById("icon-" + regionId.replace("region-", ""));
-        if (lock_icon) {
-            lock_icon.style.display = "block"; // Mostrar el ícono de bloqueo
-        }
+    const label = document.getElementById(`label-${regionId.replace("region-", "")}`);
+    if (label) {
+      label.style.color = "gray";
     }
+
+    const lockIcon = document.getElementById(`icon-${regionId.replace("region-", "")}`);
+    if (lockIcon) {
+      lockIcon.style.display = "block";
+    }
+  }
 }
 
 function enableRegion(regionId) {
-    let region = document.getElementById(regionId);
-    if (region) {
+  const region = document.getElementById(regionId);
+  if (region) {
+    region.removeAttribute("style");
+    region.style.pointerEvents = "auto";
 
-        region.removeAttribute("style"); // Eliminar el estilo para volver a la normalidad
-        region.style.pointerEvents = "auto"; // Habilitar eventos de puntero
-
-        let label = document.getElementById("label-" + regionId.replace("region-", ""));
-        if (label) {
-            label.style.color = "#fff";
-        }
-
-        let lock_icon = document.getElementById("icon-" + regionId.replace("region-", ""));
-        if (lock_icon) {
-            lock_icon.style.display = "none"; // Ocultar el ícono de bloqueo
-        }
+    const label = document.getElementById(`label-${regionId.replace("region-", "")}`);
+    if (label) {
+      label.style.color = "#fff";
     }
-}
 
-// Llamada a la función para deshabilitar regiones
-disableRegion("region-1");
-disableRegion("region-3");
+    const lockIcon = document.getElementById(`icon-${regionId.replace("region-", "")}`);
+    if (lockIcon) {
+      lockIcon.style.display = "none";
+    }
+  }
+}

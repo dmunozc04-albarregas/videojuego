@@ -2,11 +2,18 @@ import { Musica } from "../clases/Musica.js";
 import { Arma } from "../clases/Arma.js";
 
 const tienda = JSON.parse(localStorage.getItem("guardado"))[1];
+const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
 const armas = tienda.armas;
 
 // Código para controlar la música
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Tienda.mp3");
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Tu código para generar la lista de armas
+    generateWeaponList();
+});
+
 
 // Código para la funcionalidad del botón volver
 document.querySelector(".btn-volver").addEventListener("click", () => {
@@ -23,21 +30,17 @@ function generateWeaponList() {
     container.innerHTML = ""; // Limpiar contenido previo
 
     armas.forEach(arma => {
-        // Crear el div de cada arma
         const weaponDiv = document.createElement("div");
         weaponDiv.classList.add("weapon-item");
-        weaponDiv.setAttribute("onclick", `selectWeapon('${arma.nombre}', '${arma.imagen}', ${arma.danio})`);
-
-        // Agregar el contenido dentro del div
-        weaponDiv.innerHTML = `<span>${arma.nombre}</span> <span>${arma.precio}</span>`;
-
-        // Añadir el evento de click para que salga su imagen y daño
         weaponDiv.addEventListener("click", () => selectWeapon(arma));
-
-        // Insertarlo en el contenedor
+        weaponDiv.innerHTML = `<span>${arma.nombre}</span> <span>${arma.precio}</span>`;
+        weaponDiv.addEventListener("click", () => selectWeapon(arma));
         container.appendChild(weaponDiv);
     });
 }
+
+
+let armaSeleccionada = null; // Variable para almacenar el arma seleccionada
 
 /**
  * Función que sirve para mostrar la imagen y daño del arma seleccionada.
@@ -45,18 +48,42 @@ function generateWeaponList() {
  * @param {*} weapon Arma a mostrar.
  */
 function selectWeapon(weapon) {
-    document.getElementById("selected-weapon-img").src = weapon.imagen;
+    armaSeleccionada = weapon; // Guardar el arma seleccionada
+    console.log(armaSeleccionada); // Para depuración
+    if (!(weapon instanceof Arma)) {
+        console.error("El objeto no es una instancia válida de Arma.");
+        return;
+    }
+    document.getElementById("pre-text").style.display = "none";
+    document.getElementById("post-text").style.display = "block";
+    const weaponImg = document.getElementById("selected-weapon-img");
+    weaponImg.src = weapon.imagen; // Cambia la imagen del arma seleccionada
     document.getElementById("selected-weapon-name").textContent = `Nombre: ${weapon.nombre}`;
     document.getElementById("selected-weapon-damage").textContent = `Daño: ${weapon.danio}`;
+    setTimeout(() => {
+        weaponImg.style.transition = "opacity 0.5s ease-in-out"; // Transición de opacidad
+        weaponImg.style.opacity = 1;  // Desvanece la imagen
+    }, 10); // Un pequeño retraso para asegurar que la transición comience
 }
 
-// Llamar a la función para generar la lista al cargar la página
-window.onload = generateWeaponList;
+document.querySelector(".btn-comprar").addEventListener("click", () => {
+    anhadirArmaInventario(armaSeleccionada);
+});
 
-function anhadirArmaInventario(jugador, arma) {
-    if(arma instanceof Arma) {
-      jugador.inventario.addArma(arma);
+function anhadirArmaInventario(arma) {
+    if (arma instanceof Arma) {  // Verificar que el objeto sea una instancia de Arma
+        if (personaje.dinero >= arma.precio) {  // Comprobar si el jugador tiene suficiente dinero
+            personaje.dinero -= arma.precio;  // Restar el precio del arma
+            tienda.inventario.addArma(arma);  // Añadir el arma al inventario
+            console.log(`Arma ${arma.nombre} añadida al inventario.`);
+            console.log(`Dinero restante: ${tienda.dinero}`);
+            
+            // Actualizar el valor de dinero en localStorage
+            localStorage.setItem("guardado", JSON.stringify([tienda]));
+        } else {
+            console.log("No tienes suficiente dinero para comprar esta arma.");
+        }
     } else {
-      console.log('El objeto no es un arma válida.');
+        console.error("El objeto no es una instancia válida de Arma.");
     }
 }
