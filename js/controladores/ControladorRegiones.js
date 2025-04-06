@@ -13,11 +13,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Deshabilitar todas las regiones primero
   ["region-1", "region-2", "region-3"].forEach(disableRegion);
 
-  // Habilitar la región del personaje si existe
-  if (personaje && personaje.region) {
-    const id = `region-${personaje.region}`;
-    id.push("region-" + personaje.region);
-    ["region-1"].forEach(enableRegion);
+  switch (personaje.region) {
+    case 1:
+      enableRegion("region-1");
+      /*disableRegion("region-2");
+      disableRegion("region-3");*/
+      break;
+    case 2:
+      enableRegion("region-2");
+      /*disableRegion("region-1");
+      disableRegion("region-3");*/
+      break;
+    case 3:
+      enableRegion("region-3");
+      /*disableRegion("region-1");
+      disableRegion("region-2");*/
+      break;
+    default:
+      enableRegion("region-1");
+      enableRegion("region-2");
+      enableRegion("region-3");
+      break;
   }
 
   // Agregar eventos de clic a las regiones

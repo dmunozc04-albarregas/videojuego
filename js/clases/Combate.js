@@ -140,39 +140,24 @@ export class Combate {
      * @param {*} accion Acción seleccionada.
      */
     turnoJugadorAccion(accion) {
-        let mensaje;
         this.desactivarBotones();
+        let mensaje = document.getElementById("mensajeDeCombate");;
 
-        switch (accion) {
-            case "atacar":
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.atacar(this.enemigo, this.jugador);
-                break;
-            case "aard":
-                if(!this.comprobarMagia("aard", 20)) {return}
-                break;
-            case "igni":
-                if(!this.comprobarMagia("igni", 30)) {return}
-                break;
-            case "yrden":
-                if(!this.comprobarMagia("yrden", 40)) {return}
-                break;
-            case "quen":
-                
-                break;
-            case "axii":
-                if(!this.comprobarMagia("axii", 40)) {return}
-                break;
-            default:
-                break;
+        if (accion === "atacar") {
+            mensaje.textContent = this.jugador.atacar(this.enemigo, this.jugador);
+        } else if (Jugador.seniales[accion]) {
+            const senial = Jugador.seniales[accion];
+            if (!this.comprobarMagia(accion, senial.coste)) return;
+            mensaje.textContent = this.jugador.magia(accion, this.enemigo);
         }
 
         this.mostrarEstadoSiExiste();
 
         setTimeout(() => {
-            this.actualizarBarrasVida();
+            this.actualizarBarrasVidaYMana();
 
             if (this.estaVivo(this.enemigo)) {
-                setTimeout(this.turnoEnemigo("atacar"), 3000);
+                setTimeout(() => this.turnoEnemigo("atacar"), 2500);
             } else {
                 this.mostrarMensajeFinal("¡Has ganado!");
             }
@@ -185,22 +170,23 @@ export class Combate {
      * @param {*} accion   
      */
     turnoEnemigo(accion) {
-        document.getElementById("estadoCombate").textContent = `Turno de ${this.enemigo.nombre}`;
+        const estadoCombate = document.getElementById("estadoCombate");
+        const mensajeCombate = document.getElementById("mensajeDeCombate");
 
-        switch (accion) {
-            case "atacar":
-                document.getElementById("mensajeDeCombate").textContent = this.enemigo.atacar(this.jugador, this.enemigo);
-                break;
-            default:
-                break;
+        estadoCombate.textContent = `Turno de ${this.enemigo.nombre}`;
+
+        if (accion === "atacar") {
+            mensajeCombate.textContent = this.enemigo.atacar(this.jugador, this.enemigo);
         }
 
+        this.mostrarEstadoSiExiste();
+
         setTimeout(() => {
-            this.actualizarBarrasVida();
+            this.actualizarBarrasVidaYMana();
 
             if (this.estaVivo(this.jugador) && this.estaVivo(this.enemigo)) {
                 this.activarBotones();
-                document.getElementById("estadoCombate").textContent = `Turno de ${this.jugador.nombre}`;
+                estadoCombate.textContent = `Turno de ${this.jugador.nombre}`;
             } else if (!this.estaVivo(this.enemigo)) {
                 this.mostrarMensajeFinal("¡Has ganado!");
             }
@@ -226,7 +212,6 @@ export class Combate {
         else {
             textoElemento.textContent = this.enemigo.estado.duracion;
             imagenElemento.src = `../recursos/imagenes/seniales/${this.enemigo.estado.nombre}.webp`;
-
             contenedor.classList.remove("oculto");
         }
     }
@@ -234,9 +219,10 @@ export class Combate {
     /**
      * Método que sirve para actualizar la barra de vida correspondiente tras cada turno. También la barra de maná del jugador.
      */
-    actualizarBarrasVida() {
+    actualizarBarrasVidaYMana() {
         const personajes = ["Jugador", "Enemigo"];
 
+        // Se actualizan las barras de vida de ambos
         personajes.forEach(personaje => {
             let barraVida = document.getElementById(`barraVida${personaje}`);
             let textoVida = document.getElementById(`textoVida${personaje}`);
@@ -250,6 +236,7 @@ export class Combate {
             textoVida.textContent = `${vidaActual}/${vidaMax}`;
         });
 
+        // Se actualiza la barra de maná del jugador
         let barraManaJugador = document.getElementById("barraManaJugador");
         let manaActual = this.jugador.magiaActual;
         let manaMax = this.jugador.magiaMax;
@@ -260,17 +247,18 @@ export class Combate {
     }
 
     /**
-     * Método que sirve para actualizar la region y el enemigo en caso de que el jugador gane el combate.
-     * También modifica el jugador.
+     * Método que sirve para actualizar la region y el enemigo cuando el jugador gana el combate.
+     * También modifica la vida actual, magia actual y dinero del jugador.
      */
     actualizarEstadoPartida() {
         let guardado = JSON.parse(localStorage.getItem("guardado"));
 
+        // Si el enemigo es el tercero significa que hay que avanzar de región
         if (guardado[3].enemigo === 3) {
             let siguienteRegion = guardado[3].region + 1;
             guardado[3] = { region: siguienteRegion, enemigo: 1 };
         }
-        else {
+        else { // Si no simplemente se suma 1 para avanzar al siguiente enemigo
             let siguienteEnemigo = guardado[3].enemigo + 1;
             guardado[3].enemigo = siguienteEnemigo;
         }
@@ -306,7 +294,7 @@ export class Combate {
     mostrarMensajeFinal(texto) {
         const mensaje = document.getElementById("mensajeFinal");
 
-        // Se muestra el mensaje del resultado del combate.
+        // Se muestra el mensaje del resultado del combate
         const mensajePrincipal = document.createElement("div");
         mensajePrincipal.textContent = texto;
         mensajePrincipal.classList.add("mensaje-principal");
@@ -314,13 +302,13 @@ export class Combate {
 
         // Si gana el jugador se muestran otros mensajes
         if (texto === "¡Has ganado!") {
-            // Mensaje de la experiencia
+            // Mensaje de experiencia
             const mensajeExp = document.createElement("div");
             mensajeExp.classList.add("mensaje-exp");
             mensajeExp.textContent = "Has recibido 50 de experiencia";
             mensaje.appendChild(mensajeExp);
 
-            // Mensaje del oro
+            // Mensaje de oro
             const mensajeOro = document.createElement("div");
             mensajeOro.classList.add("mensaje-oro");
             mensajeOro.textContent = "Has recibido 100 de oro";
@@ -362,6 +350,8 @@ export class Combate {
     mostrarBotonesFinales(textoBotonCombate) {
         const musica = new Musica();
         const mensaje = document.getElementById("mensajeFinal");
+
+        // Crear el contenedor de botones
         const botones = document.createElement("div");
         botones.classList.add("botones-finales");
 
@@ -385,6 +375,7 @@ export class Combate {
         };
         botones.appendChild(btnTaberna);
 
+        // Añadir los botones al mensaje final
         mensaje.appendChild(botones);
     }
 
@@ -398,30 +389,34 @@ export class Combate {
         const botones = document.createElement("div");
         botones.classList.add("botones-subida-nivel");
 
+        // Botón aumentar vida
         const btnVida = document.createElement("button");
         btnVida.textContent = "Vida +10";
         btnVida.onclick = () => {
             this.aumentarEstadisticas("vida");
-            callback(); // Llamar al callback después de aumentar la vida
+            callback();
         };
         botones.appendChild(btnVida);
 
+        // Botón aumentar fuerza
         const btnFuerza = document.createElement("button");
         btnFuerza.textContent = "Fuerza +10";
         btnFuerza.onclick = () => {
             this.aumentarEstadisticas("fuerza");
-            callback(); // Llamar al callback después de aumentar la fuerza
+            callback();
         };
         botones.appendChild(btnFuerza);
 
+        // Botón aumentar magia
         const btnMagia = document.createElement("button");
         btnMagia.textContent = "Magia +10";
         btnMagia.onclick = () => {
             this.aumentarEstadisticas("magia");
-            callback(); // Llamar al callback después de aumentar la magia
+            callback();
         };
         botones.appendChild(btnMagia);
 
+        // Añadir los botones al mensaje final
         mensaje.appendChild(botones);
     }
 
@@ -431,19 +426,18 @@ export class Combate {
      * @returns Devuelve verdadero si sube de nivel. Falso en caso contrario.
      */
     subirNivel() {
-        let subir = false;
+        const experienciaNecesaria = 100;
+        const experienciaObtenida = 50;
 
-        if (this.jugador.experiencia + 50 >= 100) {
+        if (this.jugador.experiencia + experienciaObtenida >= experienciaNecesaria) {
             this.jugador.nivel++;
             this.jugador.experiencia = 0;
-            subir = true;
-        }
-        else {
-            this.jugador.experiencia += 50;
-            subir = false;
+            return true;
         }
 
-        return subir;
+        // No sube de nivel, pero se añade la experiencia
+        this.jugador.experiencia += experienciaObtenida;
+        return false;
     }
 
     /**
@@ -459,7 +453,6 @@ export class Combate {
         } else if (atributo === "magia") {
             this.jugador.magiaMax += 10;
         }
-        console.log(`${atributo} aumentado en 10`);
 
         // Eliminar los botones de subida de nivel
         document.querySelector(".botones-subida-nivel").remove();
@@ -468,22 +461,33 @@ export class Combate {
         this.mostrarBotonesFinales("Siguiente Combate");
     }
 
+    /**
+     * Método que sirve para comprobar si el enemigo ya tiene un estado activo o si el jugador tiene suficiente maná a la hora 
+     * de utilizar una señal.
+     * 
+     * @param {*} senial Señal a lanzar.
+     * @param {*} mana Maná que cuesta la señal.
+     * @returns Devuelve verdadero si el jugador puede atacar con magia. Falso si el enemigo tiene un estado activo o el jugador no tiene maná.
+     */
     comprobarMagia(senial, mana) {
         let siAtacaConMagia = false;
+        let mensaje = document.getElementById("mensajeDeCombate");
 
-        if (!this.enemigo.estado.tipo) {
-            if (this.jugador.magiaActual - mana >= 0) {
-                document.getElementById("mensajeDeCombate").textContent = this.jugador.seniales(senial, this.enemigo);
-                this.jugador.magiaActual -= mana;
+        // Comprobamos si el enemigo tiene un estado activo
+        const enemigoEstado = this.enemigo.estado.tipo;
+        const jugadorMana = this.jugador.magiaActual;
+
+        if (!enemigoEstado) {  // Si el enemigo no tiene estado activo
+            if (jugadorMana >= mana) {  // Si el jugador tiene suficiente maná
+                mensaje.textContent = this.jugador.magia(senial, this.enemigo);
+                this.jugador.magiaActual -= mana; 
                 siAtacaConMagia = true;
-            }
-            else {
-                document.getElementById("mensajeDeCombate").textContent = "No tienes suficiente maná";
+            } else {  // Si no tiene suficiente maná
+                mensaje.textContent = "No tienes suficiente maná";
                 this.activarBotones();
             }
-        }
-        else {
-            document.getElementById("mensajeDeCombate").textContent = `${this.enemigo.nombre} ya tiene el estado ${this.enemigo.estado.tipo}, no se puede aplicar otra señal.`;
+        } else {  // Si el enemigo ya tiene un estado activo
+            mensaje.textContent = `${this.enemigo.nombre} ya tiene el estado ${enemigoEstado}, no se puede aplicar otra señal.`;
             this.activarBotones();
         }
 

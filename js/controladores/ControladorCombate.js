@@ -57,7 +57,7 @@ if (comprobarFinJuego()) {
         caraOCruz(iniciarCombate);
         fondoPorHora();
 
-        // Para asignar las imágenes y nombres a la interfaz
+        // Código para asignar las imágenes y nombres a la interfaz
         document.getElementById("textoLetrero").textContent = region.imgRegion;
         document.getElementById("imgJugador").src = jugador.imagen;
         document.getElementById("nombreJugador").textContent = jugador.nombre;
@@ -65,7 +65,7 @@ if (comprobarFinJuego()) {
         document.getElementById("imgEnemigo").src = enemigo.imagen;
         document.getElementById("nombreEnemigo").textContent = enemigo.nombre;
 
-        // Para poner las vidas y el maná en las barras 
+        // Código para poner las vidas y el maná en las barras 
         document.getElementById("textoVidaJugador").textContent = `${jugador.vidaMax}/${jugador.vidaMax}`;
         document.getElementById("textoVidaEnemigo").textContent = `${enemigo.vidaMax}/${enemigo.vidaMax}`;
         document.getElementById("textoManaJugador").textContent = `${jugador.magiaMax}/${jugador.magiaMax}`;
@@ -84,9 +84,9 @@ function comprobarFinJuego() {
     // Si no hay más regiones para jugar, mostramos el mensaje y redirigimos al lobby
     if (guardado[2].length < guardado[3].region) {
         mostrarMensajeFinJuego();
-        return true;  // El juego ha terminado
+        return true; 
     }
-    return false;  // El juego no ha terminado
+    return false;  
 }
 
 /**

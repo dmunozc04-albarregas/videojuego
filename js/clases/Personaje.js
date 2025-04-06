@@ -265,7 +265,7 @@ export class Personaje {
                     atacante.reducirDuracionEstado();
                     return `${atacante.nombre} está paralizado y no puede atacar`;
                 case "protegido":
-                    
+
                     break;
                 case "confundido":
                     danioRecibido = atacante.fuerza;
@@ -325,41 +325,18 @@ export class Personaje {
     }
 
     /**
-     * Método que sirve para atacar con una señal al oponente. Se comprueba si ya tiene algún estado y no le deja atacar.
+     * Método que sirve para atacar con una señal al oponente.
      * 
      * @param {*} senial Señal a lanzar.
      * @param {*} objetivo Objetivo a lanzar la señal.
      * @returns Devuelve el mensaje a mostrar en el combate.
      */
-    seniales(senial, objetivo) {
+    magia(senial, objetivo) {
         let mensaje;
 
-        if (objetivo.estado.tipo) {
-            return `${objetivo.nombre} ya tiene el estado ${objetivo.estado.tipo}, no se puede aplicar otra señal.`;
-        }
-
-        switch (senial) {
-            case "aard":
-                objetivo.estado = { tipo: "aturdido", duracion: 2, nombre: "aard" };
-                mensaje = `${objetivo.nombre} ha sido aturdido por Aard.`;
-                break;
-            case "igni":
-                objetivo.estado = { tipo: "quemado", duracion: 3, nombre: "igni" };
-                mensaje = `${objetivo.nombre} ha sido quemado por Igni.`;
-                break;
-            case "yrden":
-                objetivo.estado = { tipo: "paralizado", duracion: 2, nombre: "yrden" };
-                mensaje = `${objetivo.nombre} ha sido paralizado por Yrden.`;
-                break;
-            case "quen":
-                break;
-            case "axii":
-                objetivo.estado = { tipo: "confundido", duracion: 1, nombre: "axii" };
-                mensaje = `${objetivo.nombre} ha sido confundido por Axii.`;
-                break;
-            default:
-                console.log("Señal no reconocida.");
-        }
+        const senialALanzar = Jugador.seniales[senial];
+        objetivo.estado = { tipo: senialALanzar.tipo, duracion: senialALanzar.duracion, nombre: senial };
+        mensaje = `${objetivo.nombre} ha sido ${senialALanzar.tipo} por ${senial.charAt(0).toUpperCase() + senial.slice(1)}.`;
 
         return mensaje;
     }

@@ -13,6 +13,13 @@ export class Jugador extends Personaje {
     #dinero;
     #inventario;
 
+    static seniales = {
+        "aard": { tipo: "aturdido", duracion: 2, coste: 20 },
+        "igni": { tipo: "quemado", duracion: 3, coste: 30 },
+        "yrden": { tipo: "paralizado", duracion: 2, coste: 40 },
+        "axii": { tipo: "confundido", duracion: 1, coste: 40 }
+    };
+
     /**
      * Constructor de la clase jugador.
      *  

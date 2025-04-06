@@ -54,9 +54,9 @@ svg {
 
 #label-1 {
     position: absolute;
-    top: 17% !important;
+    top: 20% !important;
     /* Ajusta según sea necesario */
-    left: 25% !important;
+    left: 56% !important;
     /* Ajusta según sea necesario */
 }
 
@@ -81,7 +81,7 @@ svg {
     position: absolute;
     top: 42% !important;
     /* Ajusta según sea necesario */
-    left: 32%;
+    left: 58%;
 }
 
 #icon-2 {
@@ -89,7 +89,7 @@ svg {
     position: absolute;
     top: 42% !important;
     /* Ajusta según sea necesario */
-    left: 58%;
+    left: 32%;
     /* Ajusta según sea necesario */
 }
 
