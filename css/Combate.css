@@ -183,46 +183,42 @@ body {
     justify-content: center;
 }
 
-/**
- * @class .botones
- * @description Contenedor de los botones de acción, con un espacio uniforme entre ellos.
- */
 .botones {
     display: flex;
     gap: 20px;
-}
-
-/**
- * @class .botones button
- * @description Estilos de los botones de acción.
- */
-.botones button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .botones button {
+    background-color: #1a2a40;
+    color: #e0e6f8;
+    border: 2px solid #4a6fa5;
+    border-radius: 10px;
     padding: 12px 25px;
-    font-size: 18px;
+    font-size: 17px;
+    font-family: 'Cinzel', serif;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-/**
-* @class .botones button:hover
-* @description Efecto hover para los botones de acción.
-*/
-.botones button:hover {
-    background-color: #0056b3;
-}
-
-/**
- * @class button:disabled
- * @description Estilo de los botones deshabilitados.
- */
-button:disabled {
-    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 6px rgba(74, 111, 165, 0.4);
+  }
+  
+  .botones button:hover {
+    background-color: #243c5c;
+    border-color: #6ea8e3;
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(110, 168, 227, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  button:disabled {
+    opacity: 0.4;
     cursor: not-allowed;
-}
+    background-color: #1a2a40;
+    color: #888;
+    border-color: #2c3e55;
+    box-shadow: none;
+  }
 
 /**
  * @class .progress-bar
@@ -365,8 +361,32 @@ button:disabled {
 * @class .botones-finales
 * @description Clase para los botones finales que aparecen al finalizar el combate.
 */
-.botones-finales {
-    margin-top: 10px;
+.botones-finales, .botones-subida-nivel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+  
+.botones-finales button, .botones-subida-nivel button, #btnCara, #btnCruz {
+    background-color: #2e2e2e; /* fondo oscuro medieval */
+    color: #f4e6c1; /* tono pergamino */
+    border: 2px solid #a78c56; /* dorado tenue */
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif; /* estilo temático (requiere Google Fonts si quieres) */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+  
+.botones-finales button:hover, .botones-subida-nivel button:hover, #btnCara:hover, #btnCruz:hover {
+    background-color: #3e3e3e;
+    color: #fff;
+    transform: scale(1.05);
+    border-color: #c9aa71;
+    box-shadow: 0 0 10px rgba(201, 170, 113, 0.5);
 }
 
 /**

@@ -26,7 +26,7 @@ export class Musica {
      * @param {*} callback 
      */
     desvanecer(callback) {
-        const fadeOutDuration = 750; // Duración total del desvanecimiento en ms
+        const fadeOutDuration = 1000; // Duración total del desvanecimiento en ms
         const fadeInterval = 50; // Frecuencia de actualización en ms
         const steps = fadeOutDuration / fadeInterval; // Cantidad de pasos de reducción
         const fadeStep = this.audio.volume / steps; // Ajuste dinámico para un desvanecimiento uniforme
