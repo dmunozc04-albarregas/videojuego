@@ -6,6 +6,13 @@ const personaje = JSON.parse(localStorage.getItem("guardado"))?.[3];
 const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Regiones.mp3");
 
+// Código para la funcionalidad del botón volver
+document.querySelector(".btn-volver").addEventListener("click", () => {
+  musica.desvanecer(() => {
+      window.location.href = "Lobby.html";
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   redimensionarBody();
   resizeSVG();

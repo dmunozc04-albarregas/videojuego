@@ -126,3 +126,33 @@ svg {
     border-radius: 50%;
     text-align: center;
 }
+
+.btn-volver {
+    position: fixed; /* Fija la posición en la pantalla */
+    bottom: 45px; /* Lo mantiene siempre 20px desde la parte inferior */
+    left: 50%; /* Lo alinea al 50% del ancho de la página */
+    transform: translateX(-50%); /* Lo centra horizontalmente */
+    font-family: "IM Fell English SC", serif;
+    font-size: 24px;
+    color: #d6d6d6;
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+}
+  
+.btn-volver:hover {
+    color: #ffffff;
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
+}
+  
+.btn-volver:hover::before {
+    opacity: 1;
+}
