@@ -13,14 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Deshabilitar todas las regiones primero
   ["region-1", "region-2", "region-3"].forEach(disableRegion);
 
+  // Estructura de switch que habilita las regiones según el nivel del personaje
   switch (personaje.region) {
     case 1:
       enableRegion("region-1");
       break;
     case 2:
+      enableRegion("region-1");
       enableRegion("region-2");
       break;
     case 3:
+      enableRegion("region-1");
+      enableRegion("region-2");
       enableRegion("region-3");
       break;
     default:
