@@ -10,7 +10,6 @@ export class Enemigo extends Personaje {
 
     /**
      * Constructor de la clase Enemigo. Internamente se crea un estado con varios atributos para controlar la magia del juego.
-     * 
      * @param {*} nombre Nombre del enemigo.
      * @param {*} fuerza Fuerza del enemigo.
      * @param {*} vidaActual Vida actual del enemigo.

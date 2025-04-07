@@ -3,6 +3,7 @@ import { Arma } from "../clases/Arma.js";
 
 const tienda = JSON.parse(localStorage.getItem("guardado"))[1];
 const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
+tienda.armas = tienda.armas.map(armaData => Arma.fromJSON(armaData));
 const armas = tienda.armas;
 
 // Código para controlar la música
@@ -10,7 +11,6 @@ const musica = new Musica();
 musica.reproducir("../recursos/sonidos/Tienda.mp3");
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Tu código para generar la lista de armas
     generateWeaponList();
 });
 
@@ -49,7 +49,7 @@ let armaSeleccionada = null; // Variable para almacenar el arma seleccionada
  */
 function selectWeapon(weapon) {
     armaSeleccionada = weapon; // Guardar el arma seleccionada
-    console.log(armaSeleccionada); // Para depuración
+    //console.log(armaSeleccionada); // Para depuración
     if (!(weapon instanceof Arma)) {
         console.error("El objeto no es una instancia válida de Arma.");
         return;
@@ -71,10 +71,11 @@ document.querySelector(".btn-comprar").addEventListener("click", () => {
 });
 
 function anhadirArmaInventario(arma) {
+
     if (arma instanceof Arma) {  // Verificar que el objeto sea una instancia de Arma
         if (personaje.dinero >= arma.precio) {  // Comprobar si el jugador tiene suficiente dinero
             personaje.dinero -= arma.precio;  // Restar el precio del arma
-            tienda.inventario.addArma(arma);  // Añadir el arma al inventario
+            personaje.inventario.armasCompradas.addArma(arma);  // Añadir el arma al inventario
             console.log(`Arma ${arma.nombre} añadida al inventario.`);
             console.log(`Dinero restante: ${tienda.dinero}`);
             
