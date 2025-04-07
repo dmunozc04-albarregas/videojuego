@@ -145,6 +145,11 @@ export class Combate {
 
         if (accion === "atacar") {
             mensaje.textContent = this.jugador.atacar(this.enemigo, this.jugador);
+
+            // Se reproduce el sonido de la espada
+            const sonidoEspada = new Audio(`../recursos/sonidos/Espada.mp3`);
+            sonidoEspada.volume = 0.4;
+            sonidoEspada.play();
         } else if (Jugador.seniales[accion]) {
             const senial = Jugador.seniales[accion];
             if (!this.comprobarMagia(accion, senial.coste)) return;
@@ -359,21 +364,21 @@ export class Combate {
         // Botón de combate (puede ser "Siguiente combate" o "Reintentar combate")
         const btnCombate = document.createElement("button");
         btnCombate.textContent = textoBotonCombate;
-        btnCombate.onclick = () => {
+        btnCombate.addEventListener("click", function () {
             musica.desvanecer(() => {
                 window.location.reload();
             });
-        };
+        });
         botones.appendChild(btnCombate);
 
         // Botón Volver a la taberna
         const btnTaberna = document.createElement("button");
         btnTaberna.textContent = "Volver a la taberna";
-        btnTaberna.onclick = () => {
+        btnTaberna.addEventListener("click", function () {
             musica.desvanecer(() => {
                 window.location.href = "Lobby.html";
             });
-        };
+        });
         botones.appendChild(btnTaberna);
 
         // Añadir los botones al mensaje final
@@ -481,8 +486,13 @@ export class Combate {
         if (!enemigoEstado) {  // Si el enemigo no tiene estado activo
             if (jugadorMana >= mana) {  // Si el jugador tiene suficiente maná
                 mensaje.textContent = this.jugador.magia(senial, this.enemigo);
-                this.jugador.magiaActual -= mana; 
+                this.jugador.magiaActual -= mana;
                 siAtacaConMagia = true;
+
+                // Se reproduce el sonido de la señal
+                const sonidoMagia = new Audio(`../recursos/sonidos/${senial}.mp3`);
+                sonidoMagia.volume = 0.5;
+                sonidoMagia.play();
             } else {  // Si no tiene suficiente maná
                 mensaje.textContent = "No tienes suficiente maná";
                 this.activarBotones();

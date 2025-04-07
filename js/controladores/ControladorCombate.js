@@ -37,7 +37,6 @@ if (comprobarFinJuego()) {
     enemigo = Enemigo.fromJSON(datosEnemigo);
     region = Region.fromJSON(datosRegion);
     inventario = Inventario.fromJSON(datosJugador.inventario);
-    console.log(inventario);
     arma = Arma.fromJSON(datosJugador.arma);
     datosJugador.inventario = inventario;
     datosJugador.arma = arma;
