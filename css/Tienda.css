@@ -31,12 +31,35 @@ body {
     border-radius: 5px;
     margin-right: 20px;
     border: 2px solid grey !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 300px;
 }
 
 .weapon-preview img {
     width: 100px;
     height: auto;
 }
+
+.economia-preview {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.economia-preview img.w-1 {
+    width: 22px;
+    height: 22px;
+}
+
+#economia {
+    color: white;
+}
+
 #pre-text{
     display: block;
     position: absolute;

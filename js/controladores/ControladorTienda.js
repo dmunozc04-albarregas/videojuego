@@ -14,13 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     generateWeaponList();
 });
 
-
 // Código para la funcionalidad del botón volver
 document.querySelector(".btn-volver").addEventListener("click", () => {
     musica.desvanecer(() => {
         window.location.href = "Lobby.html";
     });
 });
+
+// Código para poner el dinero del jugador
+document.getElementById("economia").innerText = personaje.dinero;
 
 /**
  * Función para generar la lista de armas al cargar la tienda.
