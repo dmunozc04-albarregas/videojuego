@@ -26,12 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
       enableRegion("region-1");
       break;
     case 2:
-      enableRegion("region-1");
       enableRegion("region-2");
       break;
     case 3:
-      enableRegion("region-1");
-      enableRegion("region-2");
       enableRegion("region-3");
       break;
     default:
