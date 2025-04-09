@@ -101,16 +101,19 @@ document.querySelector(".btn-comprar").addEventListener("click", () => {
 });
 
 function anhadirArmaInventario(arma) {
-
-    if (arma instanceof Arma) {  // Verificar que el objeto sea una instancia de Arma
-        if (personaje.dinero >= arma.precio) {  // Comprobar si el jugador tiene suficiente dinero
-            personaje.dinero -= arma.precio;  // Restar el precio del arma
-            personaje.inventario.armasCompradas.addArma(arma);  // Añadir el arma al inventario
-            console.log(`Arma ${arma.nombre} añadida al inventario.`);
-            console.log(`Dinero restante: ${tienda.dinero}`);
-            
-            // Actualizar el valor de dinero en localStorage
-            localStorage.setItem("guardado", JSON.stringify([tienda]));
+    if (arma instanceof Arma) {
+        if (arma.estaComprado) {
+            alerta("error", `Ya tienes esta arma en tu inventario`);
+            return;
+        } else if (personaje.dinero >= arma.precio) {
+            personaje.dinero -= arma.precio;
+            personaje.inventario.addArma(arma);
+            alerta("success", `${arma.nombre} comprada con éxito!`);
+            document.getElementById("economia").innerText = personaje.dinero;
+            arma.estaComprado = true; 
+            guardado[0] = personaje;
+            guardado[1] = tienda;
+            localStorage.setItem("guardado", JSON.stringify(guardado));
         } else {
             alerta("error", `No tienes suficiente dinero para comprar esta arma`);
         }
