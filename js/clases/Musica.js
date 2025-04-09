@@ -5,8 +5,16 @@
  */
 export class Musica {
     constructor() {
+        // Si ya existe una instancia, devolverla
+        if (Musica._instancia) {
+            return Musica._instancia;
+        }
+
         this.audio = new Audio();
         this.audio.loop = true;
+
+        // Guardar la instancia para que se reutilice
+        Musica._instancia = this;
     }
 
     /**
