@@ -137,6 +137,9 @@ body {
     width: 100%; /* Se ajusta dinámicamente con JS */
     transition: width 0.5s ease-in-out; /* Transición suave cuando cambia el valor */
     border-radius: 8px; /* Bordes redondeados en la barra de vida */
+    position: relative;
+    text-align: center;
+    font-weight: bold;
 }
 
 /**
@@ -188,9 +191,9 @@ body {
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
-  }
+}
   
-  .botones button {
+.botones button {
     background-color: #1a2a40;
     color: #e0e6f8;
     border: 2px solid #4a6fa5;
@@ -201,33 +204,23 @@ body {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     box-shadow: 0 0 6px rgba(74, 111, 165, 0.4);
-  }
+}
   
-  .botones button:hover {
+.botones button:hover {
     background-color: #243c5c;
     border-color: #6ea8e3;
     color: #ffffff;
     box-shadow: 0 0 12px rgba(110, 168, 227, 0.5);
     transform: translateY(-2px);
-  }
+}
   
-  button:disabled {
+button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
     background-color: #1a2a40;
     color: #888;
     border-color: #2c3e55;
     box-shadow: none;
-  }
-
-/**
- * @class .progress-bar
- * @description Barra de vida dentro del contenedor de progreso.
- */
-.progress-bar {
-    position: relative;
-    text-align: center;
-    font-weight: bold;
 }
 
 /**

@@ -198,8 +198,6 @@ function funcionalidadBotones() {
 
     document.getElementById("btnYrden").addEventListener("click", () => combate.turnoJugadorAccion("yrden"));
 
-    document.getElementById("btnQuen").addEventListener("click", () => combate.turnoJugadorAccion("quen"));
-
     document.getElementById("btnAxii").addEventListener("click", () => combate.turnoJugadorAccion("axii"));
 
     document.getElementById("btnVolver").addEventListener("click", () => {

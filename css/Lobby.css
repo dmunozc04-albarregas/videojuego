@@ -27,12 +27,6 @@ body {
   padding-left: 2em;
 }
 
-/*.navbar-brand{
-    padding-left: 15em;
-    padding-right: .1em;
-    pointer-events: none;
-}*/
-
 .navbar-nav {
   display: flex;
   justify-content: center; /* Centra los elementos horizontalmente */
@@ -99,14 +93,6 @@ progress{
   height: 15em;
 }
 
-/*.progress-bar{
-  background-color: #4CAF50 !important;
-}*/
-
-/*.barra-verde {
-  accent-color: #0aff58;
-}*/
-
 .barra-roja {
   background-color: red !important;
 }
@@ -118,49 +104,6 @@ progress{
 .barra-verde {
   background-color: #0aff58 !important;
 }
-
-/*.btn-jugar {
-  font-size: 24px;
-  color: #d6d6d6;
-  background: transparent;
-  border: 2px solid transparent;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: absolute;
-  transition: all 0.3s ease-in-out;
-  text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
-}
-
-.btn-jugar::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 300%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.2) 0%,
-    transparent 40%
-  );
-  transform: translate(-50%, -50%) rotate(25deg);
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-}
-
-.btn-jugar:hover {
-  color: #ffffff;
-  text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.8);
-}
-
-.btn-jugar:hover::before {
-  opacity: 1;
-}
-
-.btn-jugar:active {
-  transform: scale(0.95);
-}*/
 
 .economia img{
     width: 30px !important; /* Ajusta el tamaño según sea necesario */

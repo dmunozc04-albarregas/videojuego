@@ -13,6 +13,15 @@ document.querySelector(".btn-volver").addEventListener("click", () => {
   });
 });
 
+// Código para añadir el sonido del botón volder
+const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
+const btnVolver = document.querySelector(".btn-volver");
+
+btnVolver.addEventListener("mouseenter", () => {
+  sonidoHover.currentTime = 0;
+  sonidoHover.play();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   redimensionarBody();
   resizeSVG();
@@ -20,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Deshabilitar todas las regiones primero
   ["region-1", "region-2", "region-3"].forEach(disableRegion);
 
-  // Estructura de switch que habilita las regiones según el nivel del personaje
+  // Estructura de switch que habilita las regiones según el jugador vaya avanzando en el juego
   switch (personaje.region) {
     case 1:
       enableRegion("region-1");
@@ -65,6 +74,11 @@ function resizeSVG() {
   }
 }
 
+/**
+ * Método que sirve para deshabilitar la región pasada por parámetro.
+ * 
+ * @param {*} regionId Id de la región a deshabilitar.
+ */
 function disableRegion(regionId) {
   const region = document.getElementById(regionId);
   if (region) {
@@ -84,6 +98,11 @@ function disableRegion(regionId) {
   }
 }
 
+/**
+ * Método que sirve para habilitar la región pasada por parámetro.
+ * 
+ * @param {*} regionId Id de la región a habilitar.
+ */
 function enableRegion(regionId) {
   const region = document.getElementById(regionId);
   if (region) {

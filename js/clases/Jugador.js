@@ -179,14 +179,14 @@ export class Jugador extends Personaje {
      * @returns 
      */
     equiparArma(nombreArma) {
-        const armEncontrada = this.inventario.armas.find(arma = this.#arma.nombre === nombreArma);
+        const armaEncontrada = this.inventario.armasCompradas.find(arma => arma.nombre === nombreArma);
 
-        if (!armEncontrada) {
-            console.error("No tienes el arma ${nombeArma} en tu inventario.");
+        if (!armaEncontrada) {
+            console.error(`No tienes el arma ${nombreArma} en tu inventario.`);
             return;
         }
 
-        this.arma = armEncontrada;
-        console.log("Has equipado el arma: $this.arma.nombre");
+        this.arma = Arma.fromJSON(armaEncontrada);
+        console.log(`Has equipado el arma: ${this.arma.nombre}`);
     }
 }
