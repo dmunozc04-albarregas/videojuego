@@ -71,7 +71,7 @@ if (comprobarFinJuego()) {
         document.getElementById("textoManaJugador").textContent = `${jugador.magiaMax}/${jugador.magiaMax}`;
 
         funcionalidadBotones();
-        funcionalidadTootltipBotonesSeniales();
+        funcionalidadTootltipBotones();
     });
 }
 
@@ -209,7 +209,7 @@ function funcionalidadBotones() {
 /**
  * Método que sirve para añadir los eventos para que se muestre el tooltip con la descripción de cada señal.
  */
-function funcionalidadTootltipBotonesSeniales() {
+function funcionalidadTootltipBotones() {
     const tooltip = document.getElementById("tooltip");
     const botones = document.querySelectorAll(".btn-senal");
 

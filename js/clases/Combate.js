@@ -271,7 +271,6 @@ export class Combate {
         this.jugador.vidaActual = this.jugador.vidaMax;
         this.jugador.magiaActual = this.jugador.magiaMax;
         this.jugador.dinero += 100;
-        console.log(this.jugador);
         guardado[0] = this.jugador;
 
         localStorage.setItem("guardado", JSON.stringify(guardado));
