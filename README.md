@@ -11,8 +11,8 @@ Videojuego basado en The Witcher 3 desarrollado en JavaScript.
 
 ## Manuales
 
-- [Manual del usuario](https://enlace-a-tu-documentacion.com)
-- [Manual del programador](https://enlace-a-la-guia-de-instalacion.com)
+- [Manual del usuario](https://evaremu.gitbook.io/manual-usuario)
+- [Manual del programador](https://david-13.gitbook.io/manual-del-programador)
 
 ## Autores
 
