@@ -95,11 +95,19 @@ function selectWeapon(weapon) {
     }
 }
 
-
+/**
+ * Función para comprar el arma seleccionada.
+ */
 document.querySelector(".btn-comprar").addEventListener("click", () => {
     anhadirArmaInventario(armaSeleccionada);
 });
 
+/**
+ * Añade el arma seleccionada al inventario si el jugador tiene suficiente dinero.
+ * Actualiza el dinero del jugador y marca el arma como comprada.
+ * 
+ * @param {Arma} arma Arma a añadir al inventario.
+ */
 function anhadirArmaInventario(arma) {
     if (arma instanceof Arma) {
         if (arma.estaComprado) {
@@ -121,7 +129,13 @@ function anhadirArmaInventario(arma) {
         alerta("error", `Seleccione un arma`);
     }
 }
-// Función para mostrar toasts con SweetAlert
+
+/**
+ * Muestra una notificación tipo "toast" con SweetAlert.
+ * 
+ * @param {string} tipo Tipo de notificación ("success", "error").
+ * @param {string} mensaje Mensaje a mostrar en la notificación.
+ */
 function alerta(tipo, mensaje) {
     const Toast = Swal.mixin({
       toast: true,

@@ -1,33 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
-/**
-* @description Ajustar el modelo de caja de todos los elementos para incluir padding y 
-* border en el tamaño total del elemento.
-*/
 
 * {
   box-sizing: border-box;
 }
 
-/**
-* @description Configuración del cuerpo de la página.
-*/
 body {
   font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */ 
   background-image: url("../recursos/imagenes/fondos/FondoCreador.webp");
   background-size: cover;
 }
 
-/**
-* @description Ajusta el tamaaño de las etiquetas de los formularios.
-*/
 form label{
   font-size: 1.3em;
 }
 
-/**
-* @descriptio Aplica sombra a etiquetas de formularos y títulos para mejorar la visibilidad. 
-*/
 form label, h1 {
   text-shadow: 
   1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */

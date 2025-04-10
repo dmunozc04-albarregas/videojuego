@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("resize", resizeSVG);
 
+/**
+ * Redimensiona el cuerpo de la página con una animación de escala.
+ */
 function redimensionarBody() {
   document.body.style.transform = "scale(1.5)";
   setTimeout(() => {
@@ -66,6 +69,10 @@ function redimensionarBody() {
   }, 1);
 }
 
+/**
+ * Redimensiona el SVG de acuerdo al tamaño de la imagen de mapa.
+ * Ajusta la vista del SVG para que coincida con el tamaño de la imagen.
+ */
 function resizeSVG() {
   const img = document.getElementById("map-image");
   const svg = document.getElementById("map-overlay");

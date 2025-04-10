@@ -21,6 +21,14 @@ export class Region {
         this.enemigos = [];
     }
 
+    /**
+    * Convierte el objeto Region actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa la región, con las siguientes propiedades:
+    *                   - imgRegion: La imagen asociada a la región.
+    *                   - tamanioEnemigos: El número máximo de enemigos que pueden estar en la región.
+    *                   - enemigos: Un array de enemigos presentes en la región.
+    */
     toJSON() {
         return {
             imgRegion: this.imgRegion,
@@ -29,6 +37,16 @@ export class Region {
         };
     }
 
+    /**
+    * Crea una nueva instancia de Region a partir de un objeto JSON.
+    *
+    * @param {Object} datos - Un objeto con los datos necesarios para reconstruir una región.
+    *                         Debe incluir las siguientes propiedades:
+    *                         - imgRegion: La imagen asociada a la región.
+    *                         - tamanioEnemigos: El número máximo de enemigos que puede haber en la región.
+    *                         - enemigos: Un array con los enemigos presentes en la región.
+    * @returns {Region} Una nueva instancia de la clase Region con los datos proporcionados.
+    */
     static fromJSON(datos) {
         return new Region(
             datos.imgRegion,

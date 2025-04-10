@@ -4,28 +4,49 @@ import { Musica } from "../clases/Musica.js";
 document.addEventListener("DOMContentLoaded", () => {
   // Código para controlar la música
   const musica = new Musica();
+
+  /**
+   * Reproduce la música de fondo de la página de lobby.
+   * @constant {Musica} musica Instancia de la clase Musica para controlar la música de fondo.
+   */
   musica.reproducir("../recursos/sonidos/Lobby.mp3");
 
+  // Obtener datos del personaje guardado en localStorage
   const personaje = JSON.parse(localStorage.getItem("guardado"))[0];
 
-  // Código para cargar la imagen del personaje
+  /**
+   * Actualiza la imagen del personaje en la interfaz.
+   * @param {string} personaje.imagen Ruta de la imagen del personaje.
+   */
   document.getElementById("personaje").src = personaje.imagen;
-  // Código para cargar el nombre del personaje
+ 
+  /**
+   * Actualiza el nombre del personaje en la interfaz.
+   * @param {string} personaje.nombre Nombre del personaje.
+   */
   document.getElementById("nombre-personaje").innerText = personaje.nombre;
 
+  /**
+   * Actualiza las estadísticas del personaje en la interfaz.
+   */
   document.getElementById("vida-personaje").innerText = personaje.vidaMax;
-
   document.getElementById("fuerza-personaje").innerText = personaje.fuerza;
-
   document.getElementById("magia-personaje").innerText = personaje.magiaMax;
-
   document.getElementById("nivel-personaje").innerText = personaje.nivel;
 
+  /**
+   * Barras de progreso del personaje.
+   */
   const barra_vida_personaje = document.getElementById("progress-bar-vida");
   const barra_fuerza_personaje = document.getElementById("progress-bar-fuerza");
   const barra_magia_personaje = document.getElementById("progress-bar-magia");
   const barra_nivel_personaje = document.getElementById("progress-bar-nivel");
 
+  /**
+   * Cambia el color de la barra de progreso según el valor.
+   * @param {HTMLElement} barra La barra de progreso a modificar.
+   * @param {number} valor El valor de la barra, usado para determinar el color.
+   */
   function cambiarColorBarraProgreso(barra, valor) {
     // Limpiar clases anteriores
     barra.classList.remove("barra-roja", "barra-amarilla", "barra-verde");
@@ -39,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
       barra.classList.add("barra-verde"); // Si es 71-100% => Verde
     }
   }
-
+  
+  // Espera para actualizar las barras después de cargar los datos
   setTimeout(() => {
     barra_vida_personaje.style.width = personaje.vidaMax + "%";
     barra_vida_personaje.setAttribute("aria-valuenow", personaje.vidaMax);
@@ -57,9 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
     barra_nivel_personaje.setAttribute("aria-valuenow", personaje.experiencia);
   }, 100);
 
+  /**
+   * Muestra la cantidad de dinero del personaje en la interfaz.
+   */
   document.getElementById("economia").innerText = personaje.dinero;
 
-  // Hacer que el SVG coincida con la imagen de manera responsiva
+  /**
+   * Hacer que el SVG coincida con la imagen de manera responsiva
+   */
   function resizeSVG() {
     let img = document.getElementById("map-image");
     let svg = document.getElementById("map-overlay");
@@ -91,6 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("DOMContentLoaded", resizeSVG);
   window.addEventListener("resize", resizeSVG);
 
+  /**
+   * Redirige al usuario a la página correspondiente según la región seleccionada en el mapa.
+   * @constant {Object} regionRedirects Un objeto que mapea las regiones a sus URL correspondientes.
+   */
   const regionRedirects = {
     "region-tienda": "../html/Tienda.html",
     "region-inventario": "../html/Inventario.html",

@@ -44,6 +44,23 @@ export class Jugador extends Personaje {
         this.inventario = inventario;
     }
 
+    /**
+    * Convierte el objeto Jugador actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa al jugador con las siguientes propiedades:
+    *                   - nombre: El nombre del jugador.
+    *                   - fuerza: La fuerza del jugador.
+    *                   - vidaActual: La cantidad de vida actual.
+    *                     - vidaMax: La cantidad máxima de vida.
+    *                   - magiaActual: La cantidad actual de magia.
+    *                   - magiaMax: El máximo de magia disponible.
+    *                   - nivel: El nivel del jugador.
+    *                   - imagen: La imagen asociada al jugador.
+    *                   - arma: El arma equipada por el jugador.
+    *                   - experiencia: La experiencia acumulada por el jugador.
+    *                   - dinero: La cantidad de dinero del jugador.
+    *                   - inventario: El inventario del jugador, que contiene los objetos adquiridos.
+    */
     toJSON() {
         return {
             nombre: this.nombre,
@@ -61,6 +78,25 @@ export class Jugador extends Personaje {
         };
     }
 
+    /**
+    * Crea una nueva instancia de Jugador a partir de un objeto JSON.
+    *
+    * @param {Object} datos - Un objeto con los datos necesarios para reconstruir un jugador.
+    *                         Debe incluir las siguientes propiedades:
+    *                         - nombre: El nombre del jugador.
+    *                         - fuerza: La fuerza del jugador.
+    *                         - vidaActual: La cantidad de vida actual.
+    *                         - vidaMax: La cantidad máxima de vida.
+    *                         - magiaActual: La cantidad actual de magia.
+    *                         - magiaMax: El máximo de magia disponible.
+    *                         - nivel: El nivel del jugador.
+    *                         - imagen: La imagen asociada al jugador.
+    *                         - arma: El arma equipada por el jugador.
+    *                         - experiencia: La experiencia acumulada.
+    *                         - dinero: La cantidad de dinero del jugador.
+    *                         - inventario: El inventario con los objetos adquiridos.
+    * @returns {Jugador} Una nueva instancia de la clase Jugador con los datos proporcionados.
+    */
     static fromJSON(datos) {
         return new Jugador(
             datos.nombre,

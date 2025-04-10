@@ -17,6 +17,13 @@ export class Tienda{
         this.armas = [];
     }
 
+    /**
+    * Convierte el objeto Tienda actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa la tienda, con las siguientes propiedades:
+    *                   - tamanioTienda: El tamaño máximo de la tienda (número de armas que puede almacenar).
+    *                   - armas: Un array con las armas disponibles en la tienda.
+    */
     toJSON() {
         return {
             tamanioTienda: this.tamanioTienda,

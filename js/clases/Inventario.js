@@ -17,13 +17,29 @@ export class Inventario {
         this.armasCompradas = armasCompradas;
     }
 
+    /**
+    * Convierte el objeto Inventario actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa el inventario, con las siguientes propiedades:
+    *                   - tamanioInventario: El número máximo de armas que puede almacenar el inventario.
+    *                   - armasCompradas: Un array con las armas que han sido compradas y están en el inventario.
+    */
     toJSON() {
         return {
             tamanioInventario: this.tamanioInventario,
             armasCompradas: this.armasCompradas
         };
     }
-
+    
+    /**
+    * Crea una nueva instancia de Inventario a partir de un objeto JSON.
+    *
+    * @param {Object} datos - Un objeto con los datos necesarios para reconstruir el inventario.
+    *                         Debe incluir:
+    *                         - tamanioInventario: El tamaño máximo del inventario.
+    *                         - armasCompradas: Un array de armas previamente compradas.
+    * @returns {Inventario} Una nueva instancia de la clase Inventario con los datos proporcionados.
+    */
     static fromJSON(datos) {
         return new Inventario(
             datos.tamanioInventario,
