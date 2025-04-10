@@ -37,13 +37,23 @@
 
 #contenedor {
   position: fixed;
-  top: 38%;
+  top: 40%;
   left: 60%;
   bottom: 0;
   color: #f1f1f1;
   width: 100%;
   padding: 20px;
-  z-index: 998;
+  z-index: 997;
+}
+
+
+.logo {
+  position: absolute;
+  top: 8%;
+  left: 58%;
+  padding-top: 3em;
+  margin-bottom: 15em;
+  z-index: 997;
 }
 
 .btns-menu{

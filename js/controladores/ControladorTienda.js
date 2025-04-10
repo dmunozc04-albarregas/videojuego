@@ -41,12 +41,12 @@ document.getElementById("economia").innerText = personaje.dinero;
  */
 function generateWeaponList() {
     const container = document.getElementById("weapon-list"); // Contenedor donde se insertarán las armas
-    container.innerHTML = ""; // Limpiar contenido previo
+    container.innerHTML = ""; 
 
     armas.forEach((arma) => {
         const weaponDiv = document.createElement("div");
         weaponDiv.classList.add("weapon-item");
-        weaponDiv.addEventListener("click", () => selectWeapon(arma, weaponDiv)); // Añadir evento de clic para seleccionar el arma
+        weaponDiv.addEventListener("click", () => selectWeapon(arma, weaponDiv));
         weaponDiv.innerHTML = `<span>${arma.nombre}</span> <span>${arma.precio}</span>`;
         container.appendChild(weaponDiv);
     });
@@ -103,7 +103,7 @@ document.querySelector(".btn-comprar").addEventListener("click", () => {
 function anhadirArmaInventario(arma) {
     if (arma instanceof Arma) {
         if (arma.estaComprado) {
-            alerta("error", `Ya tienes esta arma en tu inventario`);
+            alerta("info", `Ya tienes esta arma en tu inventario`);
             return;
         } else if (personaje.dinero >= arma.precio) {
             personaje.dinero -= arma.precio;
