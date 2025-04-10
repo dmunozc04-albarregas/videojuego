@@ -14,20 +14,31 @@ const personaje = Jugador.fromJSON(datosJugador);
 
 // Control de la música
 const musica = new Musica();
+
+/**
+ * Reproduce el sonido de fondo de la página de creación.
+ * @param {string} rutaRuta - Ruta del archivo de sonido.
+ */
 musica.reproducir("../recursos/sonidos/Inventario.mp3");
 
-// Cargar imagen y nombre del personaje
+/**
+ * Cargar imagen y nombre del personaje.
+ */
 document.getElementById("avatar-personaje").src = personaje.imagen;
 document.getElementById("nombre-personaje").innerText = personaje.nombre;
 
-// Funcionalidad del botón "Volver"
+/**
+ * Funcionalidad del botón "Volver"
+ */
 document.querySelector(".btn-volver").addEventListener("click", () => {
   musica.desvanecer(() => {
     window.location.href = "Lobby.html";
   });
 });
 
-// Código para añadir el sonido del botón volver
+/**
+ * Código para añadir el sonido del botón volver.
+ */
 const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 const btnVolver = document.querySelector(".btn-volver");
 
@@ -36,7 +47,9 @@ btnVolver.addEventListener("mouseenter", () => {
   sonidoHover.play();
 });
 
-// Crear la tabla de inventario
+/**
+ * Crear la tabla de inventario.
+ */
 const tablaDatos = document.getElementById("tabla-datos");
 const numeroDeCeldas = 9;
 const columnasPorFila = 3;
@@ -89,6 +102,14 @@ const columnasPorFila = 3;
   return celda;
 }*/
 
+/**
+ * Crea una celda de arma dentro de la tabla de inventario.
+ * Si el slot está vacío, mostrará un mensaje indicándolo.
+ * 
+ * @param {Arma|null} arma - El objeto de tipo Arma o null si el slot está vacío.
+ * @param {number} index - El índice de la celda en la tabla.
+ * @returns {HTMLElement} La celda generada con el contenido correspondiente.
+ */
 function crearCelda(arma, index) {
   const celda = document.createElement("td");
   celda.style.textAlign = "center";
@@ -151,7 +172,13 @@ function crearCelda(arma, index) {
   return celda;
 }
 
-// Función para crear el tooltip de estadísticas
+/**
+ * Crea un tooltip con las estadísticas del arma.
+ * El tooltip se muestra cuando el mouse pasa sobre el arma.
+ * 
+ * @param {HTMLElement} celda - La celda en la que se mostrará el tooltip.
+ * @param {Arma} arma - El objeto Arma que contiene las estadísticas.
+ */
 function crearTooltip(celda, arma) {
   const statsDiv = document.createElement("div");
   statsDiv.classList.add("stats-tooltip");
@@ -193,7 +220,9 @@ function crearTooltip(celda, arma) {
   });
 }
 
-// Generar las filas y celdas del inventario
+/**
+ * Generar las filas y celdas del inventario.
+ */
 for (let index = 0; index < numeroDeCeldas; index++) {
   const filaIndex = Math.floor(index / columnasPorFila);
   let fila = tablaDatos.children[filaIndex];
@@ -209,7 +238,12 @@ for (let index = 0; index < numeroDeCeldas; index++) {
   fila.appendChild(celda);
 }
 
-// Función para mostrar toasts con SweetAlert
+/**
+ * Muestra una alerta tipo toast con SweetAlert.
+ * 
+ * @param {string} tipo - El tipo de alerta (success, error, info, etc.).
+ * @param {string} mensaje - El mensaje que se mostrará en la alerta.
+ */
 function alerta(tipo, mensaje) {
   const Toast = Swal.mixin({
     toast: true,

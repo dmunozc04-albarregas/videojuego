@@ -1,27 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap");
 
-/**
-* @file Estilos de la pantalla de combate para el videojuego.
-* @description Este archivo contiene los estilos CSS para la pantalla 
-* de combate del videojuego, incluyendo el diseño de los personajes, 
-* las barras de vida, los botones de acción y los mensajes de combate.
-*/
-
-/**
-* @section Estilos generales del cuerpo.
-* @description Se establece la fuente, el margen y el padding del cuerpo.
-*/
+/*Estilos generales*/
 body {
     font-family: "IM Fell English SC", serif !important; /* Fuente elegante y antigua */
     margin: 0;
     padding: 0;
-    
 }
-
-/**
-* @class .contenedor-combate
-* @description Contenedor principal para la pantalla de combate.
-*/
+/*Contenido principal*/
 .contenedor-combate {
     display: flex;
     flex-direction: column;
@@ -29,11 +14,7 @@ body {
     justify-content: center;
     height: 100vh;
 }
-
-/**
-* @class .area-combate
-* @description Área donde se desarrollla el combate.
-*/
+/*Área combate*/
 .area-combate {
     width: 100%;
     max-width: 800px;
@@ -42,11 +23,7 @@ body {
     color: black;
     text-align: center;
 }
-
-/**
-* @class .pantalla-combate
-* @desccription Contenedor de los personajes en combate.
-*/
+/*Estado del combate(parte superior)*/
 .estado-combate {
     font-size: 24px;
     font-weight: bold;
@@ -60,11 +37,7 @@ body {
     1px 1px 0px #fff,    
     -1px -1px 0px #fff;
 }
-
-/**
-* @class .personaje
-* @description Representaión visual de un personaje en combate.
-*/
+/*Pantalla de combate*/
 .pantalla-combate {
     display: flex;
     justify-content: space-evenly;
@@ -73,11 +46,7 @@ body {
     width: 100%;
     height: auto;
 }
-
-/**
-* @class .personaje
-* @description Representación visual de un personaje en combate.
-*/
+/*Personajes*/
 .personaje {
     display: flex;
     flex-direction: column;
@@ -87,12 +56,7 @@ body {
     text-align: center;
     font-size: 24px;
 }
-
-/**
-* @class .personaje img
-* @description Estilo de la imagen del personaje.
-*
-*/
+/*Imagen personaje*/
 .personaje img {
     width: 250px; 
     height: 250px; 
@@ -100,10 +64,6 @@ body {
     border-radius: 8px;
 }
 
-/**
-* @class #nombreJugador, #nombreEnemigo
-* @description Estilo de los nombres de los personajes.
-*/
 #nombreJugador, #nombreEnemigo {
     text-shadow: 
     1px 1px 0px #fff,   /* Aumentando el desplazamiento para mayor grosor */
@@ -113,11 +73,7 @@ body {
     1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
     -1px -1px 0px #fff;
 }
-
-/**
- * @class .progress
- * @description Contenedor de la barra de vida.
- */
+/*Estilos generales para las barras de progreso*/
 .progress {
     width: 250px; /* Barra de 250px de ancho */
     height: 20px; /* Altura de la barra */
@@ -126,11 +82,7 @@ body {
     border-radius: 10px; /* Bordes redondeados */
     margin: 10px auto; /* Centra la barra en la página */
 }
-
-/**
- * @class .progress-bar
- * @description Barra de vida dentro del contenedor de progreso.
- */
+/*Barra de vida dentro de la barra de progreso*/
 .progress-bar {
     height: 100%; /* Altura completa de la barra de vida */
     background-color: #4CAF50; /* Color verde para la barra de vida */
@@ -141,10 +93,7 @@ body {
     text-align: center;
     font-weight: bold;
 }
-
-/**
-* Estilos para el texto vs en la pantalla de combate 
-*/
+/*"VS" entre personajes*/
 .vs {
     font-size: 30px;
     font-weight: bold;
@@ -157,11 +106,7 @@ body {
     1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
     -1px -1px 0px #fff;
 }
-
-/**
- * @class .mensaje-combate
- * @description Mensaje que informa sobre el estado del combate.
- */
+/*Caja de mensaje de combate*/
 .mensaje-combate {
     font-size: 24px;
     color: black; 
@@ -174,11 +119,7 @@ body {
     1px 1px 0px #fff,    /* Añadimos más sombras para un borde más grueso */
     -1px -1px 0px #fff;
 }
-
-/**
- * @class .acciones
- * @description Contenedor de los botones de acción.
- */
+/*Botones de acción*/
 .acciones {
     margin-top: 20px;
     width: 100%;
@@ -223,10 +164,6 @@ button:disabled {
     box-shadow: none;
 }
 
-/**
- * @class .progress-bar span
- * @description Texto dentro de la barra de vida.
- */
 .progress-bar span {
     color: black; 
     position: absolute;
@@ -237,18 +174,10 @@ button:disabled {
     font-size: 20px;
 }
 
-/**
-* @class .oculto
-* @description Clase para ocultar elementos.
-*/
 .oculto {
     display: none;
 }
 
-/**
-* @class .fondo-difuminado
-* @description Clase para el fondo difuminado que cubre toda la pantalla.
-*/
 .fondo-difuminado {
     position: fixed;
     top: 0;
@@ -263,10 +192,6 @@ button:disabled {
     z-index: 999; 
 }
 
-/**
-* @class .mensaje-final
-* @description Clase para el mensaje final que aparece al finalizar el combate.
-*/
 .mensaje-final {
     font-size: 60px;
     color: white;
@@ -278,10 +203,6 @@ button:disabled {
     z-index: 1001; /* Asegura que el mensaje esté por encima del fondo */
 }
 
-/**
-* @class .imagen-letrero
-* @description Clase para la imagen del letrero que aparece en la pantalla.
-*/
 .imagen-letrero {
     position: fixed; /* Fija la imagen en la pantalla */
     top: -110px; 
@@ -293,10 +214,6 @@ button:disabled {
     display: inline-block; 
 }
 
-/**
-* @class .texto-sobre-imagen
-* @description Clase para el texto que aparece sobre la imagen del letrero.
-*/
 .texto-sobre-imagen {
     position: absolute; /* Posiciona el texto dentro de la imagen */
     top: 66px; 
@@ -308,20 +225,12 @@ button:disabled {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
 }
 
-/**
-* @class .mensaje-principal
-* @description Clase para el mensaje principal que aparece en la pantalla.
-*/
 .mensaje-principal {
     font-size: 1.2em;
     font-weight: bold;
     display: block; 
 }
 
-/**
-* @class .mensaje-exp
-* @description Clase para el mensaje de experiencia que aparece en la pantalla.
-*/
 .mensaje-exp {
     font-size: 0.5em;
     color: #ccc;
@@ -329,10 +238,6 @@ button:disabled {
     margin-top: 10px; 
 }
 
-/**
-* @class .mensaje-oro
-* @description Clase para el mensaje de oro que aparece en la pantalla.
-*/
 .mensaje-oro {
     font-size: 0.5em; 
     color: #ccc; 
@@ -340,9 +245,6 @@ button:disabled {
     margin-top: 10px; 
 }
 
-/**
-* Estilos para el contenedor del mensaje final en la pantalla de combate.
-*/
 #mensajeFinal {
     display: flex;
     flex-direction: column; 
@@ -350,10 +252,7 @@ button:disabled {
     justify-content: center; 
     text-align: center;
 }
-/**
-* @class .botones-finales
-* @description Clase para los botones finales que aparecen al finalizar el combate.
-*/
+
 .botones-finales, .botones-subida-nivel {
     margin-top: 20px;
     display: flex;
@@ -382,9 +281,6 @@ button:disabled {
     box-shadow: 0 0 10px rgba(201, 170, 113, 0.5);
 }
 
-/**
-* Estilos para el contenedor del estado del combate.
-*/
 #estadoContenedor {
     text-align: center;
     position: fixed;
@@ -396,10 +292,6 @@ button:disabled {
     border-radius: 8px;
 }
 
-/**
-* @class .tooltip
-* @description Clase para el tooltip que aparece al pasar el mouse sobre los elementos.
-*/
 .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);

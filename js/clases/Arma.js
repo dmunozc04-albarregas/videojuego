@@ -30,6 +30,17 @@ export class Arma {
         this.estaComprado = estaComprado;
     }
 
+    /**
+    * Convierte el objeto Arma actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON con las propiedades del arma:
+    *                   - nombre: El nombre del arma.
+    *                   - danio: El daño que inflige.
+    *                   - rango: El rango de alcance.
+    *                   - precio: El coste del arma.
+    *                   - imagen: La URL o ruta de la imagen del arma.
+    *                   - estaComprado: Indica si el arma ha sido comprada.
+    */
     toJSON() {
         return {
             nombre: this.nombre,
@@ -40,7 +51,18 @@ export class Arma {
             estaComprado: this.estaComprado
         };
     }
-
+    /**
+    * Crea una nueva instancia de Arma a partir de un objeto JSON.
+    *
+    * @param {Object} datos - Un objeto con los datos del arma que debe incluir:
+    *                         - nombre: El nombre del arma.
+    *                         - danio: El daño que inflige.
+    *                         - rango: El rango de alcance.
+    *                         - precio: El coste del arma.
+    *                         - imagen: La URL o ruta de la imagen del arma.
+    *                         - estaComprado: Estado de compra del arma.
+    * @returns {Arma} Una nueva instancia de la clase Arma con los datos proporcionados.
+    */
     static fromJSON(datos) {
         return new Arma(
             datos.nombre,

@@ -24,6 +24,20 @@ export class Enemigo extends Personaje {
         this.estado = { tipo: null, duracion: 0, nombre: ""};
     }
 
+    /**
+    * Convierte el objeto Enemigo actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa al enemigo con las siguientes propiedades:
+    *                   - nombre: El nombre del enemigo.
+    *                   - fuerza: La fuerza física del enemigo.
+    *                   - vidaActual: La cantidad de vida que tiene actualmente.
+    *                   - vidaMax: La cantidad máxima de vida que puede tener.
+    *                   - magiaActual: La cantidad actual de magia disponible.
+    *                   - magiaMax: El máximo de magia que puede tener.
+    *                   - nivel: El nivel del enemigo.
+    *                   - imagen: La imagen asociada al enemigo.
+    *                   - estado: El estado actual del enemigo (por ejemplo: 'vivo', 'muerto', etc.).
+    */
     toJSON() {
         return {
             nombre: this.nombre,
@@ -37,7 +51,22 @@ export class Enemigo extends Personaje {
             estado: this.estado
         };
     }
-
+    /**
+    * Crea una nueva instancia de Enemigo a partir de un objeto JSON.
+    *
+    * @param {Object} datos - Un objeto que contiene los datos necesarios para crear un enemigo.
+    *                         Debe incluir las siguientes propiedades:
+    *                         - nombre: El nombre del enemigo.
+    *                         - fuerza: La fuerza física del enemigo.
+    *                         - vidaActual: La cantidad de vida actual.
+    *                         - vidaMax: La cantidad máxima de vida.
+    *                         - magiaActual: La magia actual disponible.
+    *                         - magiaMax: El máximo de magia.
+    *                         - nivel: El nivel del enemigo.
+    *                         - imagen: La imagen representativa.
+    *                         - estado: El estado actual del enemigo.
+    * @returns {Enemigo} Una nueva instancia de la clase Enemigo con los datos proporcionados.
+    */
     static fromJSON(datos) {
         return new Enemigo(
             datos.nombre,
@@ -69,6 +98,4 @@ export class Enemigo extends Personaje {
     set estado(nuevoEstado) {
         this.#estado = nuevoEstado;
     }
-
-    // Métodos
 }

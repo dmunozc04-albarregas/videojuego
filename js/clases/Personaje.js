@@ -38,6 +38,19 @@ export class Personaje {
         this.imagen = imagen;
     }
 
+    /**
+    * Convierte el objeto actual a una representación JSON.
+    *
+    * @returns {Object} Un objeto JSON que representa el estado del objeto con las siguientes propiedades:
+    *                   - nombre: El nombre del objeto.
+    *                   - fuerza: La fuerza del objeto.
+    *                   - vidaActual: La cantidad de vida actual.
+    *                   - vidaMax: La cantidad máxima de vida.
+    *                   - magiaActual: La cantidad actual de magia.
+    *                   - magiaMax: El máximo de magia disponible.
+    *                   - nivel: El nivel del objeto.
+    *                   - imagen: La imagen asociada al objeto.
+    */
     toJSON() {
         return {
             nombre: this.nombre,

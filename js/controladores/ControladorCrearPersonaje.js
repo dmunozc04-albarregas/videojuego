@@ -8,14 +8,26 @@ import { Region } from "../clases/Region.js";
 
 // Código para controlar la música
 const musica = new Musica();
+
+/**
+ * Reproduce el sonido de fondo de la página de creación.
+ * @param {string} rutaRuta - Ruta del archivo de sonido.
+ */
 musica.reproducir("../recursos/sonidos/Creador.mp3");
 
-// Código para cargar las imagenes de los personajes asegurándose que antes se carga toda la página
+/**
+ * Código para cargar las imagenes de los personajes
+ * asegurándose que antes se carga toda la página.
+ */
 document.addEventListener("DOMContentLoaded", () => {
   cargarAvatares();
 });
 
-// Código para la creación del personaje y la partida
+/**
+ * Código para la creación del personaje y la partida.
+ * Guarda la partida en el localStorage y navega a la pantalla del lobby.
+ * @param {Event} event - Evento de submit del formulario.
+ */
 document.getElementById("formulario").addEventListener("submit", function (event) {
   event.preventDefault();
   let array = [];
@@ -73,17 +85,32 @@ function actualizarValores(input, otroInput, valueDisplay) {
   valueDisplay.textContent = valorActual;
 }
 
+/**
+ * Actualiza el valor de la fuerza cuando el usuario interactúa con el input de fuerza.
+ * @param {Event} event - Evento de input en el campo de fuerza.
+ */
 fuerzaInput.addEventListener("input", function () {
   actualizarValores(fuerzaInput, magiaInput, fuerzaValue);
 });
+
+/**
+ * Actualiza el valor de la magia cuando el usuario interactúa con el input de magia.
+ * @param {Event} event - Evento de input en el campo de magia.
+ */
 magiaInput.addEventListener("input", function () {
   actualizarValores(magiaInput, fuerzaInput, magiaValue);
 });
 
-// Código para añadir el sonido de los botones
+/**
+ * Código para añadir el sonido de los botones.
+ */
 const sonidoHover = new Audio("../recursos/sonidos/hover-sound.mp3");
 const btnEnviar = document.querySelector(".btn-enviar");
 
+/**
+ * Reproduce un sonido cuando el usuario pasa el ratón sobre el botón de envío.
+ * @param {Event} event - Evento de hover sobre el botón.
+ */
 btnEnviar.addEventListener("mouseenter", () => {
   sonidoHover.currentTime = 0;
   sonidoHover.play();
@@ -108,6 +135,10 @@ function cargarAvatares() {
     img.src = img_avatares[index];
     img.style.transition = "transform 0.3s ease";
 
+    /**
+     * Evento para seleccionar un avatar cuando el usuario hace click sobre él.
+     * Marca el avatar seleccionado y guarda la imagen seleccionada.
+     */
     img.addEventListener("click", () => {
       avatares.forEach(img => img.classList.remove("selected")); // Quitamos la selección de todas
       img.classList.add("selected"); // Agregamos la clase a la imagen seleccionada
